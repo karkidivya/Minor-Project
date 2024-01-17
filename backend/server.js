@@ -1,26 +1,28 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import db from './db.js'
 
-
-//router object
-// import mainRouter from './routes/index.js'
 dotenv.config()
-import mysql from 'mysql'
+const app = express();
+const PORT = 3000;
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: 'root'
-});
+// Connect to the MySQL server
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
-
-const PORT  = process.env.PORT 
-const app = express()
+  
+  // Create a simple route to fetch data from MySQL
+//   app.get('/users', (req, res) => {
+//     // Perform a simple SELECT query
+//     db.query('SELECT * FROM users', (queryErr, results) => {
+//       if (queryErr) {
+//         console.error('Error executing query:', queryErr);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//         return;
+//       }
+//       res.json(results);
+//     });
+//   });
+  
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
