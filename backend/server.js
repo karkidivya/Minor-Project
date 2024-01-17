@@ -1,16 +1,23 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import Database from './db.js'
+
 
 //router object
 // import mainRouter from './routes/index.js'
 dotenv.config()
+import mysql from 'mysql'
 
-const db = new Database();
-const URI = process.env.MONGODB_URI
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: 'root'
+});
 
-await db.connectDB( URI )
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 const PORT  = process.env.PORT 
 const app = express()
