@@ -1,30 +1,42 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import NavBar from './NavBar'
+'use client'
+import { Fragment, useEffect } from "react";
+import Head from "next/head";
+import { ThemeProvider, createTheme } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
 
-const inter = Inter({ subsets: ['latin'] })
+import "./globals.css";
+import {  ScriptProps } from "next/script";
 
-export const metadata: Metadata = {
-  title: 'KaamSewa',
-  description: 'Got anything broken! Our Services will come in handy',
-}
+export default function Layout({children}: ScriptProps) {
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles && jssStyles.parentElement) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+  const muiTheme = createTheme();
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <header>
-          <NavBar />
-        </header>
-        <main>
-          {children}
-        </main>
-        </body>
+    <html>
+      <head></head>
+      <body>
+        <Fragment>
+          <Head>
+            <title>something</title>
+            <meta
+              name="viewport"
+              content="minimum-scale=1, initial-scale=1, width=device-width"
+            />
+          </Head>
+          <ThemeProvider theme={muiTheme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </Fragment>
+      </body>
     </html>
-  )
+  );
 }
