@@ -4,6 +4,7 @@ dotenv.config()
 const host = process.env.host
 const user= process.env.user
 const password=process.env.password
+
 var  db = mysql.createConnection({
   host: host,
   user: user,
@@ -17,8 +18,6 @@ db.connect((err) => {
       return;
     }
   
- 
-    
     db.query(`
     CREATE TABLE IF NOT EXISTS Users (
       userId INT PRIMARY KEY,
@@ -26,7 +25,7 @@ db.connect((err) => {
       password VARCHAR(255),
       name VARCHAR(255),
       emailAddress VARCHAR(255),
-      phoneNumber INT,
+      phoneNumber VARCHAR(20),
       address VARCHAR(255),
       location DOUBLE,
       role VARCHAR(255),
