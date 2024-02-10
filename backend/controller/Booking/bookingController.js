@@ -56,8 +56,22 @@ const bookingController = {
     addBooking: async (req, res) => {
         const {bookingId, customerId, serviceProviderId, serviceId, dateAndTime, location, additionalNotes, bookingStatus, reviewId, createdAt, updatedAt } = req.body;
         try {
+
+        //     {
+        //         "bookingId": 5,
+        //         "customerId": 2,
+        //         "serviceProviderId": 3,
+        //         "serviceId": 3,
+        //         "dateAndTime": "2024-02-09T18:15:00.000Z",
+        //         "location": 40.7128,
+        //         "additionalNotes": "Bring tools",
+        //         "bookingStatus": "confirmed",
+        //         "reviewId": 1,
+        //         "createdAt": "2024-02-08T18:15:00.000Z",
+        //         "updatedAt": "2024-02-08T18:15:00.000Z"
+        //   }
             // Insert the new booking into the database
-            const query = 'INSERT INTO Booking (customerId, serviceProviderId, serviceId, dateAndTime, location, additionalNotes, bookingStatus, reviewId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+            const query = 'INSERT INTO Booking (bookingId, customerId, serviceProviderId, serviceId, dateAndTime, location, additionalNotes, bookingStatus, reviewId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)';
             const values = [bookingId, customerId, serviceProviderId, serviceId, dateAndTime, location, additionalNotes, bookingStatus, reviewId, createdAt, updatedAt];
            console.log(values);
             await queryAsync(query, values);
