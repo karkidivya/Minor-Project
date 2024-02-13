@@ -1,0 +1,275 @@
+.clouds {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.span {
+  color: var(--primary-blue);
+}
+.aboutUs1 {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  font-family: inherit;
+}
+.aboutUsImgIcon {
+  height: 395px;
+  flex: 1;
+  position: relative;
+  border-radius: 111px;
+  max-width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  min-width: 317px;
+}
+.welcomeTo {
+  color: var(--text2);
+}
+.kaamsewa {
+  color: var(--primary-blue);
+}
+.blankLine,
+.welcomeToKaamsewaYourTrus {
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+.kaamsewa1 {
+  color: var(--primary-blue);
+}
+.atKaamsewaWeUnderstandTha {
+  margin: 0;
+}
+.aboutUsDscrp {
+  height: 289px;
+  width: 443px;
+  position: relative;
+  letter-spacing: 0.04em;
+  line-height: 31px;
+  font-weight: 500;
+  display: inline-block;
+  flex-shrink: 0;
+  min-width: 443px;
+  max-width: 100%;
+}
+.clouds1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-mid);
+  max-width: 100%;
+  font-size: var(--font-size-mid);
+  color: var(--text2);
+}
+.aboutUs,
+.aboutUsInner {
+  display: flex;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.aboutUsInner {
+  width: 987px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-15xl) var(--padding-xl);
+  gap: 21px;
+}
+.aboutUs {
+  align-self: stretch;
+  background-color: var(--primary);
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  text-align: center;
+  font-size: var(--font-size-13xl);
+  color: var(--color-gray-300);
+  font-family: var(--font-roboto);
+}
+.span1 {
+  color: #ed4b21;
+}
+.mission {
+  color: var(--text2);
+}
+.ourMission1 {
+  margin: 0;
+  align-self: stretch;
+  height: 38px;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  font-family: inherit;
+  display: inline-block;
+}
+.mission1Icon,
+.ourMissionIs {
+  position: relative;
+  max-width: 100%;
+}
+.ourMissionIs {
+  height: 295px;
+  width: 386px;
+  letter-spacing: 0.04em;
+  line-height: 31px;
+  font-weight: 500;
+  display: inline-block;
+  flex-shrink: 0;
+  min-width: 386px;
+}
+.mission1Icon {
+  width: 470px;
+  border-radius: 123px;
+  max-height: 100%;
+  object-fit: cover;
+}
+.clouds2 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+  max-width: 100%;
+  font-size: var(--font-size-mid);
+  color: var(--text2);
+}
+.footerFrame,
+.missionInner,
+.ourMission {
+  display: flex;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.missionInner {
+  width: 1004px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-14xl) var(--padding-xl);
+  gap: var(--gap-30xl);
+}
+.footerFrame,
+.ourMission {
+  flex-direction: row;
+}
+.ourMission {
+  flex: 1;
+  background-color: var(--color-whitesmoke-200);
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+}
+.footerFrame {
+  align-self: stretch;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 var(--padding-6xl);
+  text-align: center;
+  font-size: var(--font-size-13xl);
+  color: var(--color-gray-300);
+  font-family: var(--font-roboto);
+}
+.span2 {
+  color: var(--primary-blue);
+}
+.contactUs {
+  margin: 0;
+  height: 38px;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  font-family: inherit;
+  display: inline-block;
+  max-width: 100%;
+}
+.landingPage,
+.viewAllProductsButton {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.viewAllProductsButton {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 0 var(--padding-smi);
+  max-width: 100%;
+}
+.landingPage {
+  width: 100%;
+  position: relative;
+  background-color: var(--primary);
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--padding-9xl) 0 0;
+  gap: var(--gap-3xs);
+  letter-spacing: normal;
+  text-align: center;
+  font-size: var(--font-size-13xl);
+  color: var(--color-gray-300);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 950px) {
+  .aboutUs1 {
+    font-size: var(--font-size-7xl);
+  }
+  .aboutUsDscrp {
+    flex: 1;
+  }
+  .clouds1 {
+    flex-wrap: wrap;
+  }
+  .ourMission1 {
+    font-size: var(--font-size-7xl);
+  }
+  .mission1Icon,
+  .ourMissionIs {
+    flex: 1;
+  }
+  .clouds2 {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .contactUs {
+    font-size: var(--font-size-7xl);
+  }
+}
+@media screen and (max-width: 700px) {
+  .aboutUsDscrp {
+    min-width: 100%;
+  }
+  .aboutUsInner {
+    padding-top: var(--padding-3xl);
+    padding-bottom: var(--padding-3xl);
+    box-sizing: border-box;
+  }
+  .ourMissionIs {
+    min-width: 100%;
+  }
+  .missionInner {
+    gap: var(--gap-30xl);
+    padding-top: var(--padding-2xl);
+    padding-bottom: var(--padding-2xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .aboutUs1,
+  .contactUs,
+  .ourMission1 {
+    font-size: var(--font-size-lgi);
+  }
+}

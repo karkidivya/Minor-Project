@@ -1,0 +1,67 @@
+.readyToGet {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+  font-family: inherit;
+}
+.footerAboutUsHeader {
+  height: 497px;
+  width: 1px;
+  position: relative;
+  border-right: 1px solid var(--color-silver);
+  box-sizing: border-box;
+}
+.getStarted,
+.homeRepairBoxIcon {
+  display: flex;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.homeRepairBoxIcon {
+  width: 1522px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 var(--padding-3xs) 0 var(--padding-10xs);
+  gap: var(--gap-xl);
+  font-size: var(--title-16px-medium-size);
+}
+.getStarted {
+  align-self: stretch;
+  background-color: var(--color-whitesmoke-100);
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-32xl);
+  gap: var(--gap-17xl);
+  z-index: 1;
+  margin-top: -1px;
+  text-align: center;
+  font-size: var(--font-size-5xl);
+  color: var(--text2);
+  font-family: var(--font-inter);
+}
+@media screen and (max-width: 1200px) {
+  .getStarted {
+    padding-left: var(--padding-6xl);
+    padding-right: var(--padding-6xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .getStarted {
+    gap: var(--gap-17xl);
+    padding-bottom: var(--padding-14xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .readyToGet {
+    font-size: var(--font-size-lgi);
+  }
+}

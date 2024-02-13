@@ -1,0 +1,84 @@
+.help1 {
+  position: relative;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  font-family: var(--font-inter);
+  color: var(--primary);
+  text-align: left;
+}
+.listIcon {
+  height: 20px;
+  width: 20px;
+  position: relative;
+}
+.help {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-8xs) var(--padding-2xs) var(--padding-9xs)
+    var(--padding-mid);
+  background-color: var(--text2);
+  border-radius: 0 var(--br-3xs) var(--br-3xs) 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-8xs);
+}
+.help:hover {
+  background-color: var(--color-darkslategray);
+}
+.showMore {
+  position: relative;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+.groupIcon {
+  height: 10px;
+  width: 12px;
+  position: relative;
+  object-fit: contain;
+}
+.lineSeparator {
+  border-radius: var(--br-3xs);
+  background-color: var(--text2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-3xs) var(--padding-smi) var(--padding-2xs)
+    var(--padding-mid);
+  gap: var(--gap-xl);
+  white-space: nowrap;
+}
+.featuredSkillsTitle,
+.skillsContainer {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.featuredSkillsTitle {
+  width: 1046px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 var(--padding-xl) 0 0;
+  gap: var(--gap-xl);
+}
+.skillsContainer {
+  align-self: stretch;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 var(--padding-12xl) 0;
+  text-align: left;
+  font-size: var(--font-size-xs);
+  color: var(--primary);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 450px) {
+  .featuredSkillsTitle {
+    flex-wrap: wrap;
+  }
+}

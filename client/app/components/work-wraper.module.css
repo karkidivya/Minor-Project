@@ -1,0 +1,137 @@
+.searchChild {
+  width: 163.9px;
+  flex: 1;
+  position: relative;
+  border-radius: 50%;
+  max-height: 100%;
+  object-fit: cover;
+}
+.search1,
+.tellUsWhat {
+  position: relative;
+  letter-spacing: 0.04em;
+  line-height: 31px;
+}
+.tellUsWhat {
+  align-self: stretch;
+  font-size: var(--font-size-sm);
+  line-height: 150%;
+  text-align: center;
+}
+.search {
+  height: 254.7px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-8xs);
+}
+.compareChild {
+  width: 164.6px;
+  flex: 1;
+  position: relative;
+  border-radius: 50%;
+  max-height: 100%;
+  object-fit: cover;
+}
+.compare1,
+.compareServiceProviders {
+  position: relative;
+  letter-spacing: 0.04em;
+  line-height: 31px;
+}
+.compareServiceProviders {
+  align-self: stretch;
+  height: 63px;
+  font-size: var(--font-size-sm);
+  line-height: 150%;
+  text-align: center;
+  display: inline-block;
+}
+.compare {
+  height: 254.7px;
+  width: 241px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-8xs);
+}
+.bookChild {
+  width: 163.9px;
+  flex: 1;
+  position: relative;
+  border-radius: 50%;
+  max-height: 100%;
+  object-fit: cover;
+}
+.book1,
+.bookYourChosen {
+  position: relative;
+  letter-spacing: 0.04em;
+  line-height: 31px;
+}
+.bookYourChosen {
+  align-self: stretch;
+  height: 84px;
+  font-size: var(--font-size-sm);
+  line-height: 150%;
+  text-align: center;
+  display: inline-block;
+}
+.book {
+  height: 275.7px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-8xs);
+}
+.enjoyChild {
+  width: 163.9px;
+  flex: 1;
+  position: relative;
+  border-radius: 50%;
+  max-height: 100%;
+  object-fit: cover;
+}
+.enjoy1,
+.sitBackRelax {
+  position: relative;
+  letter-spacing: 0.04em;
+  line-height: 31px;
+}
+.sitBackRelax {
+  align-self: stretch;
+  height: 63px;
+  font-size: var(--font-size-sm);
+  line-height: 150%;
+  text-align: center;
+  display: inline-block;
+}
+.enjoy,
+.workWraper {
+  display: flex;
+  align-items: center;
+}
+.enjoy {
+  height: 254.7px;
+  width: 240px;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap-8xs);
+}
+.workWraper {
+  width: 1234px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+  max-width: 100%;
+  text-align: justify;
+  font-size: var(--font-size-mid);
+  color: var(--primary);
+  font-family: var(--font-roboto);
+}

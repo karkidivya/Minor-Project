@@ -1,10 +1,13 @@
-import LoginForm from "./LoginForm"
-import './styles.scss'
-export default function (){
-    return <>
-        <div className = 'login'>
-           <LoginForm />
-        </div>
+import type { NextPage } from "next";
+import EmailAddressFrame from "../components/email-address-frame";
+import styles from "./login.module.css";
 
-    </>
-}
+const Login: NextPage = () => {
+  return (
+    <div className={styles.login}>
+      <EmailAddressFrame />
+    </div>
+  );
+};
+
+export default Login;

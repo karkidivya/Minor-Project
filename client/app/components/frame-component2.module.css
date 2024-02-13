@@ -1,0 +1,96 @@
+.featuredProfessionals {
+  margin: 0;
+  width: 1662px;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.frameChild {
+  height: 43px;
+  width: 43px;
+  position: absolute;
+  margin: 0 !important;
+  top: 20.3px;
+  left: 0;
+  border-radius: 50%;
+  background-color: var(--primary);
+  border: 0 solid var(--text2);
+  box-sizing: border-box;
+}
+.fearrowUpIcon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: contain;
+  z-index: 1;
+}
+.ellipseParent {
+  height: 83px;
+  width: 43px;
+  margin: 0 !important;
+  position: absolute;
+  top: calc(50% - 45.9px);
+  right: -21px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-xl) 0;
+  box-sizing: border-box;
+  gap: var(--gap-3xs);
+}
+.contactUsGroup,
+.readyText {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+.contactUsGroup {
+  width: 1662px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  gap: 36px 35.75px;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  color: var(--text2);
+}
+.readyText {
+  align-self: stretch;
+  background-color: var(--primary);
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: var(--padding-56xl) var(--padding-xl);
+  box-sizing: border-box;
+  gap: var(--gap-35xl);
+  text-align: center;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-inter);
+}
+@media screen and (max-width: 750px) {
+  .contactUsGroup {
+    gap: 36px 35.75px;
+  }
+  .readyText {
+    gap: var(--gap-35xl);
+    padding-top: var(--padding-30xl);
+    padding-bottom: var(--padding-30xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .featuredProfessionals {
+    font-size: var(--title-16px-medium-size);
+  }
+}

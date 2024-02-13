@@ -1,0 +1,134 @@
+.kaamsewa,
+.signUp {
+  position: relative;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+.kaamsewa {
+  margin: 0;
+  height: 47px;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+}
+.signUp {
+  font-size: var(--font-size-xl);
+  font-weight: 500;
+  font-family: var(--font-roboto);
+  color: var(--primary);
+  text-align: left;
+}
+.frameSignUpLogIn1 {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-xs) 24px var(--padding-2xs) var(--padding-xl);
+  background-color: var(--primary-blue);
+  width: 329px;
+  border-radius: var(--br-mini);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  white-space: nowrap;
+}
+.frameSignUpLogIn1:hover {
+  background-color: var(--color-dodgerblue);
+}
+.logIn {
+  position: relative;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.frameSignUpLogIn2 {
+  width: 329px;
+  border-radius: var(--br-mini);
+  background-color: var(--primary);
+  border: 1px solid var(--primary-blue);
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-xs) var(--padding-3xl) var(--padding-2xs)
+    var(--padding-xl);
+  max-width: 100%;
+  white-space: nowrap;
+  font-size: var(--font-size-xl);
+  color: var(--primary-blue);
+}
+.bySigningUp {
+  font-weight: 300;
+}
+.termsOfUse {
+  color: var(--primary-blue);
+}
+.and {
+  font-weight: 300;
+}
+.privacyPolicy {
+  color: var(--primary-blue);
+}
+.bySigningUpContainer {
+  align-self: stretch;
+  height: 28px;
+  position: relative;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+}
+.frameSignUpLogIn,
+.signUpOrLogIn {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.frameSignUpLogIn {
+  width: 477px;
+  border-radius: var(--br-3xs);
+  background-color: var(--primary);
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 43px;
+  gap: var(--gap-7xl);
+  max-width: 100%;
+}
+.signUpOrLogIn {
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: url('../../public/login-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: var(--font-size-21xl);
+  color: var(--text2);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 750px) {
+  .kaamsewa {
+    font-size: var(--font-size-13xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .kaamsewa {
+    font-size: var(--font-size-5xl);
+  }
+  .frameSignUpLogIn {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,86 @@
+.f323151985Olkiwe9gf7p9qnvhu9Icon {
+  align-self: stretch;
+  position: relative;
+  border-radius: var(--br-8xs);
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.elevateYourEveryday,
+.yourIdealLifestyle {
+  margin: 0;
+}
+.yourIdealLifestyleContainer {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.07em;
+  font-weight: 700;
+  font-family: inherit;
+}
+.clouds1 {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+}
+.getStarted {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+}
+.clouds3 {
+  border-radius: var(--br-base);
+  background-color: var(--primary-blue);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-xs) var(--padding-15xl);
+  white-space: nowrap;
+}
+.clouds2 {
+  padding: var(--padding-3xs);
+  cursor: pointer;
+  font-size: var(--title-16px-medium-size);
+}
+.clouds,
+.clouds2,
+.heroSection1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.clouds {
+  height: 181px;
+  margin: 0 !important;
+  position: absolute;
+  top: 121px;
+  left: 183px;
+  gap: var(--gap-sm);
+  z-index: 1;
+}
+.heroSection1 {
+  align-self: stretch;
+  position: relative;
+  gap: var(--gap-3xs);
+  text-align: left;
+  font-size: var(--font-size-17xl);
+  color: var(--color-gray-100);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 950px) {
+  .yourIdealLifestyleContainer {
+    font-size: var(--font-size-10xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .yourIdealLifestyleContainer {
+    font-size: var(--font-size-3xl);
+  }
+}

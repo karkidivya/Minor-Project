@@ -1,0 +1,123 @@
+.cloudsIcon {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.home1 {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+}
+.home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--padding-11xs) var(--padding-11xs) 0;
+}
+.home2 {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.customerService {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--padding-12xs) var(--padding-11xs) 0;
+}
+.home3 {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+}
+.about {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--padding-12xs) var(--padding-11xs) 0;
+}
+.searchEllipseShape {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin: 0 !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-base);
+  background-color: var(--primary-blue);
+}
+.register1 {
+  position: relative;
+  font-size: var(--title-16px-medium-size);
+  letter-spacing: 0.03em;
+  font-weight: 800;
+  font-family: var(--font-roboto);
+  color: var(--color-gray-100);
+  text-align: left;
+  z-index: 1;
+}
+.register,
+.searchEllipseShapeParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.searchEllipseShapeParent {
+  padding: var(--padding-xs) var(--padding-8xl) var(--padding-smi)
+    var(--padding-7xl);
+  position: relative;
+}
+.register {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+}
+.homeFrame {
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-9xs) 0 0;
+  box-sizing: border-box;
+  gap: var(--gap-9xl);
+}
+.heroSectionRectangle,
+.homeFrame,
+.navbarInner {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+}
+.navbarInner {
+  width: 1599px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.heroSectionRectangle {
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-6xl) var(--padding-10xl) var(--padding-xl);
+  box-sizing: border-box;
+  text-align: left;
+  font-size: var(--title-16px-medium-size);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 700px) {
+  .homeFrame {
+    display: none;
+  }
+  .navbarInner {
+    width: 1154px;
+  }
+}

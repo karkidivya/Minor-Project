@@ -1,0 +1,160 @@
+.helpCentersIcon {
+  height: 81px;
+  width: 81px;
+  position: relative;
+  border-radius: var(--br-8xs);
+  object-fit: cover;
+}
+.juanR {
+  position: relative;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.groupIcon {
+  height: 15px;
+  width: 15px;
+  position: relative;
+}
+.homeRepair {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+  font-size: var(--title-16px-medium-size);
+}
+.frameIcon {
+  height: 15px;
+  width: 15px;
+  position: relative;
+  min-height: 15px;
+}
+.positiveReviews {
+  position: relative;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+.whatClientSayAboutHim {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-6xs);
+}
+.infoBoxIcon {
+  height: 15px;
+  width: 15px;
+  position: relative;
+  min-height: 15px;
+}
+.completedTasks {
+  position: relative;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+.contactUs,
+.featuredSkills,
+.headerLogo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-6xs);
+}
+.featuredSkills,
+.headerLogo {
+  flex-direction: column;
+}
+.headerLogo {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-5xl);
+  font-size: var(--font-size-xs);
+}
+.instanceChild {
+  align-self: stretch;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.featuredSkills1,
+.helpMoving,
+.homeRepair1,
+.plumber {
+  position: relative;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+.helpMoving,
+.homeRepair1,
+.plumber {
+  font-weight: 600;
+}
+.instanceItem {
+  align-self: stretch;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.whatClientSay {
+  position: relative;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+.ellipseIcon,
+.frameClientTestimonialsChild,
+.frameClientTestimonialsInner,
+.frameClientTestimonialsItem {
+  height: 48px;
+  width: 48px;
+  position: relative;
+  border-radius: 50%;
+  object-fit: cover;
+  min-height: 48px;
+}
+.frameClientTestimonials {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-11xl);
+}
+.clientSayings,
+.headerLogoParent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.clientSayings {
+  align-self: stretch;
+  align-items: center;
+  gap: var(--gap-7xs);
+}
+.headerLogoParent {
+  width: 366px;
+  border-radius: var(--br-8xs);
+  background-color: var(--primary);
+  box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-gray-400);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  align-items: flex-start;
+  padding: var(--padding-smi) var(--padding-2xl) var(--padding-smi)
+    var(--padding-lgi);
+  gap: var(--gap-2xs);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  color: var(--text2);
+  font-family: var(--font-inter);
+}
+@media screen and (max-width: 450px) {
+  .headerLogo {
+    flex-wrap: wrap;
+  }
+}
