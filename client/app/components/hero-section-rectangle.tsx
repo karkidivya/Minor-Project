@@ -1,6 +1,7 @@
+'use client'
 import type { NextPage } from "next";
 import { useCallback } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import styles from "./hero-section-rectangle.module.css";
 
 const HeroSectionRectangle: NextPage = () => {

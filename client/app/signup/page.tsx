@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import styles from "./signup.module.css";
 import { Button } from "@mui/material";
-import Link from "next/link";
 
 const SignUpOrLogIn: NextPage = () => {
   return (
@@ -9,10 +8,10 @@ const SignUpOrLogIn: NextPage = () => {
       <div className={styles.frameSignUpLogIn}>
         <h1 className={styles.kaamsewa}>KaamSewa</h1>
         <Button variant = "contained" fullWidth>
-          <Link href = "signup">Sign In</Link>
+          Sign In
         </Button>
         <Button variant = "outlined" fullWidth>
-          <Link href = "login">Login</Link>
+          Login
         </Button>
 
         <div className={styles.bySigningUpContainer}>

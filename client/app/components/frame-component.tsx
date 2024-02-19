@@ -1,5 +1,6 @@
+'use client'
 import type { NextPage } from "next";
-import { useMemo, type CSSProperties } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import styles from "./frame-component.module.css";
 
 export type FrameComponentType = {
@@ -37,6 +38,18 @@ const FrameComponent: NextPage<FrameComponentType> = ({
       bottom: propBottom1,
     };
   }, [propTop1, propBottom1]);
+
+  const [ contact, setContact] = useState({name: "",email: "", phone: "", message: ""})
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
+    const name = e.currentTarget.name
+    const value = e.currentTarget.value
+
+    setContact((prev) =>{
+      return { ...prev, [name] : value }
+    })
+
+  }
 
   return (
     <div
@@ -100,36 +113,56 @@ const FrameComponent: NextPage<FrameComponentType> = ({
             <div
               className={styles.placeToInfoBox}
               style={placeToInfoBoxStyle}
-            />
-            <input
-              className={styles.md}
-              placeholder="Your Name *"
-              type="text"
-            />
+            >
+              <input
+                className={styles.md}
+                placeholder="Your Name *"
+                type="text"
+                name = "name"
+                value = {contact.name}
+                onChange={handleChange}
+              />
+
+            </div>
           </div>
-          <div className={styles.placeboxInfo1}>
-            <div className={styles.placeToInfoBox1} />
-            <input
-              className={styles.md1}
-              placeholder="Your Email *"
-              type="text"
-            />
+          <div className={styles.placeboxInfo}>
+            <div className={styles.placeToInfoBox}>
+              <input
+                className={styles.md}
+                placeholder="Your Email *"
+                type="text"
+                name = "email"
+                value = {contact.email}
+                onChange = {handleChange}
+              />
+            </div>
           </div>
-          <div className={styles.placeboxInfo2}>
+          <div className={styles.placeboxInfo}>
             <div
-              className={styles.placeToInfoBox2}
+              className={styles.placeToInfoBox}
               style={placeToInfoBox1Style}
-            />
-            <input
-              className={styles.md2}
-              placeholder="Your Phone *"
-              type="text"
-            />
+            >
+              <input
+                className={styles.md}
+                placeholder="Your Phone *"
+                type="tel"
+                name = "phone"
+                value = {contact.phone}
+                onChange = {handleChange}
+              />
+            </div>
           </div>
         </div>
         <div className={styles.placeboxInfo3}>
-          <div className={styles.placeToInfoBox3} />
-          <div className={styles.md3}>Your Massage</div>
+          <div className={styles.placeToInfoBox3}>
+            <textarea 
+              className = {styles.md3}
+              placeholder = "Your Message"
+              name = "message"
+              value = {contact.message}
+              onChange = {handleChange}
+            />
+          </div>
         </div>
         <div className={styles.buttonInstance}>
           <button className={styles.button}>

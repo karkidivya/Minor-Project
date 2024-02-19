@@ -23,26 +23,10 @@
   color: var(--primary);
   text-align: center;
 }
-.feedbackGroupTitle,
 .search {
   display: flex;
   align-items: center;
   box-sizing: border-box;
-}
-.feedbackGroupTitle {
-  cursor: pointer;
-  border: 0;
-  padding: var(--padding-3xs);
-  background-color: var(--primary-blue);
-  width: 148px;
-  border-radius: var(--br-3xs);
-  overflow: hidden;
-  flex-direction: row;
-  justify-content: center;
-  white-space: nowrap;
-}
-.feedbackGroupTitle:hover {
-  background-color: var(--color-dodgerblue);
 }
 .search {
   width: 497px;

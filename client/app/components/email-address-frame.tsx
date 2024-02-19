@@ -1,6 +1,6 @@
 'use client'
 import type { NextPage } from "next";
-import { SyntheticEvent, useCallback, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./email-address-frame.module.css";
 import { Button } from "@mui/material";
@@ -44,12 +44,12 @@ const EmailAddressFrame: NextPage = () => {
           placeholder="Password"
           type="password"
           name = "password"
-          value = {credential.value}
+          value = {credential.password}
           onChange = {handleChange}
         />
 
       </div>
-      <div className={styles.forgetPassword}>Forget Password?</div>
+      <Link href = "#" className = {styles.forgetPassword}>Forgot Password</Link>
       <Button variant = "contained" fullWidth onClick = {handleLogIn}>
         Log In
       </Button>

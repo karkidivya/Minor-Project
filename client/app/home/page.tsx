@@ -4,7 +4,7 @@ import HeroSection from "../components/hero-section";
 import HowItWorks from "../components/how-it-works";
 import FrameComponent from "../components/frame-component";
 import Footer from "../components/footer";
-import styles from "./landing-page.module.css";
+import styles from "./styles.module.css";
 
 const LandingPage: NextPage = () => {
   return (

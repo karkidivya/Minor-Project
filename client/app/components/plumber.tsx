@@ -3,16 +3,16 @@ import { useMemo, type CSSProperties } from "react";
 import styles from "./plumber.module.css";
 
 export type PlumberType = {
-  rectangle7?: string;
-  plumber?: string;
+  image?: string;
+  categoryName?: string;
 
   /** Style props */
   propHeight?: CSSProperties["height"];
 };
 
 const Plumber: NextPage<PlumberType> = ({
-  rectangle7,
-  plumber,
+  image,
+  categoryName,
   propHeight,
 }) => {
   const plumberStyle: CSSProperties = useMemo(() => {
@@ -22,16 +22,16 @@ const Plumber: NextPage<PlumberType> = ({
   }, [propHeight]);
 
   return (
-    <div className={styles.plumber} style={plumberStyle}>
+    <div className={styles['category-item']} style={plumberStyle}>
       <img className={styles.plumberChild} alt="" src="/rectangle-6@2x.png" />
       <img
         className={styles.whatClientSayAboutHim}
         loading="eager"
         alt=""
-        src={rectangle7}
+        src={image}
       />
       <div className={styles.ellipse}>
-        <div className={styles.plumber1}>{plumber}</div>
+        <div className={styles.plumber1}>{categoryName}</div>
       </div>
     </div>
   );

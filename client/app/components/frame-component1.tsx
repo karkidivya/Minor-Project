@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import styles from "./frame-component1.module.css";
+import { Button } from "@mui/material";
 
 export type FrameComponent1Type = {
   rectangle9?: string;
@@ -40,12 +41,9 @@ const FrameComponent1: NextPage<FrameComponent1Type> = ({
         style={searchIconStyle}
       />
       <div className={styles.hearThatThe}>{hearThatTheSweetSignOfRel}</div>
-      <button
-        className={styles.feedbackGroupTitle}
-        style={feedbackGroupTitleStyle}
-      >
-        <b className={styles.signUp}>{signUp}</b>
-      </button>
+      <Button variant = "contained" sx = {{borderRadius: "var(--br-3xs)"}}>
+        <b className = {styles.signUp}>{signUp}</b>
+      </Button>
     </div>
   );
 };

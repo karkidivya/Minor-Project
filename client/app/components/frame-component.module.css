@@ -1,7 +1,6 @@
 .iconsPhone {
   height: 40px;
   width: 40px;
-  position: relative;
   border-radius: var(--br-12xl);
   overflow: hidden;
   flex-shrink: 0;
@@ -60,7 +59,6 @@
   border-radius: var(--br-24xl);
 }
 .writeToUs {
-  position: relative;
   line-height: 24px;
   font-weight: 500;
 }
@@ -129,7 +127,7 @@
 .md,
 .placeToInfoBox {
   width: 100%;
-  position: absolute;
+  height: 100%;
 }
 .placeToInfoBox {
   height: 100%;
@@ -147,18 +145,14 @@
   font-family: var(--font-roboto);
   font-size: var(--title-16px-medium-size);
   background-color: transparent;
-  top: 12px;
-  left: 16px;
   line-height: 24px;
   text-align: left;
   display: inline-block;
   opacity: 0.5;
-  z-index: 1;
 }
 .placeboxInfo {
   height: 50px;
   flex: 1;
-  position: relative;
   min-width: 147px;
 }
 .placeToInfoBox1 {
@@ -170,63 +164,12 @@
   overflow: hidden;
   flex-shrink: 0;
 }
-.md1 {
-  width: 91px;
-  border: 0;
-  outline: 0;
-  font-family: var(--font-roboto);
-  font-size: var(--title-16px-medium-size);
-  background-color: transparent;
-  height: 24px;
-  position: relative;
-  line-height: 24px;
-  text-align: left;
-  display: inline-block;
-  opacity: 0.5;
-  z-index: 1;
-  margin-left: -181px;
-}
 .placeboxInfo1 {
   flex: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  min-width: 147px;
-}
-.md2,
-.placeToInfoBox2 {
-  width: 100%;
-  position: absolute;
-}
-.placeToInfoBox2 {
-  height: 100%;
-  top: -0.6%;
-  right: -0.51%;
-  bottom: 0.6%;
-  left: 0.15%;
-  border-radius: var(--br-9xs);
-  background-color: var(--secondary);
-  overflow: hidden;
-}
-.md2 {
-  border: 0;
-  outline: 0;
-  font-family: var(--font-roboto);
-  font-size: var(--title-16px-medium-size);
-  background-color: transparent;
-  top: 12px;
-  left: 17px;
-  line-height: 24px;
-  text-align: left;
-  display: inline-block;
-  opacity: 0.5;
-  z-index: 1;
-}
-.placeboxInfo2 {
-  height: 50px;
-  flex: 1;
-  position: relative;
   min-width: 147px;
 }
 .list2 {
@@ -252,9 +195,13 @@
   overflow: hidden;
 }
 .md3 {
-  position: relative;
+  width: 100%;
+  height: 100%;
   line-height: 24px;
-  z-index: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  padding: 10px;
 }
 .placeboxInfo3 {
   align-self: stretch;
