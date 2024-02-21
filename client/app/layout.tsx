@@ -3,10 +3,9 @@ import { Fragment, useEffect } from "react";
 import Head from "next/head";
 import { ThemeProvider, createTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-
 import "./globals.css";
 import {  ScriptProps } from "next/script";
-
+import { AuthContextProvider } from './context/AuthContext'
 export default function Layout({children}: ScriptProps) {
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -22,6 +21,7 @@ export default function Layout({children}: ScriptProps) {
     <html>
       <head></head>
       <body>
+      <AuthContextProvider>
         <Fragment>
           <Head>
             <title>something</title>
@@ -36,6 +36,7 @@ export default function Layout({children}: ScriptProps) {
             {children}
           </ThemeProvider>
         </Fragment>
+        </AuthContextProvider>
       </body>
     </html>
   );
