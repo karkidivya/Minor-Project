@@ -16,4 +16,6 @@ router.put('/updateReview', reviewController.updateReview);
 router.delete('/removeReview', reviewController.removeReview);
 router.get('/getReview/:serviceProviderId/:serviceId', reviewController.getReviewByServiceProviderServiceId);
 
+// User routes 
+
 export default router;
