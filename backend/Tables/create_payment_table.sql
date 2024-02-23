@@ -6,4 +6,8 @@ CREATE TABLE IF NOT EXISTS Payment (
       paymentStatus VARCHAR(255),
       createdAt DATE,
       updatedAt DATE
+      
+      -- Adding foreign key constraints
+      FOREIGN KEY (bookingId) REFERENCES Booking(bookingId),
+  
     )

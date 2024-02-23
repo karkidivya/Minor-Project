@@ -9,4 +9,8 @@ CREATE TABLE IF NOT EXISTS Service (
       image VARCHAR(255),
       createdAt DATE,
       updatedAt DATE
+
+      -- Adding foreign key constraints
+      FOREIGN KEY (categoryId) REFERENCES ServiceCategory(categoryId),
+  
     )
