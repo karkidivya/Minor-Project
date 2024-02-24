@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS Review (
       dateAndTime DATE,
       textReview VARCHAR(255),
       createdAt DATE,
-      updatedAt DATE
+      updatedAt DATE,
 
       -- Adding foreign key constraints
-      FOREIGN KEY (bookingId) REFERENCES Booking(bookingId),
+      FOREIGN KEY (bookingId) REFERENCES Booking(bookingId)
     )
