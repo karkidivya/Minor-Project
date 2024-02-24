@@ -43,69 +43,6 @@ const FrameComponent: NextPage = () => {
       <div className={styles.profilePicture}>Profile Picture</div>
       <div className={styles.imageParent}>
         <FileUploader image = {profileInformation.profilePicture} setImage = {(f: File | undefined) => {setProfileInformation((prev) => { return {...prev, profilePicture: f}})}}/>
-        {/* <FormControl
-          className={styles.image}
-          variant="standard"
-          sx={{
-            borderTopWidth: "1px",
-            borderRightWidth: "1px",
-            borderBottomWidth: "1px",
-            borderLeftWidth: "1px",
-            backgroundColor: "#d9d9d9",
-            borderRadius: "1px",
-            width: "110px",
-            height: "32px",
-            m: 0,
-            p: 0,
-            "& .MuiInputBase-root": {
-              m: 0,
-              p: 0,
-              minHeight: "32px",
-              justifyContent: "center",
-              display: "inline-flex",
-            },
-            "& .MuiInputLabel-root": {
-              m: 0,
-              p: 0,
-              minHeight: "32px",
-              display: "inline-flex",
-            },
-            "& .MuiMenuItem-root": {
-              m: 0,
-              p: 0,
-              height: "32px",
-              display: "inline-flex",
-            },
-            "& .MuiSelect-select": {
-              m: 0,
-              p: 0,
-              height: "32px",
-              alignItems: "center",
-              display: "inline-flex",
-            },
-            "& .MuiInput-input": { m: 0, p: 0 },
-            "& .MuiInputBase-input": {
-              color: "#000",
-              fontSize: 10,
-              fontWeight: "SemiBold",
-              fontFamily: "Roboto",
-              textAlign: "left",
-              p: "0 !important",
-              justifyContent: "center",
-            },
-          }}
-        >
-          <InputLabel color="secondary" />
-          <Select
-            color="secondary"
-            disableUnderline
-            displayEmpty
-          >
-            <MenuItem>Choose Picture</MenuItem>
-          </Select>
-          <FormHelperText />
-        </FormControl>
-        <div className={styles.jpg}>100.jpg</div> */}
       </div>
       <div className={styles.biointroduction}>Bio/Introduction</div>
       <textarea
