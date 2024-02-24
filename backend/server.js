@@ -29,8 +29,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
 app.use(express.json())
-
 app.use('/', mainRouter)
+// app.get('/api/tasks', (req, res) => {
+// 	// console.log(req.headers);
+//   return res.json({
+// 		tasks: [
+// 			{title: 'Task1',},
+// 			{title: 'Task2',},
+// 		],
+// 	});
+  
+// });
 
 
 
