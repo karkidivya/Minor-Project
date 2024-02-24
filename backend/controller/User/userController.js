@@ -63,7 +63,13 @@ const userController = {
         education,
         payment
       };
+  
 
+      // Check if username and email are unique
+      const existingUser = await queryAsync('SELECT * FROM Users WHERE username = ? OR emailAddress = ?', [newUser.username, newUser.emailAddress]);
+      if (existingUser.length > 0) {
+        return res.status(400).json({ error: 'Username or email already exists' });
+      }
       const result = await queryAsync('INSERT INTO Users SET ?', newUser);
       
       if (result.affectedRows === 1) {
@@ -81,6 +87,7 @@ const userController = {
     try {
       const { username, password } = req.body;
 
+      
       // Check if username and password are provided
       if (!username || !password) {
         return res.status(400).json({ error: 'Username and password are required' });
@@ -98,7 +105,7 @@ const userController = {
         return res.status(401).json({ error: 'Incorrect password' });
       }
 
-      res.status(200).json({ success : 'login successfull' })
+      res.status(200).json({ success : 'login successfull', payload : user })
 
     } catch (error) {
       console.error('Error logging in:', error);

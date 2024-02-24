@@ -43,7 +43,7 @@ app.use('/', mainRouter)
 // });
 
 // Increase payload size limit
-app.use(bodyParser.json({ limit: '500mb' })); // Adjust the limit as per your requirement
+app.use(bodyParser.json({ limit: '50mb' })); // Adjust the limit as per your requirement
 
 
 app.listen( PORT, () => {
