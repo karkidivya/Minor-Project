@@ -47,7 +47,7 @@ const SignUpOrLogIn: NextPage = () => {
     console.log("Access Token:", accessToken) ;
 
     const fetchData = async(accessToken : string | undefined)=>{
-      const response = await axios.get('http://localhost:5000/api/tasks',{
+      const response = await axios.post('http://localhost:5000/login',{
           headers:{
               'Authorization': `Bearer ${accessToken}`
           }

@@ -3,7 +3,6 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import db from './db.js'
 import mainRouter from './routes/index.js'
-import middleware from './middleware/index.js';
 
 dotenv.config()
 const app = express();
@@ -30,18 +29,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
 app.use(express.json())
-app.use(middleware.decodeToken);
 app.use('/', mainRouter)
-app.get('/api/tasks', (req, res) => {
-	console.log(req.headers);
-  return res.json({
-		tasks: [
-			{title: 'Task1',},
-			{title: 'Task2',},
-		],
-	});
+// app.get('/api/tasks', (req, res) => {
+// 	// console.log(req.headers);
+//   return res.json({
+// 		tasks: [
+// 			{title: 'Task1',},
+// 			{title: 'Task2',},
+// 		],
+// 	});
   
-});
+// });
 
 
 

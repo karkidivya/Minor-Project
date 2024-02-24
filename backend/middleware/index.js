@@ -1,7 +1,8 @@
 import admin from '../config/firebase-config.js';
-class Middleware {
+class verificationMiddleware {
 	async decodeToken(req, res, next) {
-		const token = req.headers.authorization.split(' ')[1];
+		console.log("check ceck", req.body.headers.Authorization)
+		const token = req.body.headers.Authorization.split(' ')[1];
 		try {
 			const decodeValue = await admin.auth().verifyIdToken(token);
             console.log("hello")
@@ -11,8 +12,10 @@ class Middleware {
 			}
 			return res.json({ message: 'Unauthorized' });
 		} catch (e) {
+			console.log(e)
 			return res.json({ message: 'Internal Error' });
+			
 		}
 	}
 }
-export default new Middleware();
+export default new verificationMiddleware();

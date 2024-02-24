@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
 import Link from "next/link";
 import signIn from "../firebase/auth/signin";
+import axios from "axios";
 const Login: NextPage = () => {
 
   const router = useRouter();
@@ -28,13 +29,26 @@ const Login: NextPage = () => {
 
     const { result, error } = await signIn(credential.email, credential.password);
 
-    if (error) {
-        return console.log(error)
-    }
+    // if (error) {
+    //     return console.log(error)
+    // }
+    const accessToken = await result?.user.getIdToken();
+   
+    console.log("Access Token:", accessToken) ;
 
-    // else successful
+    const fetchData = async(accessToken : string | undefined)=>{
+      const response = await axios.post('http://localhost:5000/login',{
+          headers:{
+              'Authorization': `Bearer ${accessToken}`
+          }
+      });
+      console.log(response.data);
+    }
+    fetchData(accessToken);
     console.log(result)
-    return router.push("/admin")
+    // else successful
+    // console.log(result)
+    // return router.push("/admin")
 }
   
   return (
