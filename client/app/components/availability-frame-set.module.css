@@ -1,0 +1,91 @@
+.kaamsewa {
+  margin: 0;
+  font-size: var(--font-size-21xl);
+  text-transform: capitalize;
+  font-weight: 700;
+  font-family: inherit;
+}
+.availability,
+.kaamsewa,
+.workPreferences {
+  position: relative;
+  letter-spacing: 0.03em;
+}
+.workPreferences {
+  margin: 0;
+  font-size: var(--font-size-mid);
+  font-weight: 800;
+  font-family: inherit;
+  color: var(--color-royalblue);
+}
+.availability {
+  font-weight: 600;
+}
+.fullTimeKathmanduSet {
+  align-self: stretch;
+  height: 29px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+}
+.locationPreference {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+.fullTimeKathmanduSet1 {
+  align-self: stretch;
+  height: 29px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+}
+.availabilityFrameSetChild {
+  width: 126px;
+  height: 25px;
+}
+.availabilityFrameSet {
+  width: 479px;
+  height: 414px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-37xl) var(--padding-56xl);
+  box-sizing: border-box;
+  gap: var(--gap-smi);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 750px) {
+  .kaamsewa {
+    font-size: var(--font-size-13xl);
+  }
+}
+@media screen and (max-width: 675px) {
+  .availabilityFrameSet {
+    padding-left: var(--padding-18xl);
+    padding-right: var(--padding-18xl);
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+  }
+}
+@media screen and (max-width: 450px) {
+  .kaamsewa {
+    font-size: var(--font-size-5xl);
+  }
+  .availabilityFrameSet {
+    padding-top: var(--padding-17xl);
+    padding-bottom: var(--padding-17xl);
+    box-sizing: border-box;
+  }
+}

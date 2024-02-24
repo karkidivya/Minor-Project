@@ -1,0 +1,190 @@
+.kaamsewa,
+.termsAndConditions {
+  margin: 0;
+  position: relative;
+  letter-spacing: 0.03em;
+  font-family: inherit;
+}
+.kaamsewa {
+  font-size: var(--font-size-21xl);
+  text-transform: capitalize;
+  font-weight: 700;
+}
+.termsAndConditions {
+  font-size: var(--font-size-mid);
+  font-weight: 800;
+  color: var(--color-royalblue);
+}
+.acceptanceOfTerms {
+  margin: 0;
+  font-weight: 500;
+}
+.blankLine,
+.byAccessingOr {
+  margin: 0;
+  font-weight: 300;
+}
+.userAccounts {
+  margin: 0;
+  font-weight: 500;
+}
+.usersMustProvide {
+  font-weight: 300;
+}
+.usersMustProvideAccurateAn1 {
+  margin-bottom: 0;
+}
+.usersAreResponsible {
+  font-weight: 300;
+}
+.usersAreResponsibleForMain {
+  margin-bottom: 0;
+}
+.usersAreProhibited {
+  font-weight: 300;
+}
+.usersAreProhibitedFromShar {
+  margin-bottom: 0;
+}
+.usersMustProvideAccurateAn {
+  margin: 0;
+  font-size: inherit;
+  padding-left: var(--padding-base);
+}
+.blankLine1 {
+  margin: 0;
+  font-weight: 300;
+}
+.serviceProviderResponsibilit {
+  margin: 0;
+  font-weight: 500;
+}
+.serviceProvidersMust {
+  font-weight: 300;
+}
+.serviceProvidersMustAccurat1 {
+  margin-bottom: 0;
+}
+.serviceProvidersAre {
+  font-weight: 300;
+}
+.serviceProvidersAreResponsi {
+  margin-bottom: 0;
+}
+.serviceProvidersMust1 {
+  font-weight: 300;
+}
+.serviceProvidersMustAccurat {
+  margin: 0;
+  font-size: inherit;
+  padding-left: var(--padding-base);
+}
+.acceptanceOfTermsContainer {
+  align-self: stretch;
+  position: relative;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.readMore {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+.readMoreText {
+  height: 33px;
+  border-radius: var(--br-5xs);
+  background-color: var(--color-dimgray-100);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  box-sizing: border-box;
+  white-space: nowrap;
+  font-size: var(--font-size-3xs);
+  color: var(--color-white);
+}
+.childVectorIcon {
+  width: 13px;
+  height: 11px;
+  position: relative;
+}
+.mdicheckBold,
+.vectorIcon {
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mdicheckBold {
+  width: 14px;
+  flex-direction: column;
+  padding: var(--padding-11xs) 0;
+}
+.vectorIcon {
+  width: 15px;
+  background-color: var(--color-white);
+  border: 0.6px solid var(--color-black);
+  flex-direction: row;
+}
+.termsAndConditions1 {
+  color: var(--color-royalblue);
+}
+.iAgreeToContainer {
+  position: relative;
+  letter-spacing: 0.03em;
+}
+.mDICheckFrame {
+  background-color: var(--color-white);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--padding-22xl);
+  gap: 0 9px;
+}
+.submitButton {
+  width: 113px;
+  height: 25px;
+}
+.signUpFrame {
+  width: 479px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-37xl) var(--padding-10xl);
+  box-sizing: border-box;
+  gap: var(--gap-smi);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 750px) {
+  .kaamsewa {
+    font-size: var(--font-size-13xl);
+  }
+}
+@media screen and (max-width: 675px) {
+  .signUpFrame {
+    padding-top: var(--padding-17xl);
+    padding-bottom: var(--padding-17xl);
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+  }
+}
+@media screen and (max-width: 450px) {
+  .kaamsewa {
+    font-size: var(--font-size-5xl);
+  }
+}

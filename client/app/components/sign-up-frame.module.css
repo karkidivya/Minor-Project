@@ -1,0 +1,116 @@
+.kaamsewa,
+.paymentInformation {
+  margin: 0;
+  position: relative;
+  letter-spacing: 0.03em;
+  font-family: inherit;
+}
+.kaamsewa {
+  font-size: inherit;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+.paymentInformation {
+  font-size: var(--font-size-mid);
+  font-weight: 800;
+  color: var(--color-royalblue);
+}
+.selectPaymentMethod {
+  position: relative;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+.image1Icon {
+  align-self: stretch;
+  height: 36px;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.imageFrameA {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-9xs) 0 0;
+}
+.image2Icon {
+  align-self: stretch;
+  height: 28px;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.paymentImages {
+  flex: 0.8953;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-9xs) var(--padding-4xs) 0 0;
+}
+.image3Icon {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  object-fit: cover;
+}
+.frameB {
+  width: 275px;
+  background-color: var(--color-white);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-6xs) var(--padding-smi) var(--padding-6xs) 0;
+  box-sizing: border-box;
+  gap: 0 13px;
+}
+.continueSkipFrame {
+  width: 126px;
+  height: 25px;
+}
+.continueSkipFrame1 {
+  width: 97px;
+  height: 25px;
+}
+.signUpFrame {
+  width: 479px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-54xl) var(--padding-53xl) var(--padding-53xl);
+  box-sizing: border-box;
+  gap: var(--gap-smi);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-21xl);
+  color: var(--color-black);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 750px) {
+  .kaamsewa {
+    font-size: var(--font-size-13xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .kaamsewa {
+    font-size: var(--font-size-5xl);
+  }
+  .signUpFrame {
+    padding: var(--padding-28xl) var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

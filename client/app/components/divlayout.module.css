@@ -1,0 +1,105 @@
+.certificationsAndQualificati,
+.kaamsewa {
+  margin: 0;
+  position: relative;
+  letter-spacing: 0.03em;
+  font-family: inherit;
+}
+.kaamsewa {
+  font-size: var(--font-size-21xl);
+  text-transform: capitalize;
+  font-weight: 700;
+}
+.certificationsAndQualificati {
+  font-size: var(--font-size-mid);
+  font-weight: 800;
+  color: var(--color-royalblue);
+}
+.addCertification {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+.divmauto {
+  height: 32px;
+  width: 95px;
+  font-family: var(--font-roboto);
+  font-weight: 600;
+  font-size: var(--font-size-3xs);
+  color: var(--color-black);
+}
+.jpg {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+.image {
+  width: 318px;
+  border-radius: var(--br-8xs);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-darkgray);
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-12xs);
+  gap: 2px 14px;
+  color: var(--color-darkgray);
+  font-family: var(--font-inter);
+}
+.thisIsCareAsItShouldBe {
+  width: 129px;
+  height: 25px;
+}
+.educationBackground {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+.primaryInfoFrame {
+  width: 320px;
+  height: 29px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+}
+.inPersonAndInOurApp {
+  width: 126px;
+  height: 25px;
+}
+.divlayout {
+  width: 479px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-46xl);
+  box-sizing: border-box;
+  gap: var(--gap-smi);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 750px) {
+  .kaamsewa {
+    font-size: var(--font-size-13xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .kaamsewa {
+    font-size: var(--font-size-5xl);
+  }
+  .divlayout {
+    padding: var(--padding-23xl) var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

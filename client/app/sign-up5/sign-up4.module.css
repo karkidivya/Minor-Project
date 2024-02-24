@@ -1,0 +1,17 @@
+.signup6 {
+  width: 100%;
+  height: 100%;
+  background: url('../../public/login-bg.jpg');
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 325px var(--padding-xl) 326px;
+  box-sizing: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  letter-spacing: normal;
+}

@@ -1,0 +1,28 @@
+.profileViewButton {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 var(--padding-xl) 0 var(--padding-291xl);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+@media screen and (max-width: 1225px) {
+  .profileViewButton {
+    padding-left: var(--padding-136xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .profileViewButton {
+    padding-left: var(--padding-58xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .profileViewButton {
+    padding-left: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,129 @@
+.kaamsewa,
+.skillAndExpertise {
+  margin: 0;
+  position: relative;
+  letter-spacing: 0.03em;
+  font-family: inherit;
+}
+.kaamsewa {
+  font-size: var(--font-size-21xl);
+  text-transform: capitalize;
+  font-weight: 700;
+}
+.skillAndExpertise {
+  font-size: var(--font-size-mid);
+  font-weight: 800;
+  color: var(--color-royalblue);
+}
+.mentionYourSkills,
+.skill {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+.mentionYourSkills {
+  font-size: var(--font-size-3xs);
+  font-family: var(--font-roboto);
+  color: var(--color-black);
+  text-align: left;
+}
+.carpenterLabel {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-3xs);
+  background-color: var(--color-gainsboro);
+  border-radius: var(--br-12xs);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+.carpenterLabel:hover {
+  background-color: var(--color-silver);
+}
+.carpenter {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.beginnerLevelIcon {
+  height: 8px;
+  width: 15.2px;
+  position: relative;
+}
+.mentionSkillsFrame {
+  width: 311px;
+  border-radius: var(--br-8xs);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-darkgray);
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding-12xs);
+  gap: var(--gap-xl);
+  font-family: var(--font-inter);
+}
+.experienceLevel {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+.parent {
+  height: 29px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+}
+.continueLabel {
+  width: 126px;
+  height: 25px;
+}
+.frameParent {
+  width: 479px;
+  height: 414px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-37xl) var(--padding-57xl);
+  box-sizing: border-box;
+  gap: var(--gap-smi);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 750px) {
+  .kaamsewa {
+    font-size: var(--font-size-13xl);
+  }
+}
+@media screen and (max-width: 675px) {
+  .frameParent {
+    padding-left: var(--padding-19xl);
+    padding-right: var(--padding-19xl);
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+  }
+}
+@media screen and (max-width: 450px) {
+  .kaamsewa {
+    font-size: var(--font-size-5xl);
+  }
+  .frameParent {
+    padding-top: var(--padding-17xl);
+    padding-bottom: var(--padding-17xl);
+    box-sizing: border-box;
+  }
+}
