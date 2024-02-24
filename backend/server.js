@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import db from './db.js'
 import mainRouter from './routes/index.js'
+import bodyParser from 'body-parser';
 
 dotenv.config()
 const app = express();
@@ -41,6 +42,8 @@ app.use('/', mainRouter)
   
 // });
 
+// Increase payload size limit
+app.use(bodyParser.json({ limit: '500mb' })); // Adjust the limit as per your requirement
 
 
 app.listen( PORT, () => {

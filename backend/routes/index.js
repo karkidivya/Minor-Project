@@ -19,7 +19,7 @@ router.get('/getReview/:serviceProviderId/:serviceId', reviewController.getRevie
 
 // User routes 
 router.post('/registerUser', userController.registerUser );
-router.post('/login',verificationMiddleware.decodeToken, userController.login );
+router.post('/login', userController.login );
 router.put('/updateProfile',verificationMiddleware.decodeToken, userController.updateProfile );
 
 export default router;

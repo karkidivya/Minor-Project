@@ -4,12 +4,12 @@ import util from 'util';
 const queryAsync = util.promisify(db.query).bind(db);
 
 const userController = {
-  registerUser: (req, res) => {
+  registerUser: async (req, res) => {
     try {
       const {
         username,
         password,
-        name,
+        fullName,
         emailAddress,
         phoneNumber,
         address,
@@ -18,13 +18,27 @@ const userController = {
         rating,
         numberOfViews,
         accountStatus,
-        paymentInformation
+        paymentInformation,
+        email,
+        profilePicture,
+        introduction,
+        skill,
+        proficiency,
+        availability,
+        preference,
+        company,
+        position,
+        timeOfWork,
+        reference,
+        certificate,
+        education,
+        payment
       } = req.body;
 
       const newUser = {
         username,
         password,
-        name,
+        fullName,
         emailAddress,
         phoneNumber,
         address,
@@ -33,72 +47,71 @@ const userController = {
         rating,
         numberOfViews,
         accountStatus,
-        paymentInformation
+        paymentInformation,
+        email,
+        profilePicture: Buffer.from(profilePicture, 'base64'),
+        introduction,
+        skill,
+        proficiency,
+        availability,
+        preference,
+        company,
+        position,
+        timeOfWork,
+        reference,
+        certificate: Buffer.from(certificate, 'base64'),
+        education,
+        payment
       };
 
-      queryAsync('INSERT INTO Users SET ?', newUser)
-        .then(result => {
-          if (result.affectedRows === 1) {
-            res.status(201).json({ message: 'User registered successfully' });
-          } else {
-            res.status(500).json({ error: 'Failed to register user' });
-          }
-        })
-        .catch(error => {
-          console.error('Error registering user:', error);
-          res.status(500).json({ error: 'Internal server error' });
-        });
+      const result = await queryAsync('INSERT INTO Users SET ?', newUser);
+      
+      if (result.affectedRows === 1) {
+        res.status(201).json({ message: 'User registered successfully' , payload : "data required to be determined 6969 " });
+      } else {
+        res.status(500).json({ error: 'Failed to register user' });
+      }
     } catch (error) {
       console.error('Error registering user:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
   },
 
-  login: (req, res) => {
-    console.log("check login")
-    // try {
-    //   const { username, password } = req.body;
+  login: async (req, res) => {
+    try {
+      const { username, password } = req.body;
 
-    //   // Check if username and password are provided
-    //   if (!username || !password) {
-    //     return res.status(400).json({ error: 'Username and password are required' });
-    //   }
+      // Check if username and password are provided
+      if (!username || !password) {
+        return res.status(400).json({ error: 'Username and password are required' });
+      }
 
-    //   // Check if the user exists in the database
-    //   queryAsync('SELECT * FROM Users WHERE username = ?', [username])
-    //     .then(user => {
-    //       if (user.length === 0) {
-    //         return res.status(404).json({ error: 'User not found' });
-    //       }
+      // Check if the user exists in the database
+      const user = await queryAsync('SELECT * FROM Users WHERE username = ?', [username]);
+      console.log(user ," users data ")
+      if (user.length === 0) {
+        return res.status(404).json({ error: 'User not found' });
+      }
 
-    //       // Check if the password is correct
-    //       if (user[0].password !== password) {
-    //         return res.status(401).json({ error: 'Incorrect password' });
-    //       }
+      // Check if the password is correct
+      if (user[0].password !== password) {
+        return res.status(401).json({ error: 'Incorrect password' });
+      }
 
-    //       // At this point, authentication is successful
-    //       // You can generate an access token and send it back to the client
-    //       // For example, you can use JWT for token generation
+      res.status(200).json({ success : 'login successfull' })
 
-    //       const accessToken = generateAccessToken(user[0].userId); // Assuming you have a function to generate JWT access token
-    //       res.status(200).json({ accessToken });
-    //     })
-    //     .catch(error => {
-    //       console.error('Error logging in:', error);
-    //       res.status(500).json({ error: 'Internal server error' });
-    //     });
-    // } catch (error) {
-    //   console.error('Error logging in:', error);
-    //   res.status(500).json({ error: 'Internal server error' });
-    // }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
   },
 
-  updateProfile: (req, res) => {
+  updateProfile: async (req, res) => {
     try {
       const {
         username,
         password,
-        name,
+        fullName,
         emailAddress,
         phoneNumber,
         address,
@@ -107,7 +120,21 @@ const userController = {
         rating,
         numberOfViews,
         accountStatus,
-        paymentInformation
+        paymentInformation,
+        email,
+        profilePicture,
+        introduction,
+        skill,
+        proficiency,
+        availability,
+        preference,
+        company,
+        position,
+        timeOfWork,
+        reference,
+        certificate,
+        education,
+        payment
       } = req.body;
 
       const userId = req.userId; // Assuming userId is extracted from the access token
@@ -115,7 +142,7 @@ const userController = {
       const updatedUser = {
         username,
         password,
-        name,
+        fullName,
         emailAddress,
         phoneNumber,
         address,
@@ -124,26 +151,37 @@ const userController = {
         rating,
         numberOfViews,
         accountStatus,
-        paymentInformation
+        paymentInformation,
+        email,
+        profilePicture: Buffer.from(profilePicture, 'base64'),
+        introduction,
+        skill,
+        proficiency,
+        availability,
+        preference,
+        company,
+        position,
+        timeOfWork,
+        reference,
+        certificate: Buffer.from(certificate, 'base64'),
+        education,
+        payment
       };
 
-      queryAsync('UPDATE Users SET ? WHERE userId = ?', [updatedUser, userId])
-        .then(result => {
-          if (result.affectedRows === 1) {
-            res.status(200).json({ message: 'User profile updated successfully' });
-          } else {
-            res.status(404).json({ error: 'User not found or unable to update profile' });
-          }
-        })
-        .catch(error => {
-          console.error('Error updating user profile:', error);
-          res.status(500).json({ error: 'Internal server error' });
-        });
+      const result = await queryAsync('UPDATE Users SET ? WHERE userId = ?', [updatedUser, userId]);
+      
+      if (result.affectedRows === 1) {
+        res.status(200).json({ message: 'User profile updated successfully', payload : result });
+      } else {
+        res.status(404).json({ error: 'User not found or unable to update profile' });
+      }
     } catch (error) {
       console.error('Error updating user profile:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
-  }
+  },
+
+  // Other controller methods remain the same
 };
 
 export default userController;
