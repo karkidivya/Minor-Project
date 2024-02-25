@@ -12,5 +12,4 @@ CREATE TABLE IF NOT EXISTS Service (
 
       -- Adding foreign key constraints
       FOREIGN KEY (categoryId) REFERENCES ServiceCategory(categoryId)
-  
     )

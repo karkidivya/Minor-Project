@@ -49,7 +49,7 @@ const userController = {
         accountStatus,
         paymentInformation,
         email,
-        profilePicture: Buffer.from(profilePicture, 'base64'),
+        profilePicture,
         introduction,
         skill,
         proficiency,
@@ -59,7 +59,7 @@ const userController = {
         position,
         timeOfWork,
         reference,
-        certificate: Buffer.from(certificate, 'base64'),
+        certificate,
         education,
         payment
       };
@@ -160,7 +160,7 @@ const userController = {
         accountStatus,
         paymentInformation,
         email,
-        profilePicture: Buffer.from(profilePicture, 'base64'),
+        profilePicture,
         introduction,
         skill,
         proficiency,
@@ -170,7 +170,7 @@ const userController = {
         position,
         timeOfWork,
         reference,
-        certificate: Buffer.from(certificate, 'base64'),
+        certificate,
         education,
         payment
       };
