@@ -30,7 +30,7 @@ const FullNameFrame: NextPage = () => {
   const handleSubmit = () =>{
     // handle submit
     dispatch(f_workHistory(workHistory))
-    router.push('5')
+    router.push('/sign-up/5')
   }
   return (
     <form className={styles.fullNameFrame}>
@@ -39,7 +39,7 @@ const FullNameFrame: NextPage = () => {
       <div className={styles.fullName}>Company Name</div>
       <TextField
         className={styles.emailAddressFrame}
-        placeholder="Full Name"
+        placeholder="Company Name"
         variant="outlined"
         name = "companyName"
         value = {workHistory.companyName}
@@ -58,7 +58,7 @@ const FullNameFrame: NextPage = () => {
       <div className={styles.fullName}>Position</div>
       <TextField
         className={styles.emailAddressFrame1}
-        placeholder="Email Address"
+        placeholder="Position"
         variant="outlined"
         name = "position"
         value={workHistory.position}
@@ -77,7 +77,7 @@ const FullNameFrame: NextPage = () => {
       <div className={styles.fullName}>Time of Work</div>
       <TextField
         className={styles.emailAddressFrame2}
-        placeholder="Password"
+        placeholder="Time of Work"
         variant="outlined"
         name = "timeOfWork"
         value = {workHistory.timeOfWork}
@@ -96,7 +96,7 @@ const FullNameFrame: NextPage = () => {
       <div className={styles.fullName}>Reference</div>
       <TextField
         className={styles.emailAddressFrame2}
-        placeholder="Password"
+        placeholder="Reference"
         variant="outlined"
         name = "reference"
         value = {workHistory.reference}

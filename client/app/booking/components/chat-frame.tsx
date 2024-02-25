@@ -1,7 +1,11 @@
+'use client'
 import type { NextPage } from "next";
-import { useMemo, type CSSProperties } from "react";
+import { useMemo, type CSSProperties, useState } from "react";
 import { Button } from "@mui/material";
 import styles from "./chat-frame.module.css";
+import { useAppDispatch } from "@/lib/hooks";
+import { useRouter } from "next/navigation";
+import { bookingStep, serviceProvider } from "@/lib/features/booking/bookingSlice";
 
 export type ChatFrameType = {
   /** Style props */
@@ -39,6 +43,16 @@ const ChatFrame: NextPage<ChatFrameType> = ({
     };
   }, [propFlexWrap1]);
 
+  const [ user, setUser ] = useState('0')
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+
+  const handleClick = () =>{
+    console.log("I have been clicked")
+    dispatch(serviceProvider(user))
+    dispatch(bookingStep(2))
+    router.push('2')
+  }
   return (
     <div className={styles.chatFrame} style={chatFrameStyle}>
       <div className={styles.selectContinueButton}>
@@ -51,12 +65,10 @@ const ChatFrame: NextPage<ChatFrameType> = ({
                 alt=""
                 src="/ellipse-22@2x.png"
               />
-              <div
-                className={styles.viewProfile}
-              >{`View Profile & Reviews`}</div>
+
             </div>
             <div className={styles.helpFrame}>
-              <h3 className={styles.davidBecham}>David Becham</h3>
+              <h3 className={styles.davidBecham}>David Beckham</h3>
               <Button
                 className={styles.helpFrameChild}
                 startIcon={
@@ -101,13 +113,10 @@ const ChatFrame: NextPage<ChatFrameType> = ({
         </div>
         <div className={styles.continueButton} style={continueButtonStyle}>
           <div className={styles.chatFrame1}>
-            <div className={styles.serviceProviderHelp}>
-              <div className={styles.selectContinueContainer}>
-                <p className={styles.select}>{` Select &`}</p>
-                <p className={styles.continue}> Continue</p>
-              </div>
-            </div>
-            <div className={styles.youCanChat}>
+              <Button variant = "contained" onClick = {handleClick}>
+                Select & Continue
+              </Button>
+              <div className={styles.youCanChat}>
               You can chat with your service provider, adjust work details, or
               change the work time after booking
             </div>
@@ -129,7 +138,7 @@ const ChatFrame: NextPage<ChatFrameType> = ({
           </div>
         </div>
       </div>
-      <div className={styles.excludeProfile}>
+    <div className={styles.excludeProfile}>
         <div
           className={styles.furnitureAssembledText}
           style={furnitureAssembledTextStyle}

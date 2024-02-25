@@ -15,7 +15,6 @@ const FullNameFrame: NextPage = () => {
   const [ signupCredential, setSignupCredential ] = useState({fullName: "", email: "", password: ""})
   const router = useRouter()
   const dispatch: AppDispatch = useAppDispatch()
-  const stateInfo = useAppSelector((state: RootState) => state.counter)
 
   const handleChange = (e: React.ChangeEvent<any>) =>{
     // console.log(e)
@@ -31,8 +30,7 @@ const FullNameFrame: NextPage = () => {
 
   const handleSubmit = () =>{
     dispatch(personalInformation(signupCredential))
-    console.log(stateInfo)
-    router.push('1')
+    router.push('/sign-up/1')
     
     // handle submit
   }

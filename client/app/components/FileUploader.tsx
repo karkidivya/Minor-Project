@@ -1,12 +1,9 @@
 import React from 'react'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import CancelIcon from '@mui/icons-material/Cancel'
-import { Grid, dividerClasses } from '@mui/material'
 
 type Props = {
-  image: File | undefined
-  setImage: (arg: File | undefined) => void
+  image: File | undefined | string
+  setImage: (arg: File | undefined | string) => void
 }
 
 const FileUploader = (props: Props) => {

@@ -1,14 +1,14 @@
 import type { NextPage } from "next";
 import {
-  Button,
   Select,
   InputLabel,
   MenuItem,
   FormHelperText,
   FormControl,
-  InputAdornment,
+  Chip,
+  Grid,
 } from "@mui/material";
-import ChatFrame from "./chat-frame";
+import ChatFrame from "../components/chat-frame";
 import styles from "./frame-morning.module.css";
 
 const FrameMorning: NextPage = () => {
@@ -19,123 +19,28 @@ const FrameMorning: NextPage = () => {
           <div className={styles.dateFrame}>
             <div className={styles.withinDaysChooser}>
               <div className={styles.date}>Date</div>
-              <div className={styles.lineVector}>
-                <Button
-                  className={styles.mingcutedownfillThumbnail}
-                  disableElevation={true}
-                  variant="contained"
-                  sx={{
-                    textTransform: "none",
-                    color: "#000",
-                    fontSize: "14",
-                    background: "rgba(66, 120, 240, 0.1)",
-                    borderRadius: "15px",
-                    "&:hover": { background: "rgba(66, 120, 240, 0.1)" },
-                    height: 33,
-                  }}
-                >
-                  Today
-                </Button>
-                <Button
-                  className={styles.helpSection}
-                  disableElevation={true}
-                  variant="contained"
-                  sx={{
-                    textTransform: "none",
-                    color: "#000",
-                    fontSize: "14",
-                    background: "#fff",
-                    borderRadius: "15px",
-                    "&:hover": { background: "#fff" },
-                    height: 33,
-                  }}
-                >
-                  Within 3 Days
-                </Button>
-              </div>
-              <div className={styles.lineVector1}>
-                <Button
-                  className={styles.lineVectorChild}
-                  disableElevation={true}
-                  variant="contained"
-                  sx={{
-                    textTransform: "none",
-                    color: "#000",
-                    fontSize: "14",
-                    background: "#fff",
-                    borderRadius: "15px",
-                    "&:hover": { background: "#fff" },
-                    height: 33,
-                  }}
-                >
-                  Within a Week
-                </Button>
-                <FormControl
-                  className={styles.parent}
-                  variant="standard"
-                  sx={{
-                    borderColor: "#373737",
-                    borderStyle: "SOLID",
-                    borderTopWidth: "1px",
-                    borderRightWidth: "1px",
-                    borderBottomWidth: "1px",
-                    borderLeftWidth: "1px",
-                    backgroundColor: "#fff",
-                    borderRadius: "15px",
-                    width: "45.535714285714285%",
-                    height: "33px",
-                    m: 0,
-                    p: 0,
-                    "& .MuiInputBase-root": {
-                      m: 0,
-                      p: 0,
-                      minHeight: "33px",
-                      justifyContent: "center",
-                      display: "inline-flex",
-                    },
-                    "& .MuiInputLabel-root": {
-                      m: 0,
-                      p: 0,
-                      minHeight: "33px",
-                      display: "inline-flex",
-                    },
-                    "& .MuiMenuItem-root": {
-                      m: 0,
-                      p: 0,
-                      height: "33px",
-                      display: "inline-flex",
-                    },
-                    "& .MuiSelect-select": {
-                      m: 0,
-                      p: 0,
-                      height: "33px",
-                      alignItems: "center",
-                      display: "inline-flex",
-                    },
-                    "& .MuiInput-input": { m: 0, p: 0 },
-                    "& .MuiInputBase-input": {
-                      color: "#000",
-                      fontSize: 14,
-                      fontWeight: "Medium",
-                      fontFamily: "Roboto",
-                      textAlign: "left",
-                      p: "0 !important",
-                      marginLeft: "31px",
-                    },
-                  }}
-                >
-                  <InputLabel color="secondary" />
-                  <Select
-                    color="secondary"
-                    disableUnderline
-                    displayEmpty
-                    IconComponent="null"
-                  >
-                    <MenuItem>Choose Dates</MenuItem>
-                  </Select>
-                  <FormHelperText />
-                </FormControl>
-              </div>
+
+                <Grid container direction={'column'}>
+                  <Grid container>
+                    <Grid item sm = {6} display={'flex'} justifyContent={'center'}>
+                      <Chip label = "Today" variant = "outlined" sx = {{width: '100%'}} />
+                    </Grid>
+                    <Grid item sm = {6} display={'flex'} justifyContent={'center'}>
+                      <Chip label = "Tommorrow" />
+                    </Grid>
+                  </Grid>
+                  <Grid container>
+                    <Grid item sm = {6} display={'flex'} justifyContent={'center'}>
+                      <Chip label = "Within a Week" />
+                    </Grid>
+                    <Grid item sm = {6} display={'flex'} justifyContent={'center'}>
+                      <Chip label = "Choose a Date" />
+                    </Grid>
+
+                  </Grid>
+                </Grid>
+
+
               <div className={styles.frameReviews} />
               <div className={styles.timeOfDay}>Time of Day</div>
             </div>
@@ -245,14 +150,6 @@ const FrameMorning: NextPage = () => {
                   color="secondary"
                   disableUnderline
                   displayEmpty
-                  IconComponent={() => (
-                    <img
-                      width="23px"
-                      height="13px"
-                      src="/vector.svg"
-                      style={{ marginRight: "23px" }}
-                    />
-                  )}
                 >
                   <MenuItem>I’m flexible</MenuItem>
                 </Select>
@@ -292,13 +189,8 @@ const FrameMorning: NextPage = () => {
               </div>
             </div>
           </div>
-          <button className={styles.help}>
-            <b className={styles.help1}>Help</b>
-            <img className={styles.reviewsIcon} alt="" src="/vector-1.svg" />
-          </button>
         </div>
       </div>
-      <ChatFrame />
     </section>
   );
 };

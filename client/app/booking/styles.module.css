@@ -1,0 +1,127 @@
+.mainBgIcon {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.home1 {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+}
+.home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--padding-11xs) var(--padding-11xs) 0;
+}
+.home2 {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.customerService {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--padding-12xs) var(--padding-11xs) 0;
+}
+.home3 {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+}
+.about {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--padding-12xs) var(--padding-11xs) 0;
+}
+.becomeAPro {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin: 0 !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-base);
+  background-color: var(--primary-blue);
+}
+
+.navbarInner,
+.register,
+.text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbarInner,
+.text {
+  justify-content: flex-start;
+  padding: 0 var(--padding-9xs) 0 0;
+  box-sizing: border-box;
+  gap: var(--gap-9xl);
+  max-width: 100%;
+}
+.navbarInner {
+    width: 100%;
+  align-self: stretch;
+  justify-content: space-between;
+  padding: 0 var(--padding-xl);
+  gap: var(--gap-xl);
+  text-align: left;
+  font-size: var(--title-16px-medium-size);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}
+.categories {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: inherit;
+}
+.container {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--padding-xl);
+  box-sizing: border-box;
+  gap: var(--gap-42xl);
+  max-width: 100%;
+  text-align: center;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+  background: white;
+}
+@media screen and (max-width: 750px) {
+  .text {
+    display: none;
+  }
+  .container {
+    gap: var(--gap-42xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .categories {
+    font-size: var(--title-16px-medium-size);
+  }
+  .container {
+    gap: var(--gap-42xl);
+  }
+}

@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import "./globals.css";
 import {  ScriptProps } from "next/script";
 import { AuthContextProvider } from './context/AuthContext'
+import StoreProvider from "./StoreProvider";
 export default function Layout({children}: ScriptProps) {
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -33,7 +34,9 @@ export default function Layout({children}: ScriptProps) {
           <ThemeProvider theme={muiTheme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
-            {children}
+            <StoreProvider>
+              {children}
+            </StoreProvider>
           </ThemeProvider>
         </Fragment>
         </AuthContextProvider>

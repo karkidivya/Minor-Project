@@ -1,3 +1,4 @@
+'use client'
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import styles from "./plumber.module.css";
@@ -21,8 +22,11 @@ const Plumber: NextPage<PlumberType> = ({
     };
   }, [propHeight]);
 
+  const handleClick = () =>{
+    console.log("i am ", categoryName)
+  }
   return (
-    <div className={styles['category-item']} style={plumberStyle}>
+    <div className={styles['category-item']} style={plumberStyle} onClick = {handleClick}>
       <img className={styles.plumberChild} alt="" src="/rectangle-6@2x.png" />
       <img
         className={styles.whatClientSayAboutHim}

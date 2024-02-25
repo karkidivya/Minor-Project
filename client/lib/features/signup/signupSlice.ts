@@ -7,6 +7,7 @@ const signupSllice = createSlice({
         fullName: "",
         email: "",
         password: "",
+        phoneNumber: "",
         profilePicture: undefined,
         introduction: "",
         location: "",
@@ -33,6 +34,7 @@ const signupSllice = createSlice({
             state.profilePicture = action.payload.profilePicture
             state.introduction = action.payload.introduction
             state.location = action.payload.location
+            state.phoneNumber = action.payload.phoneNumber
         },
         skillAndExpertise: (state, action: PayloadAction<any>) =>{
             state.skill = action.payload.skill

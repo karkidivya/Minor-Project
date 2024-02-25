@@ -17,7 +17,7 @@ import { certificationAndQualification } from "@/lib/features/signup/signupSlice
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
  
  interface ICertification{
-   certificate : File | undefined
+   certificate : File | undefined | string
    education: 'primary' | 'secondary' | 'higher-secondary' | 'bachelors'| 'masters'
   }
   
@@ -35,9 +35,12 @@ const Divlayout: NextPage = () => {
     })
   }
   const handleSubmit = () =>{
-    console.log(certification)
-    dispatch(certificationAndQualification(certification))
-    router.push('6')
+    const imageUrl = URL.createObjectURL(certification.certificate as File)
+    setCertification((prev) =>{
+      return {...prev, certificate: imageUrl}
+    })
+    dispatch(certificationAndQualification({...certification, certificate: imageUrl}))
+    router.push('/sign-up/6')
     // handleSubmit
   }
   return (
@@ -48,7 +51,7 @@ const Divlayout: NextPage = () => {
       </h3>
       <div className={styles.addCertification}>Add Certification</div>
       <div className={styles.image}>
-        <FileUploader image = {certification.certificate} setImage = {(f: File | undefined) => setCertification((prev)=> {return {...prev, certificate: f}})}/>
+        <FileUploader image = {certification.certificate} setImage = {(f: string | File | undefined) => setCertification((prev)=> {return {...prev, certificate: f}})}/>
       </div>
       <div className={styles.educationBackground}>Education Background</div>
       <FormControl

@@ -3,15 +3,26 @@ import type { NextPage } from "next";
 import { Button,  FormControlLabel, Checkbox } from "@mui/material";
 import styles from "./sign-up-frame1.module.css";
 import { useState } from "react";
+import { useAppSelector } from "@/lib/hooks";
+import { certificateImage, profileImage } from "@/app/firebase/config";
+import axios from "axios";
 
 const SignUpFrame1: NextPage = () => {
   const [ isChecked, setIsChecked ] = useState(false)
-
+  const signupInfo = useAppSelector((state) => state.signup)
   const handleChange = () => {
     setIsChecked(!isChecked as boolean)
   }
 
-  const handleSubmit = () =>{
+  const handleSubmit = async () =>{
+    const profilePicUrl = await profileImage(signupInfo.profilePicture)
+    const certificationUrl = await certificateImage(signupInfo.certificate)
+
+    console.log(certificationUrl)
+    console.log(profilePicUrl)
+    const result = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/registerUser`, {...signupInfo, profilePicture: profilePicUrl, certificate: certificationUrl})
+    console.log(result)
+
     //do something
   }
   return (
@@ -73,29 +84,8 @@ const SignUpFrame1: NextPage = () => {
           </ul>
         </span>
       </div>
-      {/* <div className={styles.readMoreText}>
-        <div className={styles.readMore}>Read More</div>
-      </div> */}
       <div className={styles.mDICheckFrame}>
-        {/* <div className={styles.vectorIcon}>
-          <div className={styles.mdicheckBold}>
-            <img
-              className={styles.childVectorIcon}
-              loading="eager"
-              alt=""
-              src="/vector1.svg"
-            />
-          </div>
-        </div> */}
-        {/* <FormGroup> */}
         <FormControlLabel required control = {<Checkbox checked = {isChecked} onChange = {handleChange}/>} label = "I agree to the terms and conditions" />
-        {/* </FormGroup> */}
-        {/* <div className={styles.iAgreeToContainer}>
-          <span>{`I agree to the `}</span>
-          <span className={styles.termsAndConditions1}>
-            terms and conditions
-          </span>
-        </div> */}
       </div>
       <Button
         className={styles.submitButton}
@@ -110,7 +100,7 @@ const SignUpFrame1: NextPage = () => {
           borderRadius: "15px",
           "&:hover": { background: "#4278f0" },
           width: 113,
-          height: 25,
+          height: 32,
         }}
       >
         Submit
