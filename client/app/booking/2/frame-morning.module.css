@@ -170,7 +170,6 @@
   width: 531px;
   flex-direction: row;
   align-items: flex-start;
-  padding: 0 var(--padding-base);
 }
 .mingcutesafeLockLineIcon {
   height: 70px;
@@ -302,7 +301,6 @@
   min-width: 652px;
 }
 .frameMorning {
-  width: 1542px;
   flex-direction: row;
   align-items: flex-start;
   padding: 0 var(--padding-xl) 0 0;
