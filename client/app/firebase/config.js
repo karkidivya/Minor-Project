@@ -21,8 +21,33 @@ const storageRef = ref(storage);
 
 export default firebase_app;
 
-export const storeImage = async (userId, file, setUploadProgressCallback) => {
+export const profileImage = async (userId, file, setUploadProgressCallback) => {
     const userStorageRef = ref(storageRef, `user/${userId}/${file.name}`);
+    console.log(userId)
+    const uploadTask = uploadBytesResumable(userStorageRef, file);
+  
+    uploadTask.on('state_changed', 
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setUploadProgressCallback(progress);
+      },
+      (error) => {
+        console.error(error);
+      },
+      () => {
+        console.log('Upload complete!');
+      }
+    );
+  
+    await uploadTask;
+  
+    const downloadURL = await getDownloadURL(userStorageRef);
+  
+    return downloadURL;
+  };
+
+export const certificateImage = async (userId, file, setUploadProgressCallback) => {
+    const userStorageRef = ref(storageRef, `certificate/${userId}/${file.name}`);
     console.log(userId)
     const uploadTask = uploadBytesResumable(userStorageRef, file);
   
