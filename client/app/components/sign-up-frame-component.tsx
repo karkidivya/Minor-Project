@@ -1,21 +1,16 @@
 'use client'
 import type { NextPage } from "next";
 import {
-  Select,
-  InputLabel,
-  MenuItem,
-  FormHelperText,
-  FormControl,
-  InputAdornment,
   TextField,
-  Icon,
-  IconButton,
   Button,
 } from "@mui/material";
 import styles from "./sign-up-frame-component.module.css";
-import { FileUpload } from "@mui/icons-material";
 import FileUploader from "./FileUploader";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { AppDispatch, RootState } from "@/lib/store";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { profileInformation } from "@/lib/features/signup/signupSlice";
 
 interface ICertification{
   profilePicture : File | undefined
@@ -24,7 +19,10 @@ interface ICertification{
 }
 const exampleObject : ICertification = { profilePicture: undefined, introduction: "", location: ""}
 const FrameComponent: NextPage = () => {
-  const [ profileInformation, setProfileInformation ] = useState(exampleObject)
+  const [ profileInfo, setProfileInformation ] = useState(exampleObject)
+  const router = useRouter()
+  const dispatch: AppDispatch= useAppDispatch();
+  const storeState = useAppSelector((state: RootState)=> state.counter)
   const handleChange = (e: any) =>{
     const name = e.target.name
     const value = e.target.value
@@ -33,16 +31,16 @@ const FrameComponent: NextPage = () => {
     })
   }
   const handleSubmit = () =>{
-    console.log(profileInformation)
-    // handleSubmit
+    dispatch(profileInformation(profileInfo))
+    router.push('2')
   }
   return (
     <div className={styles.kaamsewaParent}>
       <h1 className={styles.kaamsewa}>KaamSewa</h1>
-      <h3 className={styles.profileInformation}>Profile Information</h3>
+      <h3 className={styles.profileInfo}>Profile Information</h3>
       <div className={styles.profilePicture}>Profile Picture</div>
       <div className={styles.imageParent}>
-        <FileUploader image = {profileInformation.profilePicture} setImage = {(f: File | undefined) => {setProfileInformation((prev) => { return {...prev, profilePicture: f}})}}/>
+        <FileUploader image = {profileInfo.profilePicture} setImage = {(f: File | undefined) => {setProfileInformation((prev) => { return {...prev, profilePicture: f}})}}/>
       </div>
       <div className={styles.biointroduction}>Bio/Introduction</div>
       <textarea
@@ -81,6 +79,7 @@ const FrameComponent: NextPage = () => {
           width: 126,
           height: 30,
         }}
+        onClick = {handleSubmit}
       >
         Continue
       </Button>

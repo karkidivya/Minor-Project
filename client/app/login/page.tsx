@@ -99,7 +99,7 @@ const Login: NextPage = () => {
       </div>
       <div className={styles.ifYouDoContainer}>
         <span className={styles.ifYouDo}>{`If you do not have account `}</span>
-        <Link href = '/signup' className = {styles.signUp}>Sign Up</Link>
+        <Link href = '/sign-up' className = {styles.signUp}>Sign Up</Link>
       </div>
     </form>
     </div>
@@ -107,3 +107,26 @@ const Login: NextPage = () => {
 };
 
 export default Login;
+
+
+/**
+  {
+    fullName: String,
+    email: String,
+    password: String,
+    profilePicture: Single Image,
+    introduction: String,
+    location: String,
+    skill: String,
+    proficiency: String,
+    availability: String,
+    preference: String,
+    company: String,
+    position: String,
+    timeOfWork: String,
+    reference: String,
+    certificate: Single Image,
+    education: String,
+    payment: String,
+  }
+ */

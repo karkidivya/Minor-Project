@@ -2,16 +2,17 @@
 import type { NextPage } from "next";
 import {
   Select,
-  InputLabel,
   MenuItem,
   FormHelperText,
   FormControl,
-  InputAdornment,
   Button,
 } from "@mui/material";
 import styles from "./frame-parent.module.css";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
+import { AppDispatch, RootState } from "@/lib/store";
+import { skillAndExpertise } from "@/lib/features/signup/signupSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 interface ISkillAndProficiency{
   skill : 'carpenter' | 'plumber' | 'electrician' | 'mechanic'
   proficiency: 'beginner' | 'intermediate' | 'semi-pro' | 'pro'
@@ -19,6 +20,9 @@ interface ISkillAndProficiency{
 const exampleObject : ISkillAndProficiency = { skill: 'carpenter' , proficiency: 'beginner'}
 const FrameParent: NextPage = () => {
   const [ skillAndProficiency, setSkillAndProficiency] = useState(exampleObject)
+  const router = useRouter();
+  const dispatch: AppDispatch = useAppDispatch();
+
   const handleChange = (e: any) =>{
     const name = e.target.name
     const value = e.target.value
@@ -30,6 +34,8 @@ const FrameParent: NextPage = () => {
   const handleSubmit = () =>{
     // console.log(skillAndProficiency)
     // handleSubmit
+    dispatch(skillAndExpertise(skillAndProficiency))
+    router.push('/sign-up/3')
   }
   return (
     <div className={styles.frameParent}>

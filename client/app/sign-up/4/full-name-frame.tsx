@@ -6,9 +6,15 @@ import {
 } from "@mui/material";
 import styles from "./full-name-frame.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { AppDispatch, RootState } from "@/lib/store";
+import { workHistory as f_workHistory } from "@/lib/features/signup/signupSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 const FullNameFrame: NextPage = () => {
   const [ workHistory, setWorkHistory ] = useState({companyName: "", position: "", timeOfWork: "", reference: ""})
+  const dispatch: AppDispatch = useAppDispatch()
+  const router = useRouter()
   const handleChange = (e: React.ChangeEvent<any>) =>{
     // console.log(e)
     const name = e.target.name
@@ -23,6 +29,8 @@ const FullNameFrame: NextPage = () => {
 
   const handleSubmit = () =>{
     // handle submit
+    dispatch(f_workHistory(workHistory))
+    router.push('5')
   }
   return (
     <form className={styles.fullNameFrame}>

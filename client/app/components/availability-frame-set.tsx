@@ -11,6 +11,10 @@ import {
 } from "@mui/material";
 import styles from "./availability-frame-set.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { AppDispatch, RootState } from "@/lib/store";
+import { workPreference as f_workPreference } from "@/lib/features/signup/signupSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 interface IWorkPreference{
   availability : 'full-time' | 'part-time'
   location: 'kathmandu' | 'pokhara' | 'biratnagar' | 'dharan'
@@ -18,6 +22,9 @@ interface IWorkPreference{
 const exampleObject : IWorkPreference = { availability: 'full-time' , location: 'kathmandu'}
 const AvailabilityFrameSet: NextPage = () => {
   const [ workPreferences, setWorkPreference] = useState(exampleObject)
+  const router = useRouter()
+  const dispatch = useAppDispatch()
+
   const handleChange = (e: any) =>{
     const name = e.target.name
     const value = e.target.value
@@ -27,8 +34,12 @@ const AvailabilityFrameSet: NextPage = () => {
   }
 
   const handleSubmit = () =>{
+    
     console.log(workPreferences)
     // handleSubmit
+    dispatch(f_workPreference(workPreferences))
+    router.push('/sign-up/4')
+    
   }
   return (
     <div className={styles.availabilityFrameSet}>

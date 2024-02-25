@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import SignUpFrame from "../components/sign-up-frame";
+import SignUpFrame from "../../components/sign-up-frame";
 import styles from "./sign-up5.module.css";
 
 const SignUp5: NextPage = () => {

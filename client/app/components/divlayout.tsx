@@ -11,7 +11,10 @@ import {
 import styles from "./divlayout.module.css";
 import { useState } from "react";
 import FileUploader from "./FileUploader";
-
+import { useRouter } from "next/navigation";
+import { AppDispatch, RootState } from "@/lib/store";
+import { certificationAndQualification } from "@/lib/features/signup/signupSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
  
  interface ICertification{
    certificate : File | undefined
@@ -19,18 +22,22 @@ import FileUploader from "./FileUploader";
   }
   
   const exampleObject : ICertification = { certificate: undefined , education: 'primary'}
-  const Divlayout: NextPage = () => {
+const Divlayout: NextPage = () => {
     
-    const [ certification, setCertification] = useState(exampleObject)
-    const handleChange = (e: any) =>{
-      const name = e.target.name
-      const value = e.target.value
-      setCertification((prev) =>{
-        return {...prev, [name]: value}
-      })
-    }
+  const [ certification, setCertification] = useState(exampleObject)
+  const router = useRouter()
+  const dispatch = useAppDispatch()
+  const handleChange = (e: any) =>{
+    const name = e.target.name
+    const value = e.target.value
+    setCertification((prev) =>{
+      return {...prev, [name]: value}
+    })
+  }
   const handleSubmit = () =>{
     console.log(certification)
+    dispatch(certificationAndQualification(certification))
+    router.push('6')
     // handleSubmit
   }
   return (

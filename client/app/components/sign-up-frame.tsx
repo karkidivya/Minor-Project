@@ -3,12 +3,19 @@ import type { NextPage } from "next";
 import { Button } from "@mui/material";
 import styles from "./sign-up-frame.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { AppDispatch, RootState } from "@/lib/store";
+import { personalInformation } from "@/lib/features/signup/signupSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 const SignUpFrame: NextPage = () => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
   const handleChange = (e: any) =>{
 
   }
   const handleSubmit = () =>{
+    router.push('7');
     // console.log(profileInformation)
     // handleSubmit
   }
@@ -55,6 +62,7 @@ const SignUpFrame: NextPage = () => {
           width: 126,
           height: 25,
         }}
+        onClick = {handleSubmit}
       >
         Continue
       </Button>
@@ -72,6 +80,7 @@ const SignUpFrame: NextPage = () => {
           width: 97,
           height: 25,
         }}
+        onClick = {handleSubmit}
       >
         Skip
       </Button>

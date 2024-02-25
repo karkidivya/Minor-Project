@@ -6,15 +6,23 @@ import {
 } from "@mui/material";
 import styles from "./full-name-frame.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { AppDispatch, RootState } from "@/lib/store";
+import { personalInformation } from "@/lib/features/signup/signupSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 const FullNameFrame: NextPage = () => {
-  const [ signupCredential, setSignupCredential ] = useState({fullName: "", email: "", passsword: ""})
+  const [ signupCredential, setSignupCredential ] = useState({fullName: "", email: "", password: ""})
+  const router = useRouter()
+  const dispatch: AppDispatch = useAppDispatch()
+  const stateInfo = useAppSelector((state: RootState) => state.counter)
+
   const handleChange = (e: React.ChangeEvent<any>) =>{
     // console.log(e)
     const name = e.target.name
     const value = e.target.value
     // console.log(name, value)
-
+  
     setSignupCredential((prev) =>{
       return { ...prev, [name]: value}
     })
@@ -22,6 +30,10 @@ const FullNameFrame: NextPage = () => {
   }
 
   const handleSubmit = () =>{
+    dispatch(personalInformation(signupCredential))
+    console.log(stateInfo)
+    router.push('1')
+    
     // handle submit
   }
   return (
@@ -73,7 +85,7 @@ const FullNameFrame: NextPage = () => {
         variant="outlined"
         type="password"
         name = "password"
-        value = {signupCredential.passsword}
+        value = {signupCredential.password}
         onChange={handleChange}
         sx={{
           "& fieldset": { borderColor: "#9fa0a0" },

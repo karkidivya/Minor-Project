@@ -1,7 +1,7 @@
 .signup6 {
   width: 100%;
   height: 100%;
-  background: url('../../public/login-bg.jpg');
+  background: url('../../../public/login-bg.jpg');
   position: relative;
   overflow: hidden;
   display: flex;
