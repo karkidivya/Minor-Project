@@ -5,13 +5,13 @@ import fs from 'fs';
 dotenv.config();
 
 const host = process.env.HOST;
-const user = process.env.USER;
+const user = process.env.CURRENT_USER;
 const password = process.env.PASSWORD;
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'rootuser',
+  host: host,
+  user: user,
+  password: password,
   database: 'kamsewa',
 });
 
