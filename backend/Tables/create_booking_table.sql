@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS Booking (
   bookingId INT PRIMARY KEY,
-  customerId JSON,
-  serviceProviderId JSON,
+  customerId INT,
+  serviceProviderId INT,
   serviceId JSON,
   categoryId INT,
   dateAndTime DATETIME,
@@ -13,8 +13,7 @@ CREATE TABLE IF NOT EXISTS Booking (
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   
   -- Adding foreign key constraints
-  FOREIGN KEY (customerId) REFERENCES Users(userId),
-  FOREIGN KEY (serviceProviderId) REFERENCES Users(userId),
-  FOREIGN KEY (serviceId) REFERENCES Service(serviceId),
+  FOREIGN KEY (customerId) REFERENCES User(userId),
+  FOREIGN KEY (serviceProviderId) REFERENCES serviceProvider(serviceProviderId),
   FOREIGN KEY (categoryId) REFERENCES ServiceCategory(categoryId)
 );
