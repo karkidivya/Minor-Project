@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS Service (
       categoryId INT,
       description VARCHAR(255),
       price INT,
-      estimatedDuration DATE,
+      estimatedDuration VARCHAR(255),
       requirement VARCHAR(255),
       image VARCHAR(255),
       createdAt DATE,

@@ -29,6 +29,8 @@ router.put('/updateProfile',verificationMiddleware.decodeToken, userController.u
 router.post('/registerServiceProvider', serviceProviderController.registerServiceProvider);
 router.post('/serviceProviderLogin', serviceProviderController.login);
 router.put('/updateProfile', verificationMiddleware.decodeToken, serviceProviderController.updateProfile);
+router.get('/serviceProviders/:categoryId', serviceProviderController.getServiceProvidersByCategoryId);
+
 
 
 // Service Category Routes
