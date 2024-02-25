@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import SignUpFrame1 from "../../components/sign-up-frame1";
-import styles from "./sign-up6.module.css";
+import SignUpFrame1 from "./sign-up-frame1";
+import styles from "./sign-up7.module.css";
 
 const SignUp6: NextPage = () => {
   return (

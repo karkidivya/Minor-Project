@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import Divlayout from "../../components/divlayout";
-import styles from "./sign-up4.module.css";
+import Divlayout from "./divlayout";
+import styles from "./sign-up5.module.css";
 
 const SignUp4: NextPage = () => {
   return (

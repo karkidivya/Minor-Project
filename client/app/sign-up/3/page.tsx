@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import AvailabilityFrameSet from "../../components/availability-frame-set";
-import styles from "./sign-up2.module.css";
+import AvailabilityFrameSet from "./availability-frame-set";
+import styles from "./sign-up3.module.css";
 
 const SignUp2: NextPage = () => {
   return (

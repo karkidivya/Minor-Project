@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import FrameParent from "../../components/frame-parent";
-import styles from "./sign-up1.module.css";
+import FrameParent from "./frame-parent";
+import styles from "./sign-up2.module.css";
 
 const SignUp1: NextPage = () => {
   return (

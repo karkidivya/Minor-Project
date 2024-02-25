@@ -5,7 +5,7 @@ import {
   Button,
 } from "@mui/material";
 import styles from "./sign-up-frame-component.module.css";
-import FileUploader from "./FileUploader";
+import FileUploader from "../../components/FileUploader";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppDispatch, RootState } from "@/lib/store";

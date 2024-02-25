@@ -14,7 +14,7 @@ import { AppDispatch, RootState } from "@/lib/store";
 import { skillAndExpertise } from "@/lib/features/signup/signupSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 interface ISkillAndProficiency{
-  skill : 'carpenter' | 'plumber' | 'electrician' | 'mechanic'
+  skill : 'carpenter' | 'plumber' | 'electrician' | 'mechanic' | 'cleaner' | 'painter'
   proficiency: 'beginner' | 'intermediate' | 'semi-pro' | 'pro'
 }
 const exampleObject : ISkillAndProficiency = { skill: 'carpenter' , proficiency: 'beginner'}

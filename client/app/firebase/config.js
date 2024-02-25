@@ -16,7 +16,7 @@ const firebaseConfig = {
 let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
 //Initialize Storage
-const storage = getStorage(app);
+const storage = getStorage(firebase_app);
 const storageRef = ref(storage);
 
 export default firebase_app;
