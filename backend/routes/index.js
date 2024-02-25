@@ -5,6 +5,7 @@ import userController from "../controller/User/userController.js";
 import verificationMiddleware from '../middleware/index.js';
 import serviceCategoryController from "../controller/Service/serviceCategoryController.js";
 import serviceController from "../controller/Service/serviceController.js";
+import serviceProviderController from "../controller/User/serviceProviderController.js";
 const router = express.Router();
 
 // Booking Routes
@@ -21,8 +22,14 @@ router.get('/getReview/:serviceProviderId/:serviceId', reviewController.getRevie
 
 // User routes 
 router.post('/registerUser', userController.registerUser );
-router.post('/login', userController.login );
+router.post('/userLogin', userController.login );
 router.put('/updateProfile',verificationMiddleware.decodeToken, userController.updateProfile );
+
+// Service Provider routes
+router.post('/registerServiceProvider', serviceProviderController.registerServiceProvider);
+router.post('/serviceProviderLogin', serviceProviderController.login);
+router.put('/updateProfile', verificationMiddleware.decodeToken, serviceProviderController.updateProfile);
+
 
 // Service Category Routes
 router.get('/serviceCategories', serviceCategoryController.getAllServiceCategories);

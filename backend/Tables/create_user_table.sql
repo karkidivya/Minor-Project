@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS User (
+  userId INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255),
+  password VARCHAR(255),
+  name VARCHAR(255),
+  emailAddress VARCHAR(255),
+  phoneNumber VARCHAR(20),
+  address VARCHAR(255),
+  creditScore INT,
+  accountStatus BOOLEAN,
+  paymentInformation JSON,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
