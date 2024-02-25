@@ -20,7 +20,7 @@ const SignUpFrame1: NextPage = () => {
 
     console.log(certificationUrl)
     console.log(profilePicUrl)
-    const result = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/registerUser`, {...signupInfo, profilePicture: profilePicUrl, certificate: certificationUrl})
+    const result = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/registerServiceProvider`, {...signupInfo, profilePicture: profilePicUrl, certificate: certificationUrl})
     console.log(result)
 
     //do something

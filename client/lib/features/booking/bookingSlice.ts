@@ -5,6 +5,7 @@ const bookingSlice = createSlice({
     name: "booking",
     initialState: {
         bookingStep: 0,
+        category:"",
         location: "",
         phoneNumber: "",
         workDescription: "",
@@ -12,6 +13,10 @@ const bookingSlice = createSlice({
         bookingDate: "",
     },
     reducers: {
+        setCategory:(state, action: PayloadAction<any>) =>{
+            state.category = action.payload
+
+        },
         bookingStep:(state, action: PayloadAction<any>) =>{    
             state.bookingStep = action.payload
         },
@@ -37,6 +42,7 @@ const bookingSlice = createSlice({
 })
 
 export const {
+            setCategory,
             bookingStep,
             informationAndWorkDescription,
             serviceProvider,

@@ -2,6 +2,9 @@
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import styles from "./plumber.module.css";
+import {useRouter} from 'next/navigation'
+import { useAppDispatch } from "@/lib/hooks";
+import { setCategory } from '@/lib/features/booking/bookingSlice'
 
 export type PlumberType = {
   image?: string;
@@ -21,9 +24,12 @@ const Plumber: NextPage<PlumberType> = ({
       height: propHeight,
     };
   }, [propHeight]);
-
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const handleClick = () =>{
     console.log("i am ", categoryName)
+    dispatch(setCategory(categoryName))
+    router.push('/booking')
   }
   return (
     <div className={styles['category-item']} style={plumberStyle} onClick = {handleClick}>
@@ -42,3 +48,5 @@ const Plumber: NextPage<PlumberType> = ({
 };
 
 export default Plumber;
+
+

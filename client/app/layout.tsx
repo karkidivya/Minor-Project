@@ -1,12 +1,20 @@
 'use client'
 import { Fragment, useEffect } from "react";
 import Head from "next/head";
-import { ThemeProvider, createTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./globals.css";
 import {  ScriptProps } from "next/script";
 import { AuthContextProvider } from './context/AuthContext'
 import StoreProvider from "./StoreProvider";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs'
+import {
+  experimental_extendTheme as materialExtendTheme,
+  Experimental_CssVarsProvider as MaterialCssVarsProvider,
+  THEME_ID as MATERIAL_THEME_ID,
+} from '@mui/material/styles';
+import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
+
 export default function Layout({children}: ScriptProps) {
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -16,7 +24,8 @@ export default function Layout({children}: ScriptProps) {
     }
   }, []);
 
-  const muiTheme = createTheme();
+
+  const materialTheme = materialExtendTheme();
 
   return (
     <html>
@@ -30,14 +39,26 @@ export default function Layout({children}: ScriptProps) {
               name="viewport"
               content="minimum-scale=1, initial-scale=1, width=device-width"
             />
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+            <link rel="preconnect" href="https://fonts.gstatic.com"/>
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            />
+
           </Head>
-          <ThemeProvider theme={muiTheme}>
+            <MaterialCssVarsProvider theme = {{[MATERIAL_THEME_ID]: materialTheme}}>
+              <JoyCssVarsProvider>
+                <CssBaseline />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <StoreProvider>
+                    {children}
+                  </StoreProvider>
+                </LocalizationProvider>
+              </JoyCssVarsProvider>
+            </MaterialCssVarsProvider>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
-            <StoreProvider>
-              {children}
-            </StoreProvider>
-          </ThemeProvider>
         </Fragment>
         </AuthContextProvider>
       </body>
