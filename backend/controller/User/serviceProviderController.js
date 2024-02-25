@@ -190,7 +190,24 @@ const serviceProviderController = {
       console.error('Error updating service provider profile:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
+  },
+  getServiceProvidersByCategoryId: async (req, res) => {
+    try {
+      // Extract categoryId from request parameters
+      const { categoryId } = req.params;
+
+      // Query to retrieve service providers with the specified categoryId
+      const query = 'SELECT * FROM ServiceProvider WHERE categoryId = ?';
+      const serviceProviderList = await queryAsync(query, [categoryId]);
+
+      // Send the fetched service providers as a JSON response
+      res.status(200).json({ success: true, serviceProviders: serviceProviderList });
+    } catch (error) {
+      console.error('Error fetching service providers by category ID:', error);
+      res.status(500).json({ success: false, error: 'Internal server error' });
+    }
   }
+  
 };
 
 export default serviceProviderController;
