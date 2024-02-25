@@ -51,17 +51,52 @@ const bookingController = {
         }
     },
 
-
-  ////  checkout
     addBooking: async (req, res) => {
-        const {bookingId, customerId, serviceProviderId, serviceId, dateAndTime, location, additionalNotes, bookingStatus, reviewId, createdAt, updatedAt } = req.body;
+        const {
+            bookingId,
+            customerId,
+            serviceProviderId,
+            serviceId,
+            categoryId,
+            dateAndTime,
+            location,
+            additionalNotes,
+            bookingStatus,
+            reviewId,
+            createdAt,
+            updatedAt
+        } = req.body;
         try {
-
-    
             // Insert the new booking into the database
-            const query = 'INSERT INTO Booking (bookingId, customerId, serviceProviderId, serviceId, dateAndTime, location, additionalNotes, bookingStatus, reviewId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)';
-            const values = [bookingId, customerId, serviceProviderId, serviceId, dateAndTime, location, additionalNotes, bookingStatus, reviewId, createdAt, updatedAt];
-           console.log(values);
+            const query = `
+                INSERT INTO Booking (
+                    bookingId,
+                    customerId,
+                    serviceProviderId,
+                    serviceId,
+                    categoryId,
+                    dateAndTime,
+                    location,
+                    additionalNotes,
+                    bookingStatus,
+                    reviewId,
+                    createdAt,
+                    updatedAt
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            const values = [
+                bookingId,
+                customerId,
+                serviceProviderId,
+                serviceId,
+                categoryId,
+                dateAndTime,
+                location,
+                additionalNotes,
+                bookingStatus,
+                reviewId,
+                createdAt,
+                updatedAt
+            ];
             await queryAsync(query, values);
 
             // Send success response
