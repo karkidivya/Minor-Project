@@ -11,6 +11,7 @@ const bookingSlice = createSlice({
         workDescription: "",
         serviceProvider: "",
         bookingDate: "",
+        bookingTime: "",
     },
     reducers: {
         setCategory:(state, action: PayloadAction<any>) =>{
@@ -28,8 +29,9 @@ const bookingSlice = createSlice({
         serviceProvider: (state, action: PayloadAction<any>) =>{
             state.serviceProvider = action.payload.serviceProvider
         },
-        bookingDate:(state, action: PayloadAction<any>) =>{
+        bookingDateAndTime:(state, action: PayloadAction<any>) =>{
             state.bookingDate = action.payload.bookingDate
+            state.bookingTime = action.payload.bookingTime
         }
 
         /**
@@ -46,7 +48,7 @@ export const {
             bookingStep,
             informationAndWorkDescription,
             serviceProvider,
-            bookingDate
+            bookingDateAndTime,
         } = bookingSlice.actions;
 
 export default bookingSlice.reducer

@@ -6,17 +6,25 @@ import { DatePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import { Button } from "@mui/material";
+import { useAppDispatch } from "@/lib/hooks";
+import { useRouter } from "next/navigation";
+import { bookingDateAndTime } from "@/lib/features/booking/bookingSlice";
+
+
 
 const FrameMorning: NextPage = () => {
   const [dateAndTime, setDateAndTime ] = useState({date: dayjs('2024'), time: ""});
-  
+  const dispatch = useAppDispatch()
+  const router = useRouter();
+
   const handleChange = (name: string , value: string | Date | Dayjs | null ) =>{
     setDateAndTime((prev) =>{
       return {...prev, [name]: value}
     })
   }
   const handleSubmit = () =>{
-
+    dispatch(bookingDateAndTime(dateAndTime))
+    router.push('')
   }
   
   return (
@@ -31,6 +39,8 @@ const FrameMorning: NextPage = () => {
             </div>
             <div className={styles.timeOfDay}>Time of Day</div>
             <Select option = {['Morning (8 am - 9am)','Noon (11am - 2pm)','Evening (3pm -6pm)']} value = {dateAndTime.time} setValue = {(newValue) =>{handleChange("time", newValue)}}/>
+            <div className={styles.frameReviews} />
+
             <Button
               className={styles.nextButton}
               disableElevation={true}

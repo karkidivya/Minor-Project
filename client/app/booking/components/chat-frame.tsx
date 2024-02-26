@@ -6,7 +6,14 @@ import styles from "./chat-frame.module.css";
 import { useAppDispatch } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { bookingStep, serviceProvider } from "@/lib/features/booking/bookingSlice";
+const dummyData = {
+  name: "David Beckham",
+  reviews: 0,
+  serviceProviderId: "",
+  profilePicture: "",
+  
 
+}
 export type ChatFrameType = {
   /** Style props */
   propFlex?: CSSProperties["flex"];
