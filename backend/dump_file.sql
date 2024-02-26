@@ -167,7 +167,7 @@ CREATE TABLE `ServiceCategory` (
 
 LOCK TABLES `ServiceCategory` WRITE;
 /*!40000 ALTER TABLE `ServiceCategory` DISABLE KEYS */;
-INSERT INTO `ServiceCategory` VALUES (1,'Cleaning','Cleaning services','cleaning.jpg','2024-02-25','2024-02-25'),(2,'Plumbing','Plumbing services','plumbing.jpg','2024-02-26','2024-02-26'),(3,'Electrical','Electrical services','electrical.jpg','2024-02-27','2024-02-27'),(4,'Landscaping','Landscaping services','landscaping.jpg','2024-02-28','2024-02-28'),(5,'Painting','Painting services','painting.jpg','2024-02-29','2024-02-29'),(6,'Moving','Moving services','moving.jpg','2024-03-01','2024-03-01'),(7,'Carpentry','Carpentry services','carpentry.jpg','2024-03-02','2024-03-02'),(8,'Appliance Repair','Appliance repair services','appliance_repair.jpg','2024-03-03','2024-03-03'),(9,'Auto Repair','Auto repair services','auto_repair.jpg','2024-03-04','2024-03-04'),(10,'Computer Repair','Computer repair services','computer_repair.jpg','2024-03-05','2024-03-05');
+INSERT INTO `ServiceCategory` VALUES (1,'Cleaner','Cleaning services','cleaning.jpg','2024-02-25','2024-02-25'),(2,'Plumber','Plumbing services','plumbing.jpg','2024-02-26','2024-02-26'),(3,'Electrician','Electrical services','electrical.jpg','2024-02-27','2024-02-27'),(4,'Landscaper','Landscaping services','landscaping.jpg','2024-02-28','2024-02-28'),(5,'Painter','Painting services','painting.jpg','2024-02-29','2024-02-29'),(6,'Mover','Moving services','moving.jpg','2024-03-01','2024-03-01'),(7,'Carpenter','Carpentry services','carpentry.jpg','2024-03-02','2024-03-02'),(8,'Appliance-Repair','Appliance repair services','appliance_repair.jpg','2024-03-03','2024-03-03'),(9,'Auto-Repair','Auto repair services','auto_repair.jpg','2024-03-04','2024-03-04'),(10,'Computer-Repair','Computer repair services','computer_repair.jpg','2024-03-05','2024-03-05');
 /*!40000 ALTER TABLE `ServiceCategory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-26  1:30:05
+-- Dump completed on 2024-02-26  8:55:04

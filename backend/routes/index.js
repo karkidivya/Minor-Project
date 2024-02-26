@@ -30,6 +30,7 @@ router.post('/registerServiceProvider', serviceProviderController.registerServic
 router.post('/serviceProviderLogin', serviceProviderController.login);
 router.put('/updateProfile', verificationMiddleware.decodeToken, serviceProviderController.updateProfile);
 router.get('/serviceProviders/:categoryId', serviceProviderController.getServiceProvidersByCategoryId);
+router.get('/featuredServiceProvider', serviceProviderController.featuredServiceProvider);
 
 
 

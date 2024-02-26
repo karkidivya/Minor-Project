@@ -206,7 +206,22 @@ const serviceProviderController = {
       console.error('Error fetching service providers by category ID:', error);
       res.status(500).json({ success: false, error: 'Internal server error' });
     }
+  },
+
+  featuredServiceProvider: async (req, res) => {
+    try {
+      // Query to retrieve service providers with the highest ratings
+      const query = 'SELECT * FROM ServiceProvider ORDER BY rating DESC LIMIT 5';
+      const featuredProviders = await queryAsync(query);
+  
+      // Send the fetched featured service providers as a JSON response
+      res.status(200).json({ success: true, featuredProviders });
+    } catch (error) {
+      console.error('Error fetching featured service providers:', error);
+      res.status(500).json({ success: false, error: 'Internal server error' });
+    }
   }
+  
   
 };
 
