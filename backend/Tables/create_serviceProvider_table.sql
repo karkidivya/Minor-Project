@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS ServiceProvider (
   accountStatus BOOLEAN,
   services JSON,  -- Stores service IDs collection
   paymentHistory JSON,  -- Stores payment history collection
+  verificationStatus BOOLEAN,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT fk_category FOREIGN KEY (categoryId) REFERENCES ServiceCategory(categoryId)
