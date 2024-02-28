@@ -20,7 +20,7 @@ router.use('/loginOtp', otp)
 
 // Middleware for handling unmatched routes
 router.use((req, res, next) => {
-    const error = new Error('EndPoint Not Found');
+    const error = new Error('EndPointNot Found');
     error.status = 404;
     next(error);
   });

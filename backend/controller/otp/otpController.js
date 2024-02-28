@@ -1,9 +1,9 @@
 import twilio from 'twilio';
 
 // Twilio credentials
-const accountSid = 'YOUR_TWILIO_ACCOUNT_SID';
-const authToken = 'YOUR_TWILIO_AUTH_TOKEN';
-const twilioPhoneNumber = 'YOUR_TWILIO_PHONE_NUMBER';
+const accountSid = 'AC8bcca6c4d5d384ff7de0bef8fdb683d4';
+const authToken = '82fe13d00354d4c274ba1b5e3b8d11bb';
+const twilioPhoneNumber = '+16506035748';
 
 const client = twilio(accountSid, authToken);
 
@@ -15,15 +15,16 @@ function generateOTP() {
 // Store generated OTPs temporarily (you may want to use a more persistent storage in production)
 const otps = {};
 const otpController = {
- sendOTP : (req, res) => {
+ sendOTP : async (req, res) => {
     const phoneNumber = req.body.phoneNumber;
-    const otp = generateOTP();
+    const otp = await generateOTP();
+    console.log(otp)
 
     // Store the OTP with the phone number
     otps[phoneNumber] = otp;
 
     // Send OTP via Twilio
-    client.messages.create({
+    await client.messages.create({
         body: `Your OTP is ${otp}`,
         from: twilioPhoneNumber,
         to: phoneNumber
@@ -38,7 +39,7 @@ const otpController = {
     });
     },
 
-     verifyOTP : (req, res) => {
+     verifyOTP : async (req, res) => {
     const phoneNumber = req.body.phoneNumber;
     const otp = req.body.otp;
 
