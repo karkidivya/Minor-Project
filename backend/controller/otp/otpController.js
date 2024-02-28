@@ -1,9 +1,9 @@
 import twilio from 'twilio';
-
+import dotenv from 'dotenv';
 // Twilio credentials
-const accountSid = 'AC8bcca6c4d5d384ff7de0bef8fdb683d4';
-const authToken = '82fe13d00354d4c274ba1b5e3b8d11bb';
-const twilioPhoneNumber = '+16506035748';
+const accountSid = process.env.accountSid
+const authToken = process.env.authToken
+const twilioPhoneNumber = process.env.twilioPhoneNumber
 
 const client = twilio(accountSid, authToken);
 
