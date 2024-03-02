@@ -1,6 +1,5 @@
 import CryptoJS from "crypto-js";
-import { uuid } from 'uuid';
-
+import { uuid } from 'uuidv4';
 
 export default function esewaCall(){
   const total_amount = 100 
