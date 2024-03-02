@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { Button,  FormControlLabel, Checkbox } from "@mui/material";
 import styles from "./sign-up-frame1.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/lib/hooks";
 import { certificateImage, profileImage } from "@/app/firebase/config";
 import axios from "axios";
@@ -10,6 +11,7 @@ import axios from "axios";
 const SignUpFrame1: NextPage = () => {
   const [ isChecked, setIsChecked ] = useState(false)
   const signupInfo = useAppSelector((state) => state.signup)
+  const router = useRouter()
   const handleChange = () => {
     setIsChecked(!isChecked as boolean)
   }
@@ -21,7 +23,10 @@ const SignUpFrame1: NextPage = () => {
     console.log(certificationUrl)
     console.log(profilePicUrl)
     const result = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/registerServiceProvider`, {...signupInfo, profilePicture: profilePicUrl, certificate: certificationUrl})
+
     console.log(result)
+    router.push('/dashboard')
+    if(result) router.push('/dashboard')
 
     //do something
   }

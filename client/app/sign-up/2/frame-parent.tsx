@@ -105,10 +105,12 @@ const FrameParent: NextPage = () => {
           onChange = {handleChange}
           value = {skillAndProficiency.skill}
         >
-          <MenuItem value = {'carpenter'}>Carpenter</MenuItem>
-          <MenuItem value = {'plumber'}>Plumber</MenuItem>
-          <MenuItem value = {'electrician'}>Electrician</MenuItem>
-          <MenuItem value = {'mechanic'}>Mechanic</MenuItem>
+          <MenuItem value = {'Carpenter'}>Carpenter</MenuItem>
+          <MenuItem value = {'Electrician'}>Electrician</MenuItem>
+          <MenuItem value = {'Plumber'}>Plumber</MenuItem>
+          <MenuItem value = {'Painter'}>Painter</MenuItem>
+          <MenuItem value = {'Auto-Repair'}>Auto Repair</MenuItem>
+          <MenuItem value = {'Computer-Repair'}>Computer Repair</MenuItem>
         </Select>
 
         <FormHelperText />

@@ -3,6 +3,8 @@ import type { NextPage } from "next";
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./frame-component5.module.css";
+import { Button } from "@mui/material";
+import { RoundaboutLeftRounded } from "@mui/icons-material";
 
 const FrameComponent5: NextPage = () => {
   const router = useRouter();
@@ -11,6 +13,9 @@ const FrameComponent5: NextPage = () => {
     router.push("/");
   }, [router]);
 
+  const handleClick = () =>{
+    router.push('/sign-up')
+  }
   return (
     <section className={styles.container}>
       <header className={styles.navbarInner}>
@@ -32,10 +37,13 @@ const FrameComponent5: NextPage = () => {
             <div className={styles.home3}>About</div>
           </div>
           <button className={styles.register}>
-            <div className={styles.becomeAProParent}>
+            <Button variant = "contained" onClick = {handleClick}>
+              Register
+            </Button>
+            {/* <div className={styles.becomeAProParent}>
               <div className={styles.becomeAPro} />
               <div className={styles.register1}>Register</div>
-            </div>
+            </div> */}
           </button>
         </div>
       </header>

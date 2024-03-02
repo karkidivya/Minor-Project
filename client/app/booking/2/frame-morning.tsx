@@ -24,7 +24,7 @@ const FrameMorning: NextPage = () => {
   }
   const handleSubmit = () =>{
     dispatch(bookingDateAndTime(dateAndTime))
-    router.push('')
+    router.push('/')
   }
   
   return (

@@ -302,6 +302,7 @@
 }
 .frameMorning {
   flex-direction: row;
+  margin: 100px 0;
   align-items: flex-start;
   padding: 0 var(--padding-xl) 0 0;
   box-sizing: border-box;

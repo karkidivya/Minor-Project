@@ -1,3 +1,4 @@
+'use client'
 import type { NextPage } from "next";
 import FrameComponent1 from "./frame-component1";
 import styles from "./get-started.module.css";
@@ -11,6 +12,7 @@ const GetStarted: NextPage = () => {
           rectangle9="/rectangle-9-1@2x.png"
           hearThatTheSweetSignOfRel="Hear that? The sweet sign of relief. Start getting more done."
           signUp="Sign Up"
+          goTo = 'sign-up'
         />
         <div className={styles.footerAboutUsHeader} />
         <FrameComponent1
@@ -19,6 +21,7 @@ const GetStarted: NextPage = () => {
           signUp="Become a Pro"
           propHeight="340px"
           propWidth="169px"
+          goTo = 'sign-up'
         />
       </div>
     </div>

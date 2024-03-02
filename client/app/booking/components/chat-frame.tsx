@@ -5,14 +5,15 @@ import { Button } from "@mui/material";
 import styles from "./chat-frame.module.css";
 import { useAppDispatch } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
-import { bookingStep, serviceProvider } from "@/lib/features/booking/bookingSlice";
+import { bookingStep, serviceProvider as f_serviceProvider } from "@/lib/features/booking/bookingSlice";
 const dummyData = {
   name: "David Beckham",
-  reviews: 0,
-  serviceProviderId: "",
-  profilePicture: "",
-  
-
+  rating: 4,
+  proficiency: "Expert",
+  serviceProviderId: "149",
+  profilePicture: "/ellipse-22@2x.png",
+  introduction: "As a skilled furniture assembler, I'm here to make your home projects hassle-free. With attention to detail and efficiency, I'll quickly and expertly assemble your furniture, saving you time and ensuring a seamless experience. Let me handle the hard work so you can enjoy your new pieces stress-free.",
+  fullName: "DavidBeckham",
 }
 export type ChatFrameType = {
   /** Style props */
@@ -21,6 +22,7 @@ export type ChatFrameType = {
   propWidth?: CSSProperties["width"];
   propFlexWrap?: CSSProperties["flexWrap"];
   propFlexWrap1?: CSSProperties["flexWrap"];
+  serviceProvider: any
 };
 
 const ChatFrame: NextPage<ChatFrameType> = ({
@@ -29,6 +31,7 @@ const ChatFrame: NextPage<ChatFrameType> = ({
   propWidth,
   propFlexWrap,
   propFlexWrap1,
+  serviceProvider
 }) => {
   const chatFrameStyle: CSSProperties = useMemo(() => {
     return {
@@ -50,13 +53,12 @@ const ChatFrame: NextPage<ChatFrameType> = ({
     };
   }, [propFlexWrap1]);
 
-  const [ user, setUser ] = useState('0')
   const dispatch = useAppDispatch()
   const router = useRouter()
 
   const handleClick = () =>{
     console.log("I have been clicked")
-    dispatch(serviceProvider(user))
+    dispatch(f_serviceProvider(serviceProvider.serviceProviderId))
     dispatch(bookingStep(2))
     router.push('2')
   }
@@ -75,7 +77,7 @@ const ChatFrame: NextPage<ChatFrameType> = ({
 
             </div>
             <div className={styles.helpFrame}>
-              <h3 className={styles.davidBecham}>David Beckham</h3>
+              <h3 className={styles.davidBecham}>{serviceProvider.fullName}</h3>
               <Button
                 className={styles.helpFrameChild}
                 startIcon={
@@ -98,7 +100,7 @@ const ChatFrame: NextPage<ChatFrameType> = ({
                   height: 41,
                 }}
               >
-                Elite
+                {serviceProvider.proficiency}
               </Button>
               <div className={styles.youChat}>
                 <img
@@ -107,7 +109,7 @@ const ChatFrame: NextPage<ChatFrameType> = ({
                   alt=""
                   src="/materialsymbolsstar.svg"
                 />
-                <div className={styles.reviews}>5.0 (700 reviews)</div>
+                <div className={styles.reviews}>{`${serviceProvider.rating} (700 reviews)`}</div>
               </div>
               <div
                 className={styles.furnitureAssembled}
@@ -130,14 +132,10 @@ const ChatFrame: NextPage<ChatFrameType> = ({
           </div>
           <div className={styles.furnitureAssemblyService}>
             <div className={styles.howToHelpButton}>
-              <div className={styles.howCanI}>How can I help:</div>
+              <div className={styles.howCanI}>My Introduction:</div>
             </div>
             <div className={styles.asASkilled}>
-              As a skilled furniture assembler, I'm here to make your home
-              projects hassle-free. With attention to detail and efficiency,
-              I'll quickly and expertly assemble your furniture, saving you time
-              and ensuring a seamless experience. Let me handle the hard work so
-              you can enjoy your new pieces stress-free.
+              {serviceProvider.introduction}
             </div>
             <div className={styles.howToHelpButton1}>
               <div className={styles.readMore}>Read More</div>

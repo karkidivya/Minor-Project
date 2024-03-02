@@ -115,7 +115,7 @@ const FullNameFrame: NextPage = () => {
         Next
       </Button>
       <div className={styles.signUpLink}>
-        <div className={styles.signupWith}>{`SignUp with `}</div>
+        <div className={styles.signupWith}>{`Sign Up with `}</div>
         <img
           className={styles.devicongoogle}
           loading="eager"
@@ -128,10 +128,6 @@ const FullNameFrame: NextPage = () => {
           alt=""
           src="/group-6.svg"
         />
-      </div>
-      <div className={styles.ifYouDoContainer}>
-        <span className={styles.ifYouDo}>{`If you do not have account `}</span>
-        <span className={styles.signUp}>Sign Up</span>
       </div>
     </form>
   );

@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import ChatFrame from "./chat-frame";
 import styles from "./profile-view-button.module.css";
 
-const ProfileViewButton: NextPage = () => {
+const ProfileViewButton = ({serviceProvider}: {serviceProvider: any}) => {
   return (
     <section className={styles.profileViewButton}>
       <ChatFrame
@@ -11,6 +11,7 @@ const ProfileViewButton: NextPage = () => {
         propWidth="834px"
         propFlexWrap="wrap"
         propFlexWrap1="wrap"
+        serviceProvider = {serviceProvider}
       />
     </section>
   );
