@@ -220,9 +220,78 @@ const serviceProviderController = {
       console.error('Error fetching featured service providers:', error);
       res.status(500).json({ success: false, error: 'Internal server error' });
     }
-  }
-  
-  
+  },
+
+  unVerifiedServiceProvider: async (req, res) => {
+    try {
+      // Query to retrieve unverified service providers
+      const query = 'SELECT * FROM ServiceProvider WHERE verificationStatus = FALSE';
+      const unverifiedProviders = await queryAsync(query);
+
+      // Send the fetched unverified service providers as a JSON response
+      res.status(200).json({ success: true, unverifiedProviders });
+    } catch (error) {
+      console.error('Error fetching unverified service providers:', error);
+      res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+  },
+
+  verifiedServiceProvider: async (req, res) => {
+    try {
+      // Query to retrieve verified service providers
+      const query = 'SELECT * FROM ServiceProvider WHERE verificationStatus = TRUE';
+      const verifiedProviders = await queryAsync(query);
+
+      // Send the fetched verified service providers as a JSON response
+      res.status(200).json({ success: true, verifiedProviders });
+    } catch (error) {
+      console.error('Error fetching verified service providers:', error);
+      res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+  },
+
+  updateServiceProviderToVerified: async (req, res) => {
+    try {
+      // Extract serviceProviderId from request parameters
+      const { serviceProviderId } = req.params;
+
+      // Update the verification status of the service provider
+      const query = 'UPDATE ServiceProvider SET verificationStatus = TRUE WHERE serviceProviderId = ?';
+      const result = await queryAsync(query, [serviceProviderId]);
+
+      // Check if the update was successful
+      if (result.affectedRows === 1) {
+        res.status(200).json({ success: true, message: 'Service provider verified successfully' });
+      } else {
+        res.status(404).json({ success: false, error: 'Service provider not found or unable to verify' });
+      }
+    } catch (error) {
+      console.error('Error updating service provider verification status:', error);
+      res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+  },
+
+  deleteServiceProvider: async (req, res) => {
+    try {
+      // Extract serviceProviderId from request parameters
+      const { serviceProviderId } = req.params;
+
+      // Delete the service provider from the database
+      const query = 'DELETE FROM ServiceProvider WHERE serviceProviderId = ?';
+      const result = await queryAsync(query, [serviceProviderId]);
+
+      // Check if the deletion was successful
+      if (result.affectedRows === 1) {
+        res.status(200).json({ success: true, message: 'Service provider deleted successfully' });
+      } else {
+        res.status(404).json({ success: false, error: 'Service provider not found or unable to delete' });
+      }
+    } catch (error) {
+      console.error('Error deleting service provider:', error);
+      res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+  },
+ 
 };
 
 export default serviceProviderController;

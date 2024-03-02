@@ -85,6 +85,11 @@
   padding: 0;
   background-color: transparent;
   justify-content: center;
+  transition: 0.3s;
+  opacity: 1;
+}
+.register:hover {
+  opacity: 0.8;
 }
 .navbarInner,
 .text {

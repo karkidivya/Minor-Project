@@ -1,46 +1,39 @@
-import express from "express";
-import bookingController from '../controller/Booking/bookingController.js';
-import reviewController from '../controller/Review/reviewController.js';
-import userController from "../controller/User/userController.js";
-import verificationMiddleware from '../middleware/index.js';
-import serviceCategoryController from "../controller/Service/serviceCategoryController.js";
-import serviceController from "../controller/Service/serviceController.js";
-import serviceProviderController from "../controller/User/serviceProviderController.js";
+import express from 'express';
+import bookingRoutes from './bookingRoutes.js'; // Adjust the import path here
+import reviewRoutes from './reviewRoutes.js';
+import userRoutes from './userRoutes.js';
+import serviceProviderRoutes from './serviceProviderRoutes.js';
+import serviceCategoryRoutes from './serviceCategoryRoutes.js';
+import serviceRoutes from './serviceRoutes.js';
+import otp from './otpRoutes.js'
+import esewaRouter from './esewa.js';
+
 const router = express.Router();
 
-// Booking Routes
-router.post('/addBooking', bookingController.addBooking);
-router.get('/getBooking/:id', bookingController.getBookingById);
-router.get('/Booking', bookingController.getBooking);
-router.delete('/deleteBooking/:id', bookingController.deleteBooking);
+router.use('/booking', bookingRoutes);
+router.use('/review', reviewRoutes);
+router.use('/user', userRoutes);
+router.use('/serviceProvider', serviceProviderRoutes);
+router.use('/serviceCategory', serviceCategoryRoutes);
+router.use('/service', serviceRoutes);
+router.use('/loginOtp', otp)
+router.use('/payment', esewaRouter );
 
-// Review Routes
-router.post('/addReview', reviewController.addReview);
-router.put('/updateReview', reviewController.updateReview);
-router.delete('/removeReview', reviewController.removeReview);
-router.get('/getReview/:serviceProviderId/:serviceId', reviewController.getReviewByServiceProviderServiceId);
-
-// User routes 
-router.post('/registerUser', userController.registerUser );
-router.post('/userLogin', userController.login );
-router.put('/updateProfile',verificationMiddleware.decodeToken, userController.updateProfile );
-
-// Service Provider routes
-router.post('/registerServiceProvider', serviceProviderController.registerServiceProvider);
-router.post('/serviceProviderLogin', serviceProviderController.login);
-router.put('/updateProfile', verificationMiddleware.decodeToken, serviceProviderController.updateProfile);
-router.get('/serviceProviders/:categoryId', serviceProviderController.getServiceProvidersByCategoryId);
-router.get('/featuredServiceProvider', serviceProviderController.featuredServiceProvider);
-
-
-
-// Service Category Routes
-router.get('/serviceCategories', serviceCategoryController.getAllServiceCategories);
-router.get('/serviceCategory/:categoryId', serviceCategoryController.getServiceCategoryByID);
-
-// Service Routes
-router.get('/services/:categoryId', serviceController.getAllServices);
-router.get('/service/:serviceId', serviceController.getServiceByID);
-
+// Middleware for handling unmatched routes
+router.use((req, res, next) => {
+    const error = new Error('EndPointNot Found');
+    error.status = 404;
+    next(error);
+  });
+  
+  // Error handler middleware
+  router.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.json({
+      error: {
+        message: err.message
+      }
+    });
+  });
 
 export default router;
