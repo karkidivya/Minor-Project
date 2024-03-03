@@ -1,12 +1,10 @@
 CREATE TABLE IF NOT EXISTS Payment (
-      paymentId INT PRIMARY KEY,
-      bookingId INT,
-      amount INT,
-      paymentMethod VARCHAR(255),
-      paymentStatus VARCHAR(255),
-      createdAt DATE,
-      updatedAt DATE,
-      
-      -- Adding foreign key constraints
-      FOREIGN KEY (bookingId) REFERENCES Booking(bookingId)
-    )
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  product_code VARCHAR(255) NOT NULL,
+  transaction_uuid VARCHAR(36) NOT NULL,
+  total_amount INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  ref_id VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

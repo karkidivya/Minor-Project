@@ -1,12 +1,13 @@
 import CryptoJS from "crypto-js";
 import { uuid } from 'uuidv4';
 
-export default function esewaCall(){
-  const total_amount = 100 
-  const tax_amount = 0
-  const product_delivery_charge = 0
-  const product_service_charge = 0
-  const amount = 100 ;
+export default function esewaCall(userInput){
+  const amount = userInput.amount || 0;
+  const total_amount = userInput.total_amount || 0;
+  const tax_amount = userInput.tax_amount || 0;
+  const product_delivery_charge = userInput.product_delivery_charge || 0;
+  const product_service_charge = userInput.product_service_charge || 0;
+
   // const uuidf = uuid();
   const uuidf = uuid();  
     const Message = `total_amount=${total_amount},transaction_uuid=${uuidf},product_code=EPAYTEST`
