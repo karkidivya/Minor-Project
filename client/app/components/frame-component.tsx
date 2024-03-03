@@ -51,6 +51,10 @@ const FrameComponent: NextPage<FrameComponentType> = ({
 
   }
 
+  const handleClick = () =>{
+    // do something
+  }
+
   return (
     <div
       className={styles.connectMediaIconsGroup}
@@ -165,7 +169,7 @@ const FrameComponent: NextPage<FrameComponentType> = ({
           </div>
         </div>
         <div className={styles.buttonInstance}>
-          <button className={styles.button}>
+          <button className={styles.button} onClick = {handleClick}>
             <div className={styles.viewAllProducts}>Send Massage</div>
           </button>
         </div>

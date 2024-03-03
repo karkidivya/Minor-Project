@@ -49,7 +49,6 @@
   font-family: var(--font-inter);
   font-size: var(--font-size-sm);
   background-color: transparent;
-  height: 15px;
   position: relative;
   letter-spacing: 0.03em;
   color: var(--color-darkgray);
@@ -185,8 +184,8 @@
   text-align: center;
 }
 .emailAddressFrame {
-  margin: 0;
-  width: 479px;
+  margin: 0 15px;
+  max-width: 479px;
   border-radius: var(--br-3xs);
   background-color: var(--primary);
   overflow: hidden;
@@ -198,7 +197,6 @@
   padding: var(--padding-37xl);
   box-sizing: border-box;
   gap: var(--gap-smi);
-  max-width: 100%;
 }
 @media screen and (max-width: 750px) {
   .kaamsewa {

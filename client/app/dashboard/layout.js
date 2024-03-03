@@ -1,6 +1,4 @@
 'use client'
-import Head from 'next/head';
-import { CacheProvider } from '@emotion/react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { CssBaseline } from '@mui/material';
@@ -17,15 +15,6 @@ const App = ({children}) => {
   return (
 
     <>
-      <Head>
-        <title>
-          Material Kit Pro
-        </title>
-        <meta
-          name="viewport"
-          content="initial-scale=1, width=device-width"
-        />
-      </Head>
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={de}>
         <ThemeProvider theme = {theme}>
           <CssBaseline />

@@ -68,7 +68,7 @@ export const DashboardSidebar = (props) => {
         <div>
           <Box sx={{ py: 2, px: 3 }}>
             <NextLink
-              href="/"
+              href="/dashboard"
               passHref
             >
                 <Logo
@@ -109,7 +109,7 @@ export const DashboardSidebar = (props) => {
         open
         PaperProps={{
           sx: {
-            backgroundColor: 'neutral.900',
+            backgroundColor: '#111827',
             color: '#FFFFFF',
             width: 280
           }
@@ -128,7 +128,7 @@ export const DashboardSidebar = (props) => {
       open={open}
       PaperProps={{
         sx: {
-          backgroundColor: 'neutral.900',
+          backgroundColor: '#111827',
           color: '#FFFFFF',
           width: 280
         }
