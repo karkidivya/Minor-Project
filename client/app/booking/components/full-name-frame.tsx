@@ -10,9 +10,11 @@ import { useRouter } from "next/navigation";
 import { MuiTelInput } from "mui-tel-input";
 import { useAppDispatch } from "@/lib/hooks";
 import { informationAndWorkDescription, bookingStep } from "@/lib/features/booking/bookingSlice";
+import GeoLocation from '../../geolocation';
+
 
 const FullNameFrame: NextPage = () => {
-  const [ info, setInfo ] = useState({location: "", phoneNumber: "", workDescription: ""})
+  const [ info, setInfo ] = useState({phoneNumber: "", workDescription: ""})
   const dispatch = useAppDispatch()
   const router = useRouter()
 
@@ -34,31 +36,17 @@ const FullNameFrame: NextPage = () => {
   }
   return (
     <form className={styles.fullNameFrame}>
-      <h1 className={styles.kaamsewa}>Your Information</h1>
-      <div className={styles.fullName}>Your Location</div>
-      <TextField
-        className={styles.emailAddressFrame}
-        placeholder="Type in your location"
-        variant="outlined"
-        name = "location"
-        value = {info.location}
-        onChange={handleChange}
-        sx={{
-          "& fieldset": { borderColor: "#9fa0a0" },
-          "& .MuiInputBase-root": {
-            backgroundColor: "#fff",
-            borderRadius: "5px",
-            fontSize: "12px",
-          },
-          "& .MuiInputBase-input": { color: "#9fa0a0" },
-        }}
-      />
 
+      <h1 className={styles.kaamsewa}>Your Information</h1>
+      
       <div className={styles.password}>Your Phone Number</div>
       <MuiTelInput defaultCountry="NP" 
                     value = {info.phoneNumber}
                     onChange = {(newPhone) => handleChange({target: {name: 'phoneNumber', value: newPhone}})} 
                     style={{alignSelf: 'flex-start', width: '100%'}}/>
+      <div className={styles.fullName}>Your Location</div>
+      <GeoLocation />
+
       
       <h1 className={styles.kaamsewa}>Work Description</h1>
       <div className={styles.password}>Describe the Work</div>
