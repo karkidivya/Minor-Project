@@ -56,13 +56,3 @@ const Mapping = () => {
 };
 
 export default Mapping;
-
-// import Map1 from "./comp/Map1";
-
-// export default function Home() {
-//   return (
-//     <main>
-//       <Map1 />
-//     </main>
-//   );
-// }

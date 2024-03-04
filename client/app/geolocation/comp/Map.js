@@ -87,7 +87,7 @@ const MapComponent = ({ lat, lng, zoom, onSelectAddress }) => {
 
   return (
     <div>
-      <div id="map" style={{ height: '400px', width: '800px' }}></div>
+      <div id="map" style={{ height: '400px', width: '400px' }}></div>
       <Script
         src="/leaflet/dist/leaflet.js"
         strategy="afterInteractive"
