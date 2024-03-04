@@ -6,6 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Bell as BellIcon } from '../icons/bell';
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
 import { AccountPopover } from './account-popover';
+import { Notification } from './notification'
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -15,8 +16,9 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
 export const DashboardNavbar = (props) => {
   const { onSidebarOpen, fullName, profilePicture, ...other } = props;
   const settingsRef = useRef(null);
+  const notificationRef = useRef(null);
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
-
+  const [openNotification, setOpenNotification ] = useState(false)
   return (
     <>
       <DashboardNavbarRoot
@@ -50,17 +52,18 @@ export const DashboardNavbar = (props) => {
           </IconButton>
           <Box sx={{ flexGrow: 1 }} />
 
-          <Tooltip title="Notifications">
-            <IconButton sx={{ ml: 1 }}>
-              <Badge
-                badgeContent={4}
-                color="primary"
-                variant="dot"
-              >
-                <BellIcon fontSize="small" />
-              </Badge>
-            </IconButton>
-          </Tooltip>
+          <IconButton sx={{ ml: 1 }} 
+            ref = {notificationRef}
+            onClick = {() => setOpenNotification(true)}
+          >
+            <Badge
+              badgeContent={4}
+              color="primary"
+              variant="dot"
+            >
+              <BellIcon fontSize="small" />
+            </Badge>
+          </IconButton>
           <Avatar
             onClick={() => setOpenAccountPopover(true)}
             ref={settingsRef}
@@ -71,7 +74,7 @@ export const DashboardNavbar = (props) => {
               ml: 1
             }}
             src={profilePicture}
-          >
+            >
             <UserCircleIcon fontSize="small" />
           </Avatar>
         </Toolbar>
@@ -80,6 +83,11 @@ export const DashboardNavbar = (props) => {
         anchorEl={settingsRef.current}
         open={openAccountPopover}
         onClose={() => setOpenAccountPopover(false)}
+      />
+      <Notification
+        anchorEl = {notificationRef.current}
+        open = {openNotification}
+        onClose = {() =>  setOpenNotification(false)}
       />
     </>
   );
