@@ -1,5 +1,8 @@
+'use client'
+import Search from "../components/Search";
+
 export default function() {
     return<>
-        Ola! How are everyone ?
+            <Search onSubmit = {() => {}}/>
     </>
 }

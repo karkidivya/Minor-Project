@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Box, MenuItem, MenuList, Popover, Typography } from '@mui/material';
 
-export const AccountPopover = (props) => {
+export const Notification = (props) => {
   const { anchorEl, onClose, fullName, open, ...other } = props;
 
 
@@ -26,7 +26,7 @@ export const AccountPopover = (props) => {
         }}
       >
         <Typography variant="overline">
-          Account
+          Notifications
         </Typography>
         <Typography
           color="text.secondary"
@@ -48,15 +48,13 @@ export const AccountPopover = (props) => {
           }
         }}
       >
-        <MenuItem>
-          Sign out
-        </MenuItem>
+
       </MenuList>
     </Popover>
   );
 };
 
-AccountPopover.propTypes = {
+Notification.propTypes = {
   anchorEl: PropTypes.any,
   onClose: PropTypes.func,
   open: PropTypes.bool.isRequired
