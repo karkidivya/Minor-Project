@@ -1,0 +1,137 @@
+.kaamsewa {
+  margin: 0;
+  font-size: var(--font-size-21xl);
+  text-transform: capitalize;
+  font-weight: 700;
+  font-family: inherit;
+}
+.kaamsewa,
+.profileInformation,
+.profilePicture {
+  position: relative;
+  letter-spacing: 0.03em;
+}
+.profileInformation {
+  margin: 0;
+  font-size: var(--font-size-mid);
+  font-weight: 800;
+  font-family: inherit;
+  color: var(--color-royalblue);
+}
+.profilePicture {
+  font-weight: 600;
+}
+.image {
+  /* height: 32px; */
+  /* width: 95px; */
+  font-family: var(--font-roboto);
+  font-weight: 600;
+  font-size: var(--font-size-3xs);
+  color: var(--color-black);
+}
+.jpg {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+.imageParent {
+  width: 318px;
+  border-radius: var(--br-8xs);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-darkgray);
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-12xs);
+  gap: 2px 14px;
+  color: var(--color-darkgray);
+  font-family: var(--font-inter);
+}
+.biointroduction {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+.frameChild {
+  border: 1px solid var(--color-darkgray);
+  background-color: var(--color-white);
+  height: 104px;
+  width: 315px;
+  outline: 0;
+  border-radius: var(--br-8xs);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-5xs) var(--padding-2xs);
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  color: var(--color-darkgray);
+}
+.location {
+  position: relative;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+.frameItem {
+  border: 0;
+  background-color: transparent;
+  align-self: stretch;
+  height: 30px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  color: var(--color-darkgray);
+}
+.frameInner {
+  width: 126px;
+  height: 25px;
+}
+.kaamsewaParent {
+  width: 479px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-57xl) var(--padding-19xl);
+  box-sizing: border-box;
+  gap: var(--gap-smi);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 750px) {
+  .kaamsewa {
+    font-size: var(--font-size-13xl);
+  }
+  .kaamsewaParent {
+    padding-top: var(--padding-64xl);
+    padding-bottom: var(--padding-64xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 675px) {
+  .kaamsewaParent {
+    padding-left: var(--padding-19xl);
+    padding-right: var(--padding-19xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .kaamsewa {
+    font-size: var(--font-size-5xl);
+  }
+}

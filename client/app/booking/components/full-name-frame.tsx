@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MuiTelInput } from "mui-tel-input";
 import { useAppDispatch } from "@/lib/hooks";
-import { informationAndWorkDescription, bookingStep } from "@/lib/features/booking/bookingSlice";
+import { informationAndWorkDescription, bookingStep, address, coordinate} from "@/lib/features/booking/bookingSlice";
 import GeoLocation from '../../geolocation';
 
 
@@ -45,7 +45,7 @@ const FullNameFrame: NextPage = () => {
                     onChange = {(newPhone) => handleChange({target: {name: 'phoneNumber', value: newPhone}})} 
                     style={{alignSelf: 'flex-start', width: '100%'}}/>
       <div className={styles.fullName}>Your Location</div>
-      <GeoLocation />
+      <GeoLocation address = {address} coordinate = {coordinate}/>
 
       
       <h1 className={styles.kaamsewa}>Work Description</h1>
