@@ -4,7 +4,9 @@ import styles from "./category-item.module.css";
 import axios from "axios";
 async function getData(){
   const backendUrl = process.env.BACKEND_URL
+  console.log(backendUrl)
   const res = await fetch(`${backendUrl}/serviceCategory`)
+  console.log(res)
   
   return res.json()
 }

@@ -1,25 +1,32 @@
 "use client"
 // pages/index.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
-
-const socket = io('http://localhost:5000', {
-  transports: ['websocket'],
-}); // Connect to the server using WebSocket transport
+import { useSocket } from '../context/SocketContext';
+// const socket = io('http://localhost:5000', {
+//   transports: ['websocket'],
+// }); // Connect to the server using WebSocket transport
 
 const IndexPage = () => {
-    useEffect(() => {
-        // Listen for incoming notifications
-        socket.on('receiveNotification', data => {
-            console.log('Received notification:', data);
-            // Handle the received notification, e.g., show a notification popup
-        });
+    const socket = useSocket();
+    // const [socket, setSocket] = useState(null);
+    // useEffect(() => {
+    //     setSocket(io("http://localhost:5000", { transports:['websocket']}));
+    //   }, []);
+    
 
-        // return () => {
-        //     // Clean up on unmount
-        //     socket.disconnect();
-        // };
-    });
+    // useEffect(() => {
+        // Listen for incoming notifications
+    //     socket.on('receiveNotification', data => {
+    //         console.log('Received notification:', data.data, data.id);
+    //         // Handle the received notification, e.g., show a notification popup
+    //     });
+
+    //     // return () => {
+    //     //     // Clean up on unmount
+    //     //     socket.disconnect();
+    //     // };
+    // },[socket]);
 
     const sendNotification = () => {
         console.log("hell")
