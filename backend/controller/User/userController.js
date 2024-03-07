@@ -47,7 +47,17 @@ const userController = {
       res.status(500).json({ error: 'Internal server error' });
     }
   },
-
+  userProfile: async(req,res) =>{
+    try {
+      const userId = req.params.id; // Accessing userId from the request parameters
+      const user = await queryAsync('SELECT name FROM User WHERE userId = ?', [userId]);
+      res.json(user);
+    } catch (error) {
+      console.error('Error fetching user profile:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+  ,
   login: async (req, res) => {
     try {
       const { username, password } = req.body;

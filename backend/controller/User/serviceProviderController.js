@@ -84,7 +84,15 @@ const serviceProviderController = {
       res.status(500).json({ error: 'Internal server error' });
     }
   },
-
+    getProviderDetail: async(req,res)=>{
+      try{
+          const providerId = req.params.id;
+          const provider = await queryAsync('SELECT fullName FROM ServiceProvider WHERE serviceProviderId = ?', [providerId]);
+          res.status(200).json(provider);
+      }catch(error){
+          res.status(500).json({status: 'error', message:'Internal server error'})
+      }
+  },
   // Function to log in a service provider
   login: async (req, res) => {
     try {

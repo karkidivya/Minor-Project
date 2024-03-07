@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS ServiceProvider (
   rating INT,
   numberOfViews INT,
   accountStatus BOOLEAN,
+  paymentMethod VARCHAR(50),
   services JSON,  -- Stores service IDs collection
   paymentHistory JSON,  -- Stores payment history collection
   verificationStatus BOOLEAN,

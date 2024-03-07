@@ -60,6 +60,7 @@ const bookingController = {
             categoryId,
             dateAndTime,
             location,
+            amount,
             additionalNotes,
             bookingStatus,
             reviewId,
@@ -77,12 +78,13 @@ const bookingController = {
                     categoryId,
                     dateAndTime,
                     location,
+                    amount,
                     additionalNotes,
                     bookingStatus,
                     reviewId,
                     createdAt,
                     updatedAt
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)`;
             const values = [
                 bookingId,
                 customerId,
@@ -91,6 +93,7 @@ const bookingController = {
                 categoryId,
                 dateAndTime,
                 location,
+                amount,
                 additionalNotes,
                 bookingStatus,
                 reviewId,

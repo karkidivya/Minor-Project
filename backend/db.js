@@ -4,15 +4,16 @@ import fs from 'fs';
 
 dotenv.config();
 
-const host = process.env.HOST || 'localhost';
-const user = process.env.CURRENT_USER || 'root';
-const password = process.env.PASSWORD || 'rootuser';
+const host = process.env.HOST;
+const user = process.env.USERNAME;
+const password = process.env.PASSWORD;
+const database = process.env.DATABASE;
 
 const db = mysql.createConnection({
   host: host,
   user: user,
   password: password,
-  database: 'kaamsewa',
+  database: database,
 });
 
 db.connect((err) => {
@@ -50,3 +51,4 @@ db.connect((err) => {
 });
 
 export default db;
+
