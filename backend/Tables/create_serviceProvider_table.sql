@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS ServiceProvider (
   fullName VARCHAR(255),
   emailAddress VARCHAR(255),
   phoneNumber VARCHAR(20),
-  location VARCHAR(255),
+  location JSON,
   profilePicture VARCHAR(255),
   introduction TEXT,
   categoryId INT,
@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS ServiceProvider (
   rating INT,
   numberOfViews INT,
   accountStatus BOOLEAN,
-  services JSON,  -- Stores service IDs collection
-  paymentHistory JSON,  -- Stores payment history collection
+  services JSON,  
+  paymentHistory JSON, 
   verificationStatus BOOLEAN,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
