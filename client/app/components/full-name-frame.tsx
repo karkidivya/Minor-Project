@@ -59,7 +59,7 @@ const FullNameFrame: NextPage = () => {
         className={styles.emailAddressFrame1}
         placeholder="Email Address"
         variant="outlined"
-        name = "email"
+        name = "emailAddress"
         value={signupCredential.emailAddress}
         onChange = {handleChange}
       />
