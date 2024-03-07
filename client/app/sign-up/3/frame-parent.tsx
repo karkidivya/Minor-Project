@@ -8,20 +8,30 @@ import {
   Button,
 } from "@mui/material";
 import styles from "./frame-parent.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AppDispatch, RootState } from "@/lib/store";
+import { AppDispatch } from "@/lib/store";
 import { skillAndExpertise } from "@/lib/features/signup/signupSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch } from "@/lib/hooks";
+import axios from "axios";
+
+const getData = async(setData: any) =>{
+  const {data} = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceCategory/`)  
+  if(data)
+    setData(data.data)
+  return
+}
 interface ISkillAndProficiency{
-  skill : 'Carpenter' | 'Plumber' | 'Electrician' | 'Mechanic' | 'Cleaner' | 'Painter' | 'Auto-Repair' | 'Computer-Repair'
+  skill : number
   proficiency: 'beginner' | 'intermediate' | 'semi-pro' | 'pro'
 }
-const exampleObject : ISkillAndProficiency = { skill: 'Carpenter' , proficiency: 'beginner'}
+const exampleObject : ISkillAndProficiency = { skill: 1, proficiency: 'beginner'}
 const FrameParent: NextPage = () => {
-  const [ skillAndProficiency, setSkillAndProficiency] = useState(exampleObject)
+  const [ skill, setSkill ] = useState([])
+  const [ skillAndProficiency, setSkillAndProficiency] = useState({...exampleObject})
   const router = useRouter();
   const dispatch: AppDispatch = useAppDispatch();
+  useEffect(() => {getData(setSkill)},[])
 
   const handleChange = (e: any) =>{
     const name = e.target.name
@@ -104,12 +114,9 @@ const FrameParent: NextPage = () => {
           onChange = {handleChange}
           value = {skillAndProficiency.skill}
         >
-          <MenuItem value = {'Carpenter'}>Carpenter</MenuItem>
-          <MenuItem value = {'Electrician'}>Electrician</MenuItem>
-          <MenuItem value = {'Plumber'}>Plumber</MenuItem>
-          <MenuItem value = {'Painter'}>Painter</MenuItem>
-          <MenuItem value = {'Auto-Repair'}>Auto Repair</MenuItem>
-          <MenuItem value = {'Computer-Repair'}>Computer Repair</MenuItem>
+          {skill.map( (item: any, idx: number)=> {
+              return <MenuItem key = {idx} value = {item.categoryId}>{item.categoryName}</MenuItem>
+          })}
         </Select>
 
         <FormHelperText />
