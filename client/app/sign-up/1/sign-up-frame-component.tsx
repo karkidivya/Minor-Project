@@ -44,7 +44,7 @@ const FrameComponent: NextPage = () => {
         className={styles.frameChild}
         placeholder="Let Us know about you!"
         value = {profileInfo.introduction}
-        onChange = {(e: any)=> setProfileInformation((prev) => ({...prev, introduction: e.currentTarget.value}))}
+        onChange = {(e: any)=> setProfileInformation((prev) => ({...prev, introduction: e.target.value}))}
       />
       <Button
         variant="contained"

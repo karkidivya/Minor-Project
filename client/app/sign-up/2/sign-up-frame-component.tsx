@@ -6,35 +6,21 @@ import {
 import styles from "./sign-up-frame-component.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { AppDispatch, RootState } from "@/lib/store";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { profileInformation } from "@/lib/features/signup/signupSlice";
+import { AppDispatch} from "@/lib/store";
+import { useAppDispatch } from "@/lib/hooks";
+import { phoneNumber as f_phoneNumber } from "@/lib/features/signup/signupSlice";
 import { MuiTelInput } from "mui-tel-input";
 import GeoLocation from '../../geolocation'
 import { coordinate, address } from "@/lib/features/signup/signupSlice";
-interface ICertification{
-  profilePicture : File | undefined | string
-  phoneNumber: string | undefined
-  introduction: ""
-  location: ""
-}
-const exampleObject : ICertification = { profilePicture: undefined, phoneNumber: "", introduction: "", location: ""}
+
 const FrameComponent: NextPage = () => {
-  const [ profileInfo, setProfileInformation ] = useState(exampleObject)
+  const [ phoneNumber, setPhoneNumber ] = useState("")
   const router = useRouter()
   const dispatch: AppDispatch= useAppDispatch();
-  const storeState = useAppSelector((state: RootState)=> state.signup)
-  const handleChange = (e: any) =>{
-    const name = e.target.name
-    const value = e.target.value
-    setProfileInformation((prev) =>{
-      return {...prev, [name]: value}
-    })
-  }
+
   const handleSubmit = () =>{
-    const imageUrl = URL.createObjectURL(profileInfo.profilePicture as File)
     
-    dispatch(profileInformation({...profileInfo, profilePicture: imageUrl}))
+    dispatch(f_phoneNumber(phoneNumber))
     router.push('/sign-up/2')
   }
   
@@ -45,8 +31,8 @@ const FrameComponent: NextPage = () => {
 
       <div className={styles.profilePicture}>Phone Number</div>
       <MuiTelInput defaultCountry="NP" 
-                    value = {profileInfo.phoneNumber}
-                    onChange = {(newPhone) => handleChange({target: {name: 'phoneNumber', value: newPhone}})} 
+                    value = {phoneNumber}
+                    onChange = {(newPhone) => setPhoneNumber(newPhone)} 
                     style={{alignSelf: 'flex-start', width: '100%'}}/>
                     
       <div className={styles.location}>Location</div>

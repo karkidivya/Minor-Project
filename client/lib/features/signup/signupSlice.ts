@@ -40,10 +40,7 @@ const signupSllice = createSlice({
         address: (state, action: PayloadAction<any>)=>{
             state.location.address = action.payload.address
         },
-        profileInformation: (state, action: PayloadAction<any>) =>{
-            state.profilePicture = action.payload.profilePicture
-            state.introduction = action.payload.introduction
-            // state.location = action.payload.location
+        phoneNumber: (state, action: PayloadAction<any>) =>{
             state.phoneNumber = action.payload.phoneNumber
         },
         skillAndExpertise: (state, action: PayloadAction<any>) =>{
@@ -82,7 +79,7 @@ const signupSllice = createSlice({
 
 export const {
             personalInformation,
-            profileInformation,
+            phoneNumber,
             skillAndExpertise,
             address,
             coordinate,

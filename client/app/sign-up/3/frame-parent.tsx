@@ -112,7 +112,7 @@ const FrameParent: NextPage = () => {
           displayEmpty
           name = "skill"
           onChange = {handleChange}
-          value = {skillAndProficiency.skill}
+          value = {skill[0] ? `${skillAndProficiency.skill}` : ""}
         >
           {skill.map( (item: any, idx: number)=> {
               return <MenuItem key = {idx} value = {item.categoryId}>{item.categoryName}</MenuItem>
