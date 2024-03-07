@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
-import FullNameFrame from "./full-name-frame";
-import styles from "./sign-up4.module.css";
+import AvailabilityFrameSet from "./availability-frame-set";
+import styles from "./sign-up3.module.css";
 
-const SignUp7: NextPage = () => {
+const SignUp2: NextPage = () => {
   return (
-    <div className={styles.signup}>
-      <FullNameFrame />
+    <div className={styles.signup4}>
+      <AvailabilityFrameSet />
     </div>
   );
 };
 
-export default SignUp7;
+export default SignUp2;

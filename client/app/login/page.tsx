@@ -31,23 +31,23 @@ const Login: NextPage = () => {
   const handleForm = async (event: FormEvent<HTMLFormElement> ) => {
     event.preventDefault()
 
-    // const { result, error } = await signIn(credential.email, credential.password);
-
-    // const accessToken = await result?.user.getIdToken();
-   
-    // console.log("Access Token:", accessToken);
-
-    // const fetchData = async(accessToken : string | undefined)=>{
-    //   const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/login`,{
-    //       headers:{
-    //           'Authorization': `Bearer ${accessToken}`
-    //       }
-    //   });
-    //   console.log(response.data);
-    // }
-    // fetchData(accessToken);
-    // console.log(result)
     try{
+      const { result, error } = await signIn(credential.email, credential.password);
+
+      const accessToken = await result?.user.getIdToken();
+    
+      console.log("Access Token:", accessToken);
+
+      const fetchData = async(accessToken : string | undefined)=>{
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/login`,{
+            headers:{
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+        console.log(response.data);
+      }
+      fetchData(accessToken);
+      console.log(result)
       const {data} = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`,credential)
       console.log(data)
       if(!data){

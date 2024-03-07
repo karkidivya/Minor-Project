@@ -5,12 +5,16 @@ const signupSllice = createSlice({
     name: "signup",
     initialState: {
         fullName: "",
-        email: "",
+        emailAddress: "",
         password: "",
         phoneNumber: "",
         profilePicture: undefined,
         introduction: "",
-        location: "",
+        location: {
+            address: "",
+            latitude: 27.7172,
+            longitude: 85.3240
+        },
         skill: "",
         proficiency: "",
         availability: "",
@@ -25,15 +29,21 @@ const signupSllice = createSlice({
     },
     reducers: {
         personalInformation: (state, action: PayloadAction<any>) =>{
-            
             state.fullName = action.payload.fullName
-            state.email = action.payload.email
+            state.emailAddress = action.payload.emailAddress
             state.password = action.payload.password
+        },
+        coordinate: (state, action: PayloadAction<any>) =>{
+            state.location.latitude = action.payload.latitude
+            state.location.longitude = action.payload.longitude
+        },
+        address: (state, action: PayloadAction<any>)=>{
+            state.location.address = action.payload.address
         },
         profileInformation: (state, action: PayloadAction<any>) =>{
             state.profilePicture = action.payload.profilePicture
             state.introduction = action.payload.introduction
-            state.location = action.payload.location
+            // state.location = action.payload.location
             state.phoneNumber = action.payload.phoneNumber
         },
         skillAndExpertise: (state, action: PayloadAction<any>) =>{
@@ -63,8 +73,8 @@ const signupSllice = createSlice({
             workHistory
             certificationAndQualification
             paymentInformation
-
-
+            address
+            coordinate
          */
     }
 
@@ -74,6 +84,8 @@ export const {
             personalInformation,
             profileInformation,
             skillAndExpertise,
+            address,
+            coordinate,
             workPreference,
             workHistory,
             certificationAndQualification,

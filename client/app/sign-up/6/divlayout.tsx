@@ -12,9 +12,8 @@ import styles from "./divlayout.module.css";
 import { useState } from "react";
 import FileUploader from "../../components/FileUploader";
 import { useRouter } from "next/navigation";
-import { AppDispatch, RootState } from "@/lib/store";
 import { certificationAndQualification } from "@/lib/features/signup/signupSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch } from "@/lib/hooks";
  
  interface ICertification{
    certificate : File | undefined | string
@@ -50,9 +49,7 @@ const Divlayout: NextPage = () => {
         Certifications and Qualifications
       </h3>
       <div className={styles.addCertification}>Add Certification</div>
-      <div className={styles.image}>
         <FileUploader image = {certification.certificate} setImage = {(f: string | File | undefined) => setCertification((prev)=> {return {...prev, certificate: f}})}/>
-      </div>
       <div className={styles.educationBackground}>Education Background</div>
       <FormControl
         className={styles.primaryInfoFrame}
@@ -126,19 +123,7 @@ const Divlayout: NextPage = () => {
         <FormHelperText />
       </FormControl>
       <Button
-        className={styles.inPersonAndInOurApp}
-        disableElevation={true}
         variant="contained"
-        sx={{
-          textTransform: "none",
-          color: "#fff",
-          fontSize: "12",
-          background: "#4278f0",
-          borderRadius: "15px",
-          "&:hover": { background: "#4278f0" },
-          width: 126,
-          height: 36,
-        }}
         onClick = {handleSubmit}
       >
         Continue

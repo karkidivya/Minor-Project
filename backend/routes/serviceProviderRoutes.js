@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/registerServiceProvider', serviceProviderController.registerServiceProvider);
 router.post('/serviceProviderLogin', serviceProviderController.login);
 router.put('/updateProfile', serviceProviderController.updateProfile);
-router.get('/serviceProviders/:categoryId', serviceProviderController.getServiceProvidersByCategoryId);
+router.get('/byCategoryId/:categoryId', serviceProviderController.getServiceProvidersByCategoryId);
 router.get('/featuredServiceProvider', serviceProviderController.featuredServiceProvider);
 router.get('/unverifiedServiceProvider', serviceProviderController.unVerifiedServiceProvider);
 router.get('/verifiedServiceProvider', serviceProviderController.verifiedServiceProvider);
