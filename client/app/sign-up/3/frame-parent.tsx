@@ -14,10 +14,10 @@ import { AppDispatch, RootState } from "@/lib/store";
 import { skillAndExpertise } from "@/lib/features/signup/signupSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 interface ISkillAndProficiency{
-  skill : 'carpenter' | 'plumber' | 'electrician' | 'mechanic' | 'cleaner' | 'painter'
+  skill : 'Carpenter' | 'Plumber' | 'Electrician' | 'Mechanic' | 'Cleaner' | 'Painter' | 'Auto-Repair' | 'Computer-Repair'
   proficiency: 'beginner' | 'intermediate' | 'semi-pro' | 'pro'
 }
-const exampleObject : ISkillAndProficiency = { skill: 'carpenter' , proficiency: 'beginner'}
+const exampleObject : ISkillAndProficiency = { skill: 'Carpenter' , proficiency: 'beginner'}
 const FrameParent: NextPage = () => {
   const [ skillAndProficiency, setSkillAndProficiency] = useState(exampleObject)
   const router = useRouter();
@@ -53,7 +53,6 @@ const FrameParent: NextPage = () => {
           borderRightWidth: "1px",
           borderBottomWidth: "1px",
           borderLeftWidth: "1px",
-          // backgroundColor: "#fff",
           borderRadius: "5px",
           width: "311px",
           height: "29px",

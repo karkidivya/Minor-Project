@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
-import FrameComponent from "./sign-up-frame-component";
-import styles from "./sign-up1.module.css";
+import SignUpFrame1 from "./sign-up-frame1";
+import styles from "./sign-up7.module.css";
 
-const SignUp: NextPage = () => {
+const SignUp6: NextPage = () => {
   return (
-    <div className={styles.signup2}>
-      <FrameComponent />
+    <div className={styles.signup7}>
+      <SignUpFrame1 />
     </div>
   );
 };
 
-export default SignUp;
+export default SignUp6;

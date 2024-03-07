@@ -51,7 +51,7 @@ const MapComponent = ({address, coordinate}) => {
   }, [])
 
   useEffect(() => {
-    console.log('Map useEffect 0');
+    // console.log('Map useEffect 0');
     if (!map) return;
   
   
@@ -67,7 +67,7 @@ const MapComponent = ({address, coordinate}) => {
   }, [map]);
 
   useEffect(() => {
-    console.log('Map useEffect 1');
+    // console.log('Map useEffect 1');
     if (!map || !latitude || !longitude) return;
 
     if (marker) {

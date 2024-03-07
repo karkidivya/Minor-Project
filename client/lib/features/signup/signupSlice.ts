@@ -5,7 +5,7 @@ const signupSllice = createSlice({
     name: "signup",
     initialState: {
         fullName: "",
-        email: "",
+        emailAddress: "",
         password: "",
         phoneNumber: "",
         profilePicture: undefined,
@@ -30,7 +30,7 @@ const signupSllice = createSlice({
     reducers: {
         personalInformation: (state, action: PayloadAction<any>) =>{
             state.fullName = action.payload.fullName
-            state.email = action.payload.email
+            state.emailAddress = action.payload.emailAddress
             state.password = action.payload.password
         },
         coordinate: (state, action: PayloadAction<any>) =>{

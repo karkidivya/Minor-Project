@@ -6,6 +6,7 @@ import styles from "./chat-frame.module.css";
 import { useAppDispatch } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { bookingStep, serviceProvider as f_serviceProvider } from "@/lib/features/booking/bookingSlice";
+import RatingStars from "../../components/RatingStars";
 const dummyData = {
   name: "David Beckham",
   rating: 4,
@@ -30,7 +31,6 @@ const ChatFrame: NextPage<ChatFrameType> = ({
   propMinWidth,
   propWidth,
   propFlexWrap,
-  propFlexWrap1,
   serviceProvider
 }) => {
   const chatFrameStyle: CSSProperties = useMemo(() => {
@@ -47,11 +47,7 @@ const ChatFrame: NextPage<ChatFrameType> = ({
     };
   }, [propFlexWrap]);
 
-  const furnitureAssembledTextStyle: CSSProperties = useMemo(() => {
-    return {
-      flexWrap: propFlexWrap1,
-    };
-  }, [propFlexWrap1]);
+
 
   const dispatch = useAppDispatch()
   const router = useRouter()
@@ -96,24 +92,16 @@ const ChatFrame: NextPage<ChatFrameType> = ({
                   background: "#e5ecfd",
                   borderRadius: "10px",
                   "&:hover": { background: "#e5ecfd" },
-                  width: 108,
-                  height: 41,
                 }}
               >
                 {serviceProvider.proficiency}
               </Button>
-              <div className={styles.youChat}>
-                <img
-                  className={styles.materialSymbolsstarIcon}
-                  loading="eager"
-                  alt=""
-                  src="/materialsymbolsstar.svg"
-                />
-                <div className={styles.reviews}>{`${serviceProvider.rating} (700 reviews)`}</div>
+              <div style = {{display: 'flex'}}>
+                <RatingStars height = {20} width={20} rating={serviceProvider.rating}/>
+                <div className={styles.reviews}>{`${serviceProvider.rating}`}</div>
+
               </div>
-              <div
-                className={styles.furnitureAssembled}
-              >{`500 Furniture Assembled `}</div>
+
             </div>
           </div>
           <div className={styles.helpText}>
@@ -137,13 +125,13 @@ const ChatFrame: NextPage<ChatFrameType> = ({
             <div className={styles.asASkilled}>
               {serviceProvider.introduction}
             </div>
-            <div className={styles.howToHelpButton1}>
+            {/* <div className={styles.howToHelpButton1}>
               <div className={styles.readMore}>Read More</div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
-    <div className={styles.excludeProfile}>
+      {/* <div className={styles.excludeProfile}>
         <div
           className={styles.furnitureAssembledText}
           style={furnitureAssembledTextStyle}
@@ -167,7 +155,7 @@ const ChatFrame: NextPage<ChatFrameType> = ({
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -57,16 +57,6 @@ const FullNameFrame: NextPage = () => {
         name = "workDescription"
         value = {info.workDescription}
         onChange={handleChange}
-        sx={{
-          "& fieldset": { borderColor: "#9fa0a0" },
-          "& .MuiInputBase-root": {
-            // height: "30px",
-            backgroundColor: "#fff",
-            borderRadius: "5px",
-            fontSize: "12px",
-          },
-          "& .MuiInputBase-input": { color: "#9fa0a0" },
-        }}
       />
       <Button
         className={styles.nextButton}

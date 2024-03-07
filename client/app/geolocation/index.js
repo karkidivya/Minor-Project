@@ -33,7 +33,7 @@ const GeoLocation = ({address, coordinate}) => {
 //   };
 
   return <>
-    <MapComponent address = {address} location = {location}/>
+    <MapComponent address = {address} coordinate = {coordinate}/>
     <Search sx = {{width: '100%'}} onSubmit={onSubmit}/>
   </>
 };

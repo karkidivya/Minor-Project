@@ -22,8 +22,6 @@
   font-weight: 600;
 }
 .image {
-  /* height: 32px; */
-  /* width: 95px; */
   font-family: var(--font-roboto);
   font-weight: 600;
   font-size: var(--font-size-3xs);
