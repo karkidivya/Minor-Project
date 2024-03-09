@@ -45,7 +45,7 @@ const FrameParent: NextPage = () => {
     // console.log(skillAndProficiency)
     // handleSubmit
     dispatch(skillAndExpertise(skillAndProficiency))
-    router.push('/sign-up/3')
+    router.push('/sign-up/4')
   }
   return (
     <div className={styles.frameParent}>

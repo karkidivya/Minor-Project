@@ -33,6 +33,10 @@ const signupSllice = createSlice({
             state.emailAddress = action.payload.emailAddress
             state.password = action.payload.password
         },
+        profileInformation: (state, action: PayloadAction<any>) =>{
+            state.profilePicture = action.payload.profilePicture
+            state.introduction = action.payload.introduction
+        },
         coordinate: (state, action: PayloadAction<any>) =>{
             state.location.latitude = action.payload.latitude
             state.location.longitude = action.payload.longitude
@@ -79,6 +83,7 @@ const signupSllice = createSlice({
 
 export const {
             personalInformation,
+            profileInformation,
             phoneNumber,
             skillAndExpertise,
             address,

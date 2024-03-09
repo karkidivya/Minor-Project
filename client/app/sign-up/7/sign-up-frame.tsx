@@ -15,7 +15,7 @@ const SignUpFrame: NextPage = () => {
 
   }
   const handleSubmit = () =>{
-    router.push('7');
+    router.push('8');
     // console.log(profileInformation)
     // handleSubmit
   }

@@ -30,7 +30,7 @@ const FullNameFrame: NextPage = () => {
   const handleSubmit = () =>{
     // handle submit
     dispatch(f_workHistory(workHistory))
-    router.push('/sign-up/5')
+    router.push('/sign-up/6')
   }
   return (
     <form className={styles.fullNameFrame}>

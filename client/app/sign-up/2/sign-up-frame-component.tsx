@@ -7,7 +7,7 @@ import styles from "./sign-up-frame-component.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppDispatch} from "@/lib/store";
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { phoneNumber as f_phoneNumber } from "@/lib/features/signup/signupSlice";
 import { MuiTelInput } from "mui-tel-input";
 import GeoLocation from '../../geolocation'
@@ -16,12 +16,13 @@ import { coordinate, address } from "@/lib/features/signup/signupSlice";
 const FrameComponent: NextPage = () => {
   const [ phoneNumber, setPhoneNumber ] = useState("")
   const router = useRouter()
+  const {location} = useAppSelector((state) => state.signup)
   const dispatch: AppDispatch= useAppDispatch();
 
   const handleSubmit = () =>{
     
     dispatch(f_phoneNumber(phoneNumber))
-    router.push('/sign-up/2')
+    router.push('/sign-up/3')
   }
   
   return (
@@ -36,7 +37,7 @@ const FrameComponent: NextPage = () => {
                     style={{alignSelf: 'flex-start', width: '100%'}}/>
                     
       <div className={styles.location}>Location</div>
-      <GeoLocation address={address} coordinate = {coordinate} />
+      <GeoLocation address={address} coordinate = {coordinate} latitude={location.latitude} longitude={location.longitude}/>
 
       <Button
         className={styles.frameInner}
