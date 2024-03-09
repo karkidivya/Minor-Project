@@ -8,6 +8,7 @@ import { useAppSelector } from "@/lib/hooks";
 import { certificateImage, profileImage } from "@/app/firebase/config";
 import axios from "axios";
 
+
 const SignUpFrame1: NextPage = () => {
   const [ isChecked, setIsChecked ] = useState(false)
   const signupInfo = useAppSelector((state) => state.signup)
@@ -17,6 +18,8 @@ const SignUpFrame1: NextPage = () => {
   }
 
   const handleSubmit = async () =>{
+
+    
     const profilePicUrl = await profileImage(signupInfo.profilePicture)
     const certificationUrl = await certificateImage(signupInfo.certificate)
 
