@@ -8,10 +8,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppDispatch} from "@/lib/store";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { phoneNumber as f_phoneNumber } from "@/lib/features/signup/signupSlice";
+// import { phoneNumber as f_phoneNumber } from "@/lib/features/signup/signupSlice";
 import { MuiTelInput } from "mui-tel-input";
 import GeoLocation from '../../geolocation'
-import { coordinate, address } from "@/lib/features/signup/signupSlice";
+import { coordinate, address, phoneNumber as f_phoneNumber } from "@/lib/features/signup/signupSlice";
 
 const FrameComponent: NextPage = () => {
   const [ phoneNumber, setPhoneNumber ] = useState("")
