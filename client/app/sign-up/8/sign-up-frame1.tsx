@@ -19,11 +19,8 @@ const SignUpFrame1: NextPage = () => {
   }
 
   const handleSubmit = async () =>{
-
-    
     const profilePicUrl = await profileImage(signupInfo.profilePicture)
     const certificationUrl = await certificateImage(signupInfo.certificate)
-    console.log(signupInfo)
     const { result, error } = await signUp(signupInfo.emailAddress, signupInfo.password)
     const accessToken = await result?.user.getIdToken()    
     if(error) console.log(error)
@@ -34,9 +31,6 @@ const SignUpFrame1: NextPage = () => {
       if(result) router.push('/dashboard')
 
     }
-    
-
-    //do something
   }
   return (
     <div className={styles.signUpFrame}>

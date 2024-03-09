@@ -77,7 +77,6 @@ const bookingController = {
                     serviceId,
                     categoryId,
                     location,
-                    amount,
                     date ,
                     time,
                     phoneNumber,
@@ -87,14 +86,13 @@ const bookingController = {
                     reviewId,
                     createdAt,
                     updatedAt
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
             const values = [
                 customerId,
                 serviceProviderId,
                 JSON.stringify(serviceId), 
                 categoryId,
                 JSON.stringify(location),
-                amount,
                 date ,
                 time,
                 phoneNumber,

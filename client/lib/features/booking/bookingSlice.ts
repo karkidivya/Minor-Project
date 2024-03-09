@@ -17,8 +17,8 @@ const bookingSlice = createSlice({
             longitude: 85.3240
         },
         serviceProviderId: "",
-        bookingDate: "",
-        bookingTime: "",
+        date: "",
+        time: "",
     },
     reducers: {
         setCategory:(state, action: PayloadAction<any>) =>{
@@ -42,14 +42,19 @@ const bookingSlice = createSlice({
             state.serviceProviderId = action.payload.serviceProviderId
         },
         bookingDateAndTime:(state, action: PayloadAction<any>) =>{
-            state.bookingDate = action.payload.bookingDate
-            state.bookingTime = action.payload.bookingTime
+            console.log(action.payload)
+            state.date = action.payload.date
+            state.time = action.payload.time
         },
 
         /**
-            informationAndWorkDescription
-            sesrviceProvider,
-            bookingDate
+            setCategory,
+            bookingStep,
+            coordinate,
+            address,
+            informationAndWorkDescription,
+            serviceProvider,
+            bookingDateAndTime,
          */
     }
 

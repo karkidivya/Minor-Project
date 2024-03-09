@@ -25,7 +25,7 @@ const FrameMorning: NextPage = () => {
   }
   const handleSubmit = async () =>{
     dispatch(bookingDateAndTime({...dateAndTime, date: dateAndTime.date.toString()}))
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/booking/addBooking`,{booking})
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/booking/addBooking`, {...booking, categoryId: booking.category.categoryId})
 
     
     router.push('/')
