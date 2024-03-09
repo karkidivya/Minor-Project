@@ -45,7 +45,7 @@ const FrameParent: NextPage = () => {
     // console.log(skillAndProficiency)
     // handleSubmit
     dispatch(skillAndExpertise(skillAndProficiency))
-    router.push('/sign-up/3')
+    router.push('/sign-up/4')
   }
   return (
     <div className={styles.frameParent}>
@@ -112,7 +112,7 @@ const FrameParent: NextPage = () => {
           displayEmpty
           name = "skill"
           onChange = {handleChange}
-          value = {skillAndProficiency.skill}
+          value = {skill[0] ? `${skillAndProficiency.skill}` : ""}
         >
           {skill.map( (item: any, idx: number)=> {
               return <MenuItem key = {idx} value = {item.categoryId}>{item.categoryName}</MenuItem>

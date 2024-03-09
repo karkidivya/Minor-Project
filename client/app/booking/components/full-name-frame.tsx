@@ -8,7 +8,7 @@ import styles from "./full-name-frame.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MuiTelInput } from "mui-tel-input";
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { informationAndWorkDescription, bookingStep, address, coordinate} from "@/lib/features/booking/bookingSlice";
 import GeoLocation from '../../geolocation';
 
@@ -17,6 +17,7 @@ const FullNameFrame: NextPage = () => {
   const [ info, setInfo ] = useState({phoneNumber: "", workDescription: ""})
   const dispatch = useAppDispatch()
   const router = useRouter()
+  const {location} = useAppSelector(state => state.booking)
 
   const handleChange = (e: any) =>{
     const name = e.target.name
@@ -45,7 +46,7 @@ const FullNameFrame: NextPage = () => {
                     onChange = {(newPhone) => handleChange({target: {name: 'phoneNumber', value: newPhone}})} 
                     style={{alignSelf: 'flex-start', width: '100%'}}/>
       <div className={styles.fullName}>Your Location</div>
-      <GeoLocation address = {address} coordinate = {coordinate}/>
+      <GeoLocation address = {address} coordinate = {coordinate} latitude={location.latitude} longitude ={location.longitude}/>
 
       
       <h1 className={styles.kaamsewa}>Work Description</h1>

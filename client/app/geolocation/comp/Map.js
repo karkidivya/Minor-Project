@@ -5,10 +5,9 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import placeFromPoint from '@/app/components/Search/placeFromPoint';
 
 
-const MapComponent = ({address, coordinate}) => {
+const MapComponent = ({address, coordinate, latitude, longitude}) => {
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
-  const {latitude, longitude} = useAppSelector((state) => state.booking.location)
   const dispatch = useAppDispatch()
 
   const generateAddress = async () =>{

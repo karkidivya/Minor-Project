@@ -34,12 +34,8 @@ const Divlayout: NextPage = () => {
     })
   }
   const handleSubmit = () =>{
-    const imageUrl = URL.createObjectURL(certification.certificate as File)
-    setCertification((prev) =>{
-      return {...prev, certificate: imageUrl}
-    })
-    dispatch(certificationAndQualification({...certification, certificate: imageUrl}))
-    router.push('/sign-up/6')
+    dispatch(certificationAndQualification({...certification, certificate: URL.createObjectURL(certification.certificate as File)}))
+    router.push('/sign-up/7')
     // handleSubmit
   }
   return (

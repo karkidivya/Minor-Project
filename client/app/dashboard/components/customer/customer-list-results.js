@@ -83,16 +83,13 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                   Name
                 </TableCell>
                 <TableCell>
-                  Email
-                </TableCell>
-                <TableCell>
                   Location
                 </TableCell>
                 <TableCell>
                   Phone
                 </TableCell>
                 <TableCell>
-                  Registration date
+                  Service Date
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -130,9 +127,6 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                         {customer.name}
                       </Typography>
                     </Box>
-                  </TableCell>
-                  <TableCell>
-                    {customer.email}
                   </TableCell>
                   <TableCell>
                     {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
