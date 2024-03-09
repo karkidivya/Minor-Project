@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { bookingDateAndTime } from "@/lib/features/booking/bookingSlice";
+import axios from "axios";
 
 
 
@@ -16,14 +17,17 @@ const FrameMorning: NextPage = () => {
   const [dateAndTime, setDateAndTime ] = useState({date: dayjs(), time: ""});
   const dispatch = useAppDispatch()
   const router = useRouter();
-  const booking = useAppSelector(state => state.booking)
+  const {bookingStep, ...booking} = useAppSelector(state => state.booking)
   const handleChange = (name: string , value: string | Date | Dayjs | null ) =>{
     setDateAndTime((prev) =>{
       return {...prev, [name]: value}
     })
   }
-  const handleSubmit = () =>{
+  const handleSubmit = async () =>{
     dispatch(bookingDateAndTime({...dateAndTime, date: dateAndTime.date.toString()}))
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/booking/addBooking`,{booking})
+
+    
     router.push('/')
     console.log(booking)
   }
@@ -39,7 +43,7 @@ const FrameMorning: NextPage = () => {
               <div className={styles.frameReviews} />
             </div>
             <div className={styles.timeOfDay}>Time of Day</div>
-            <Select option = {['Morning (8 am - 9am)','Noon (11am - 2pm)','Evening (3pm -6pm)']} value = {dateAndTime.time} setValue = {(newValue) =>{handleChange("time", newValue)}}/>
+            <Select option = {[{label: 'Morning (8 am - 9am)', value: 'Morning (8am - 9am)'},{label: 'Noon (11am - 2pm)', value: 'Noon (11am - 2pm)'},{label: 'Evening (3pm -6pm)', value: 'Evening (3pm -6pm)'}]} value = {dateAndTime.time} setValue = {(newValue) =>{handleChange("time", newValue)}} flexDirection = "column"/>
             <div className={styles.frameReviews} />
 
             <Button

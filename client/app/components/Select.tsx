@@ -4,8 +4,12 @@ import Box from '@mui/joy/Box';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
+interface IOption{
+  label : React.ReactNode
+  value : any
+}
 
-export default function IconlessRadio({ option, value, setValue}: {option: string[], value: string, setValue: (a: string) => void}) {
+export default function Select({ value, option,setValue, flexDirection = "column"}: {option: IOption[], value: string, setValue: (a: string) => void, flexDirection: 'row' | 'column'}) {
     const handleChange = (e: any) =>{
         setValue(e.target.value)
     }
@@ -16,11 +20,11 @@ export default function IconlessRadio({ option, value, setValue}: {option: strin
         value = {value}
         onChange={handleChange}
         size="lg"
-        sx={{ gap: 1.5 }}
+        sx={{ gap: 1.5, display: 'flex', flexDirection: flexDirection}}
       >
-        {option?.map((value) => (
+        {option?.map((item: any, idx: number) => (
           <Sheet
-            key={value}
+            key={idx}
             sx={{
               p: 2,
               borderRadius: 'md',
@@ -28,13 +32,15 @@ export default function IconlessRadio({ option, value, setValue}: {option: strin
             }}
           >
             <Radio
-              label={`${value}`}
+              label={item.label}
               overlay
               disableIcon
-              value={value}
+              value={item.value}
+              sx = {{display: 'flex'}}
               slotProps={{
                 label: ({ checked }) => ({
                   sx: {
+                    display: 'flex',
                     fontWeight: 'lg',
                     fontSize: 'md',
                     color: checked ? 'text.primary' : 'text.secondary',
