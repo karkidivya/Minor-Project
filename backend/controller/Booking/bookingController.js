@@ -86,7 +86,7 @@ const bookingController = {
                     reviewId,
                     createdAt,
                     updatedAt
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
             const values = [
                 customerId,
                 serviceProviderId,
