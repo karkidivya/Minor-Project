@@ -59,7 +59,6 @@ const bookingController = {
             categoryId,
             dateAndTime,
             location,
-            amount,
             additionalNotes,
             bookingStatus,
             reviewId
@@ -75,7 +74,6 @@ const bookingController = {
                     categoryId,
                     dateAndTime,
                     location,
-                    amount,
                     additionalNotes,
                     bookingStatus,
                     reviewId,
