@@ -15,7 +15,7 @@ const signupSllice = createSlice({
             latitude: 27.7172,
             longitude: 85.3240
         },
-        skill: "",
+        categoryId: "",
         proficiency: "",
         availability: "",
         preference: "",
@@ -45,10 +45,10 @@ const signupSllice = createSlice({
             state.location.address = action.payload.address
         },
         phoneNumber: (state, action: PayloadAction<any>) =>{
-            state.phoneNumber = action.payload.phoneNumber
+            state.phoneNumber = action.payload
         },
         skillAndExpertise: (state, action: PayloadAction<any>) =>{
-            state.skill = action.payload.skill
+            state.categoryId = action.payload.categoryId
             state.proficiency = action.payload.proficiency
         },
         workPreference: (state, action: PayloadAction<any>) =>{
@@ -64,7 +64,7 @@ const signupSllice = createSlice({
             state.education = action.payload.education
         },
         paymentInformation: (state, action: PayloadAction<any>) =>{
-            state.payment = action.payload.payment
+            state.payment = action.payload
         },
         /**
             personalInformation
