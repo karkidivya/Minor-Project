@@ -5,14 +5,15 @@ import fs from 'fs';
 dotenv.config();
 
 const host = process.env.HOST;
-const user = process.env.CURRENT_USER;
+const user = process.env.USERNAME;
 const password = process.env.PASSWORD;
+const database = process.env.DATABASE;
 
 const db = mysql.createConnection({
   host: host,
   user: user,
   password: password,
-  database: 'kamsewa',
+  database: database,
 });
 
 db.connect((err) => {
@@ -40,13 +41,14 @@ db.connect((err) => {
   // Execute each SQL file
   executeSQLFromFile('./Tables/create_user_table.sql');
   executeSQLFromFile('./Tables/create_service_category_table.sql');
+  executeSQLFromFile('./Tables/create_payment_table.sql');
   executeSQLFromFile('./Tables/create_service_table.sql');
+  executeSQLFromFile('./Tables/create_serviceProvider_table.sql');
   executeSQLFromFile('./Tables/create_booking_table.sql');
   executeSQLFromFile('./Tables/create_review_table.sql');
-  executeSQLFromFile('./Tables/create_payment_table.sql');
-  executeSQLFromFile('./Tables/create_serviceProvider_table.sql');
 
   console.log('Connected to MySQL!');
 });
 
 export default db;
+

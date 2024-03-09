@@ -38,31 +38,18 @@ const Mapping = () => {
   return (
     <div>
       <h1>OpenStreetMap with Leaflet in Next.js</h1>
-      {userLocation ? (
         <MapComponent {...userLocation} onSelectAddress={handleAddressSelection} />
-      ) : (
-        <button onClick={getLocation}>Get User Location</button>
-      )}
-      {selectedAddress && (
+      {/* {selectedAddress && (
         <div>
           <h2>Selected Address:</h2>
           <p>Latitude: {selectedAddress.lat}</p>
           <p>Longitude: {selectedAddress.lng}</p>
-          {/* You can display additional address information here */}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
 
 export default Mapping;
 
-// import Map1 from "./comp/Map1";
 
-// export default function Home() {
-//   return (
-//     <main>
-//       <Map1 />
-//     </main>
-//   );
-// }

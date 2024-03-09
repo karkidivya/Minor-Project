@@ -16,8 +16,8 @@ const serviceCategoryController = {
             console.log('An error occurred while fetching service categories:', error);
             res.status(500).json({ status: 'error', message: 'Internal server error' });
         }
-    },
-
+    }
+    ,
     getServiceCategoryByID: async (req, res) => {
         const categoryId = req.params.categoryId;
         try {

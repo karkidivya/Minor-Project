@@ -17,9 +17,9 @@
   justify-content: flex-start;
   gap: var(--gap-base);
 }
-.weAreAvailable {
+/* .weAreAvailable {
   align-self: stretch;
-}
+} */
 .phone9779812397390,
 .weAreAvailable {
   position: relative;
@@ -36,10 +36,10 @@
   align-self: stretch;
   gap: var(--gap-base);
   font-size: var(--font-size-sm);
-  font-family: var(--font-roboto);
+  font-family: poppins;
 }
 .list {
-  width: 262px;
+  width: 272px;
   gap: var(--gap-5xl);
 }
 .iconsMail,
@@ -91,7 +91,7 @@
   align-items: flex-start;
   gap: var(--gap-base);
   font-size: var(--font-size-sm);
-  font-family: var(--font-roboto);
+  font-family: poppins;
 }
 .userPersonasResearch {
   width: 250px;
@@ -111,7 +111,7 @@
 }
 .oct {
   height: 457px;
-  width: 340px;
+  width: 350px;
   border-radius: var(--br-9xs);
   background-color: var(--primary);
   box-shadow: var(--categogy-5);
@@ -142,13 +142,14 @@
 .md {
   border: 0;
   outline: 0;
-  font-family: var(--font-roboto);
+  font-family: poppins;
   font-size: var(--title-16px-medium-size);
   background-color: transparent;
   line-height: 24px;
   text-align: left;
   display: inline-block;
   opacity: 0.5;
+  padding: 10px;
 }
 .placeboxInfo {
   height: 50px;
@@ -202,6 +203,8 @@
   outline: 0;
   background: transparent;
   padding: 10px;
+  font-family: poppins;
+  opacity: 0.5;
 }
 .placeboxInfo3 {
   align-self: stretch;
@@ -219,7 +222,7 @@
   font-size: var(--title-16px-medium-size);
   line-height: 24px;
   font-weight: 500;
-  font-family: var(--font-roboto);
+  font-family: poppins;
   color: var(--text);
   text-align: left;
 }
@@ -267,7 +270,7 @@
   gap: var(--gap-13xl);
   min-width: 445px;
   color: var(--color-gray-500);
-  font-family: var(--font-roboto);
+  font-family: poppins;
 }
 .connectMediaIconsGroup {
   width: 1094px;
@@ -279,7 +282,7 @@
   text-align: left;
   font-size: var(--title-16px-medium-size);
   color: var(--text2);
-  font-family: var(--title-16px-medium);
+  font-family: poppins;
 }
 @media screen and (max-width: 1050px) {
   .oct {

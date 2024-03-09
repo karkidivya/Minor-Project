@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import { FormEvent } from 'react';
 import type { NextPage } from "next";
 import styles from "./login.module.css";
@@ -9,11 +9,15 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import signIn from "../firebase/auth/signin";
 import axios from "axios";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
+const initialCredential = {email: "", password: ""}
 const Login: NextPage = () => {
 
   const router = useRouter();
 
-  const [ credential, setCredential ] = useState({email: '', password: ''})
+  const [ credential, setCredential ] = useState(initialCredential)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const email = e.currentTarget.name
@@ -27,29 +31,38 @@ const Login: NextPage = () => {
   const handleForm = async (event: FormEvent<HTMLFormElement> ) => {
     event.preventDefault()
 
-    const { result, error } = await signIn(credential.email, credential.password);
+    // const { result, error } = await signIn(credential.email, credential.password);
 
-    // if (error) {
-    //     return console.log(error)
-    // }
-    const accessToken = await result?.user.getIdToken();
+    // const accessToken = await result?.user.getIdToken();
    
-    console.log("Access Token:", accessToken) ;
+    // console.log("Access Token:", accessToken);
 
-    const fetchData = async(accessToken : string | undefined)=>{
-      const response = await axios.post('http://localhost:5000/login',{
-          headers:{
-              'Authorization': `Bearer ${accessToken}`
-          }
-      });
-      console.log(response.data);
-    }
-    fetchData(accessToken);
-    console.log(result)
-    // else successful
+    // const fetchData = async(accessToken : string | undefined)=>{
+    //   const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/login`,{
+    //       headers:{
+    //           'Authorization': `Bearer ${accessToken}`
+    //       }
+    //   });
+    //   console.log(response.data);
+    // }
+    // fetchData(accessToken);
     // console.log(result)
-    // return router.push("/admin")
-}
+    try{
+      const {data} = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`,credential)
+      console.log(data)
+      if(!data){
+        setCredential(initialCredential);      
+      }
+
+    }catch(e){
+      toast.error(e, {hideProgressBar: true})
+    }
+  }
+  useEffect(() =>{
+    toast.error("Successfully initialized", {
+      hideProgressBar: true,
+    })
+  }, [])
   
   return (
     <div className={styles.login}>
@@ -101,6 +114,7 @@ const Login: NextPage = () => {
         <span className={styles.ifYouDo}>{`If you do not have account `}</span>
         <Link href = '/sign-up' className = {styles.signUp}>Sign Up</Link>
       </div>
+      <ToastContainer />
     </form>
     </div>
   );

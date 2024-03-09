@@ -7,6 +7,7 @@ router.post('/registerServiceProvider', serviceProviderController.registerServic
 router.post('/serviceProviderLogin', serviceProviderController.login);
 router.put('/updateProfile', serviceProviderController.updateProfile);
 router.get('/serviceProviders/:categoryId', serviceProviderController.getServiceProvidersByCategoryId);
+router.get('/:id', serviceProviderController.getProviderDetail);
 router.get('/featuredServiceProvider', serviceProviderController.featuredServiceProvider);
 router.get('/unverifiedServiceProvider', serviceProviderController.unVerifiedServiceProvider);
 router.get('/verifiedServiceProvider', serviceProviderController.verifiedServiceProvider);

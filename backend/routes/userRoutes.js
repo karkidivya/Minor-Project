@@ -7,5 +7,6 @@ const router = express.Router();
 router.post('/registerUser', userController.registerUser);
 router.post('/userLogin', userController.login);
 router.put('/updateProfile', verificationMiddleware.decodeToken, userController.updateProfile);
+router.get('/userDetail/:id', userController.userProfile);
 
 export default router;

@@ -6,9 +6,13 @@ const bookingSlice = createSlice({
     initialState: {
         bookingStep: 0,
         category:"",
-        location: "",
         phoneNumber: "",
         workDescription: "",
+        location: {
+            address: "",
+            latitude: 27.7172,
+            longitude: 85.3240
+        },
         serviceProvider: "",
         bookingDate: "",
         bookingTime: "",
@@ -22,9 +26,15 @@ const bookingSlice = createSlice({
             state.bookingStep = action.payload
         },
         informationAndWorkDescription: (state, action: PayloadAction<any>) =>{            
-            state.location = action.payload.location
             state.phoneNumber = action.payload.phoneNumber
             state.workDescription = action.payload.workDescription
+        },
+        coordinate: (state, action: PayloadAction<any>) =>{
+            state.location.latitude = action.payload.latitude
+            state.location.longitude = action.payload.longitude
+        },
+        address: (state, action: PayloadAction<any>)=>{
+            state.location.address = action.payload.address
         },
         serviceProvider: (state, action: PayloadAction<any>) =>{
             state.serviceProvider = action.payload.serviceProvider
@@ -32,7 +42,7 @@ const bookingSlice = createSlice({
         bookingDateAndTime:(state, action: PayloadAction<any>) =>{
             state.bookingDate = action.payload.bookingDate
             state.bookingTime = action.payload.bookingTime
-        }
+        },
 
         /**
             informationAndWorkDescription
@@ -46,6 +56,8 @@ const bookingSlice = createSlice({
 export const {
             setCategory,
             bookingStep,
+            coordinate,
+            address,
             informationAndWorkDescription,
             serviceProvider,
             bookingDateAndTime,

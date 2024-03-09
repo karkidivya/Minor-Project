@@ -30,13 +30,13 @@ export const CustomerListToolbar = (props) => (
       </Typography>
       <Box sx={{ m: 1 }}>
         <Button
-          startIcon={(<UploadIcon fontSize="small" />)}
+          startIcon={(<UploadIcon fontSize="20" />)}
           sx={{ mr: 1 }}
         >
           Import
         </Button>
         <Button
-          startIcon={(<DownloadIcon fontSize="small" />)}
+          startIcon={(<DownloadIcon fontSize="20" />)}
           sx={{ mr: 1 }}
         >
           Export
