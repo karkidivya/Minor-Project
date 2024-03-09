@@ -9,6 +9,7 @@ import { certificateImage, profileImage } from "@/app/firebase/config";
 import signUp from '@/app/firebase/auth/signup'
 import axios from "axios";
 
+
 const SignUpFrame1: NextPage = () => {
   const [ isChecked, setIsChecked ] = useState(false)
   const signupInfo = useAppSelector((state) => state.signup)
