@@ -12,8 +12,8 @@ const database = process.env.DATABASE;
 const db = mysql.createConnection({
   host: host,
   user: user,
-  password: "root",
-  database: "kamsewa",
+  password: password,
+  database: database,
 });
 
 db.connect((err) => {
