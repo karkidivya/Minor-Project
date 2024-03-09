@@ -2,49 +2,52 @@
 import type { NextPage } from "next";
 import {
   Select,
+  InputLabel,
   MenuItem,
   FormHelperText,
   FormControl,
+  InputAdornment,
   Button,
 } from "@mui/material";
-import styles from "./frame-parent.module.css";
+import styles from "./availability-frame-set.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppDispatch, RootState } from "@/lib/store";
-import { skillAndExpertise } from "@/lib/features/signup/signupSlice";
+import { workPreference as f_workPreference } from "@/lib/features/signup/signupSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-interface ISkillAndProficiency{
-  skill : 'carpenter' | 'plumber' | 'electrician' | 'mechanic' | 'cleaner' | 'painter'
-  proficiency: 'beginner' | 'intermediate' | 'semi-pro' | 'pro'
+interface IWorkPreference{
+  availability : 'full-time' | 'part-time'
+  location: 'kathmandu' | 'pokhara' | 'biratnagar' | 'dharan'
 }
-const exampleObject : ISkillAndProficiency = { skill: 'carpenter' , proficiency: 'beginner'}
-const FrameParent: NextPage = () => {
-  const [ skillAndProficiency, setSkillAndProficiency] = useState(exampleObject)
-  const router = useRouter();
-  const dispatch: AppDispatch = useAppDispatch();
+const exampleObject : IWorkPreference = { availability: 'full-time' , location: 'kathmandu'}
+const AvailabilityFrameSet: NextPage = () => {
+  const [ workPreferences, setWorkPreference] = useState(exampleObject)
+  const router = useRouter()
+  const dispatch = useAppDispatch()
 
   const handleChange = (e: any) =>{
     const name = e.target.name
     const value = e.target.value
-    setSkillAndProficiency((prev) =>{
+    setWorkPreference((prev) =>{
       return {...prev, [name]: value}
     })
   }
 
   const handleSubmit = () =>{
-    // console.log(skillAndProficiency)
+    
+    console.log(workPreferences)
     // handleSubmit
-    dispatch(skillAndExpertise(skillAndProficiency))
-    router.push('/sign-up/3')
+    dispatch(f_workPreference(workPreferences))
+    router.push('/sign-up/5')
+    
   }
   return (
-    <div className={styles.frameParent}>
+    <div className={styles.availabilityFrameSet}>
       <h1 className={styles.kaamsewa}>KaamSewa</h1>
-      <h3 className={styles.skillAndExpertise}>Skill and Expertise</h3>
-
-      <div className={styles.experienceLevel}>Skill</div>
+      <h3 className={styles.workPreferences}>Work Preferences</h3>
+      <div className={styles.availability}>Availability</div>
       <FormControl
-        className={styles.parent}
+        className={styles.fullTimeKathmanduSet}
         variant="standard"
         sx={{
           borderColor: "#9fa0a0",
@@ -53,9 +56,8 @@ const FrameParent: NextPage = () => {
           borderRightWidth: "1px",
           borderBottomWidth: "1px",
           borderLeftWidth: "1px",
-          // backgroundColor: "#fff",
+          backgroundColor: "#fff",
           borderRadius: "5px",
-          width: "311px",
           height: "29px",
           m: 0,
           p: 0,
@@ -97,27 +99,24 @@ const FrameParent: NextPage = () => {
           },
         }}
       >
+        <InputLabel color="secondary" />
         <Select
           color="secondary"
           disableUnderline
           displayEmpty
-          name = "skill"
-          onChange = {handleChange}
-          value = {skillAndProficiency.skill}
+          name = 'availability'
+          value = {workPreferences.availability}
+          onChange={handleChange}
         >
-          <MenuItem value = {'Carpenter'}>Carpenter</MenuItem>
-          <MenuItem value = {'Electrician'}>Electrician</MenuItem>
-          <MenuItem value = {'Plumber'}>Plumber</MenuItem>
-          <MenuItem value = {'Painter'}>Painter</MenuItem>
-          <MenuItem value = {'Auto-Repair'}>Auto Repair</MenuItem>
-          <MenuItem value = {'Computer-Repair'}>Computer Repair</MenuItem>
-        </Select>
+          <MenuItem value = 'full-time'>Full-Time</MenuItem>
+          <MenuItem value = 'part-time'>Part-Time</MenuItem>
 
+        </Select>
         <FormHelperText />
       </FormControl>
-      <div className={styles.experienceLevel}>Experience Level</div>
+      <div className={styles.locationPreference}>Location Preference</div>
       <FormControl
-        className={styles.parent}
+        className={styles.fullTimeKathmanduSet1}
         variant="standard"
         sx={{
           borderColor: "#9fa0a0",
@@ -126,9 +125,8 @@ const FrameParent: NextPage = () => {
           borderRightWidth: "1px",
           borderBottomWidth: "1px",
           borderLeftWidth: "1px",
-          // backgroundColor: "#fff",
+          backgroundColor: "#fff",
           borderRadius: "5px",
-          width: "311px",
           height: "29px",
           m: 0,
           p: 0,
@@ -170,25 +168,25 @@ const FrameParent: NextPage = () => {
           },
         }}
       >
-        {/* <InputLabel color="secondary" /> */}
+        <InputLabel color="secondary" />
         <Select
           color="secondary"
           disableUnderline
           displayEmpty
-          name = "proficiency"
-          onChange = {handleChange}
-          value = {skillAndProficiency.proficiency}
+          name = 'location'
+          value = {workPreferences.location}
+          onChange={handleChange}
         >
-          <MenuItem value = {'beginner'}>Beginner</MenuItem>
-          <MenuItem value = {'intermediate'}>Intermediate</MenuItem>
-          <MenuItem value = {'semi-pro'}>Semi-Pro</MenuItem>
-          <MenuItem value = {'pro'}>Pro</MenuItem>
-        </Select>
+          <MenuItem value = 'kathmandu'>Kathmandu</MenuItem>
+          <MenuItem value = 'pokhara'>Pokhara</MenuItem>
+          <MenuItem value = 'dharan'>Dharan</MenuItem>
+          <MenuItem value = 'biratnagar'>Biratnagar</MenuItem>
 
+        </Select>
         <FormHelperText />
       </FormControl>
       <Button
-        className={styles.continueLabel}
+        className={styles.availabilityFrameSetChild}
         disableElevation={true}
         variant="contained"
         sx={{
@@ -199,9 +197,9 @@ const FrameParent: NextPage = () => {
           borderRadius: "15px",
           "&:hover": { background: "#4278f0" },
           width: 126,
-          height: 25,
+          height: 36,
         }}
-        onClick = {handleSubmit}
+        onClick={handleSubmit}
       >
         Continue
       </Button>
@@ -209,4 +207,4 @@ const FrameParent: NextPage = () => {
   );
 };
 
-export default FrameParent;
+export default AvailabilityFrameSet;

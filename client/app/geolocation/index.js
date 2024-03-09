@@ -3,8 +3,7 @@ import dynamic from 'next/dynamic';
 import React, { useMemo } from 'react';
 import Search from '../components/Search';
 import { useAppDispatch } from '@/lib/hooks';
-import {address, coordinate} from '@/lib/features/booking/bookingSlice'
-const Mapping = () => {
+const GeoLocation = ({address, coordinate, latitude, longitude}) => {
   const MapComponent = useMemo(() => dynamic(
   () => import('./comp/Map'),
   { 
@@ -34,11 +33,11 @@ const Mapping = () => {
 //   };
 
   return <>
-    <MapComponent/>
+    <MapComponent address = {address} coordinate = {coordinate} latitude={latitude} longitude = {longitude}/>
     <Search sx = {{width: '100%'}} onSubmit={onSubmit}/>
   </>
 };
 
-export default Mapping;
+export default GeoLocation;
 
 

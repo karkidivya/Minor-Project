@@ -3,7 +3,7 @@ import serviceCategoryController from '../controller/Service/serviceCategoryCont
 
 const router = express.Router();
 
-router.get('/serviceCategories', serviceCategoryController.getAllServiceCategories);
-router.get('/serviceCategory/:categoryId', serviceCategoryController.getServiceCategoryByID);
+router.get('/', serviceCategoryController.getAllServiceCategories);
+router.get('/:categoryId', serviceCategoryController.getServiceCategoryByID);
 
 export default router;

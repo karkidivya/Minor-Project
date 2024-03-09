@@ -8,6 +8,7 @@ import { ChartBar as ChartBarIcon } from '../icons/chart-bar';
 import { Cog as CogIcon } from '../icons/cog';
 import { User as UserIcon } from '../icons/user';
 import { Users as UsersIcon } from '../icons/users';
+import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike'
 import { Logo } from './logo';
 import { NavItem } from './nav-item';
 
@@ -16,6 +17,11 @@ const items = [
     href: '/dashboard',
     icon: (<ChartBarIcon fontSize="small" />),
     title: 'Dashboard'
+  },
+  {
+    href: '/dashboard/orders',
+    icon: (<DirectionsBikeIcon fontSize = "small" />),
+    title: 'Orders',
   },
   {
     href: '/dashboard/customers',

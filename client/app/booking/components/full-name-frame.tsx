@@ -8,8 +8,8 @@ import styles from "./full-name-frame.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MuiTelInput } from "mui-tel-input";
-import { useAppDispatch } from "@/lib/hooks";
-import { informationAndWorkDescription, bookingStep } from "@/lib/features/booking/bookingSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { informationAndWorkDescription, bookingStep, address, coordinate} from "@/lib/features/booking/bookingSlice";
 import GeoLocation from '../../geolocation';
 
 
@@ -17,6 +17,7 @@ const FullNameFrame: NextPage = () => {
   const [ info, setInfo ] = useState({phoneNumber: "", workDescription: ""})
   const dispatch = useAppDispatch()
   const router = useRouter()
+  const {location} = useAppSelector(state => state.booking)
 
   const handleChange = (e: any) =>{
     const name = e.target.name
@@ -45,7 +46,7 @@ const FullNameFrame: NextPage = () => {
                     onChange = {(newPhone) => handleChange({target: {name: 'phoneNumber', value: newPhone}})} 
                     style={{alignSelf: 'flex-start', width: '100%'}}/>
       <div className={styles.fullName}>Your Location</div>
-      <GeoLocation />
+      <GeoLocation address = {address} coordinate = {coordinate} latitude={location.latitude} longitude ={location.longitude}/>
 
       
       <h1 className={styles.kaamsewa}>Work Description</h1>
@@ -57,16 +58,6 @@ const FullNameFrame: NextPage = () => {
         name = "workDescription"
         value = {info.workDescription}
         onChange={handleChange}
-        sx={{
-          "& fieldset": { borderColor: "#9fa0a0" },
-          "& .MuiInputBase-root": {
-            // height: "30px",
-            backgroundColor: "#fff",
-            borderRadius: "5px",
-            fontSize: "12px",
-          },
-          "& .MuiInputBase-input": { color: "#9fa0a0" },
-        }}
       />
       <Button
         className={styles.nextButton}

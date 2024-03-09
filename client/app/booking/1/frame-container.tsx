@@ -15,33 +15,23 @@ const dummyData = {
   fullName: "DavidBeckham",
 }
 
-async function getServiceProvider(categoryName: string, setData: any){
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceCategories`
-  const {data} = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceCategories`)
-  const filteredData = data.data.reduce((acc: any, curr: any) => {
-    return {...acc, [curr.categoryName.toLowerCase()]: curr.categoryId}
-  }, {})
-  console.log(filteredData)
-  categoryName = categoryName.toLowerCase()
-  console.log(filteredData[`${categoryName}`])
-  const newData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceProviders/${filteredData[`${categoryName}`]}`)
+async function getServiceProvider(categoryId: string, setData: any){
+  const backendurl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceCategories`
+  const newData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceProvider/byCategoryId/${categoryId}`)
   console.log(newData.data)
   setData(newData.data.serviceProviders)
-  // setData(newData.data)
-
-
 }
 const FrameContainer: NextPage = () => {
   const {category} = useAppSelector((state) => state.booking)
   const [ serviceProvider, setServiceProvider ] = useState([dummyData])
   useEffect(() =>{
-    getServiceProvider(category, setServiceProvider)
+    getServiceProvider(category.categoryId, setServiceProvider)
   }, [])
 
   return (
     <div className={styles.frameContainer}>
-      {serviceProvider.map( provider =>{
-        return <ProfileViewButton serviceProvider = {provider}/>
+      {serviceProvider.map( (provider: any, idx: number) =>{
+        return <ProfileViewButton key = {idx} serviceProvider = {provider}/>
       })}
     </div>
   );

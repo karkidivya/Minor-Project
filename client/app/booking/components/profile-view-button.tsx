@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import ChatFrame from "./chat-frame";
 import styles from "./profile-view-button.module.css";
 

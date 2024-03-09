@@ -56,7 +56,7 @@ const bookingController = {
             bookingId,
             customerId,
             serviceProviderId,
-            serviceId ,
+            serviceId,
             categoryId,
             dateAndTime,
             location,

@@ -6,25 +6,26 @@ import { DatePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { bookingDateAndTime } from "@/lib/features/booking/bookingSlice";
 
 
 
 const FrameMorning: NextPage = () => {
-  const [dateAndTime, setDateAndTime ] = useState({date: dayjs('2024'), time: ""});
+  const [dateAndTime, setDateAndTime ] = useState({date: dayjs(), time: ""});
   const dispatch = useAppDispatch()
   const router = useRouter();
-
+  const booking = useAppSelector(state => state.booking)
   const handleChange = (name: string , value: string | Date | Dayjs | null ) =>{
     setDateAndTime((prev) =>{
       return {...prev, [name]: value}
     })
   }
   const handleSubmit = () =>{
-    dispatch(bookingDateAndTime(dateAndTime))
+    dispatch(bookingDateAndTime({...dateAndTime, date: dateAndTime.date.toString()}))
     router.push('/')
+    console.log(booking)
   }
   
   return (
@@ -34,7 +35,7 @@ const FrameMorning: NextPage = () => {
           <div className={styles.dateFrame}>
             <div className={styles.withinDaysChooser}>
               <div className={styles.date}>Date</div>
-              <DatePicker  label = ""  defaultValue = {dateAndTime.date} value = {dateAndTime.date} onChange={(newValue) => { handleChange("date", newValue)}}/>
+              <DatePicker  label = ""  defaultValue = {dateAndTime.date} value = {dateAndTime.date} onChange={(newValue) => { handleChange("date", newValue?.startOf('day') as Dayjs)}}/>
               <div className={styles.frameReviews} />
             </div>
             <div className={styles.timeOfDay}>Time of Day</div>

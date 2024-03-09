@@ -3,6 +3,11 @@ import type { NextPage } from "next";
 import {
   TextField,
   Button,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import styles from "./full-name-frame.module.css";
 import { useState } from "react";
@@ -10,9 +15,11 @@ import { useRouter } from "next/navigation";
 import { AppDispatch, RootState } from "@/lib/store";
 import { personalInformation } from "@/lib/features/signup/signupSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const FullNameFrame: NextPage = () => {
-  const [ signupCredential, setSignupCredential ] = useState({fullName: "", email: "", password: ""})
+  const [ signupCredential, setSignupCredential ] = useState({fullName: "", emailAddress: "", password: ""})
+  const [ showPassword, setShowPassword ] =  useState(false)
   const router = useRouter()
   const dispatch: AppDispatch = useAppDispatch()
 
@@ -46,56 +53,36 @@ const FullNameFrame: NextPage = () => {
         name = "fullName"
         value = {signupCredential.fullName}
         onChange={handleChange}
-        sx={{
-          "& fieldset": { borderColor: "#9fa0a0" },
-          "& .MuiInputBase-root": {
-            // height: "30px",
-            backgroundColor: "#fff",
-            borderRadius: "5px",
-            fontSize: "12px",
-          },
-          "& .MuiInputBase-input": { color: "#9fa0a0" },
-        }}
       />
       <div className={styles.emailAddress}>Email Address</div>
       <TextField
         className={styles.emailAddressFrame1}
         placeholder="Email Address"
         variant="outlined"
-        name = "email"
-        value={signupCredential.email}
+        name = "emailAddress"
+        value={signupCredential.emailAddress}
         onChange = {handleChange}
-        sx={{
-          "& fieldset": { borderColor: "#9fa0a0" },
-          "& .MuiInputBase-root": {
-            // height: "30px",
-            backgroundColor: "#fff",
-            borderRadius: "5px",
-            fontSize: "12px",
-          },
-          "& .MuiInputBase-input": { color: "#9fa0a0" },
-        }}
       />
       <div className={styles.password}>Password</div>
-      <TextField
-        className={styles.emailAddressFrame2}
-        placeholder="Password"
-        variant="outlined"
-        type="password"
-        name = "password"
-        value = {signupCredential.password}
-        onChange={handleChange}
-        sx={{
-          "& fieldset": { borderColor: "#9fa0a0" },
-          "& .MuiInputBase-root": {
-            // height: "30px",
-            backgroundColor: "#fff",
-            borderRadius: "5px",
-            fontSize: "12px",
-          },
-          "& .MuiInputBase-input": { color: "#9fa0a0" },
-        }}
-      />
+      <FormControl fullWidth sx={{ m: 1}} variant="outlined">
+        <OutlinedInput
+          id="outlined-adornment-password"
+          type={showPassword ? 'text' : 'password'}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={() => setShowPassword(prev => !prev)}
+                onMouseDown={(e) => e.preventDefault()}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          placeholder="Password"
+        />
+      </FormControl>
       <Button
         className={styles.nextButton}
         disableElevation={true}
