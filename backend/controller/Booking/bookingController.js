@@ -53,7 +53,6 @@ const bookingController = {
 
     addBooking: async (req, res) => {
         const {
-            bookingId,
             customerId,
             serviceProviderId,
             serviceId,
@@ -62,18 +61,16 @@ const bookingController = {
             location,
             additionalNotes,
             bookingStatus,
-            reviewId,
-            createdAt,
-            updatedAt
+            reviewId
         } = req.body;
+    
         try {
             // Insert the new booking into the database
             const query = `
                 INSERT INTO Booking (
-                    bookingId,
                     customerId,
                     serviceProviderId,
-                    serviceId ,
+                    serviceId,
                     categoryId,
                     dateAndTime,
                     location,
@@ -82,30 +79,29 @@ const bookingController = {
                     reviewId,
                     createdAt,
                     updatedAt
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
             const values = [
-                bookingId,
                 customerId,
                 serviceProviderId,
-                serviceId ,
+                JSON.stringify(serviceId), 
                 categoryId,
                 dateAndTime,
-                location,
+                JSON.stringify(location),
                 additionalNotes,
                 bookingStatus,
-                reviewId,
-                createdAt,
-                updatedAt
+                JSON.stringify(reviewId) 
             ];
             await queryAsync(query, values);
-
-            // Send success response
+    
+           
             res.status(201).json({ status: 'success', message: 'Booking added successfully' });
         } catch (error) {
             console.log('An error occurred while adding booking:', error);
             res.status(500).json({ status: 'error', message: 'Internal server error' });
         }
     }
+    
+    
 };
 
 export default bookingController;

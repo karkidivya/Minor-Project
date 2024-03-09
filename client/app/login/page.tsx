@@ -11,6 +11,7 @@ import signIn from "../firebase/auth/signin";
 import axios from "axios";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { error } from "console";
 
 const initialCredential = {email: "", password: ""}
 const Login: NextPage = () => {
@@ -38,20 +39,23 @@ const Login: NextPage = () => {
     
       console.log("Access Token:", accessToken);
 
-      const fetchData = async(accessToken : string | undefined)=>{
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/login`,{
-            headers:{
-                'Authorization': `Bearer ${accessToken}`
-            }
-        });
-        console.log(response.data);
-      }
-      fetchData(accessToken);
+      // const fetchData = async(accessToken : string | undefined)=>{
+      //   const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/serviceProvider/serviceProviderLogin`,{
+      //       headers:{
+      //           'Authorization': `Bearer ${accessToken}`
+      //       }
+      //   });
+      //   console.log(response.data);
+      // }
+      // fetchData(accessToken);
       console.log(result)
-      const {data} = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`,credential)
-      console.log(data)
-      if(!data){
-        setCredential(initialCredential);      
+      // const {data} = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`,credential)
+      // console.log(data)
+      // if(!data){
+      //   setCredential(initialCredential);      
+      // }
+      if(accessToken){
+        router.push('/dashboard')
       }
 
     }catch(e){

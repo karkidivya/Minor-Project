@@ -17,6 +17,7 @@ export const Notification = (props) => {
     });
     }
   }, [socket]);
+  console.log(notify,"dadvdfv")
   return (
     <Popover
       anchorEl={anchorEl}

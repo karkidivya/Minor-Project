@@ -32,7 +32,7 @@ const IndexPage = () => {
         console.log("hell")
         // Example: Send a notification to the server
         const notificationData = { message: 'Hello, world!' }; // Define notificationData
-        socket.emit('sendNotification', notificationData); // Pass notificationData with emit
+        socket.emit('sendNotification', {receiverEmail:'karkidivya5@gmail.com' , data : notificationData}); // Pass notificationData with emit
     };
 
     return (

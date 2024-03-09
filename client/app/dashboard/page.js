@@ -1,12 +1,25 @@
+"use client"
 import { Box, Container, Grid } from '@mui/material';
 import { Budget } from './components/dashboard/budget';
 // import { LatestOrders } from './components/dashboard/latest-orders';
 import { TasksProgress } from './components/dashboard/tasks-progress';
 import { TotalCustomers } from './components/dashboard/total-customers';
 import { TotalProfit } from './components/dashboard/total-profit';
+import {useAuthContext} from '../context/AuthContext'
+import { useSocket } from '../context/SocketContext';
+import { useEffect } from 'react';
 
-const Page = () => (
-  <>
+const Page = () => {
+  const auths = useAuthContext()
+  console.log(auths, "jbjbjbjhb")
+  // console.log(auths.user.email, "jbjbjbjhb")
+  const socket = useSocket()
+  console.log(socket)
+  useEffect(() => {
+    socket?.emit("newServiceProvider", auths.user.email);
+  }, [socket, auths]);
+  return
+  (<>
     <Box
       component="main"
       sx={{
@@ -70,7 +83,7 @@ const Page = () => (
         </Grid>
       </Container>
     </Box>
-  </>
-);
+  </>)
+};
 
 export default Page;

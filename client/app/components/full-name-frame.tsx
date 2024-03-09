@@ -16,6 +16,7 @@ import { AppDispatch, RootState } from "@/lib/store";
 import { personalInformation } from "@/lib/features/signup/signupSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import signUp from "../firebase/auth/signup";
 
 const FullNameFrame: NextPage = () => {
   const [ signupCredential, setSignupCredential ] = useState({fullName: "", emailAddress: "", password: ""})
@@ -35,7 +36,8 @@ const FullNameFrame: NextPage = () => {
 
   }
 
-  const handleSubmit = () =>{
+  const handleSubmit = async() =>{
+    const { result, error } = await signUp(signupCredential.emailAddress, signupCredential.password);
     dispatch(personalInformation(signupCredential))
     router.push('/sign-up/1')
     

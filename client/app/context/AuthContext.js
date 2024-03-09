@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
     onAuthStateChanged,
     getAuth,
@@ -6,18 +7,15 @@ import {
 import firebase_app from '../firebase/config';
 
 const auth = getAuth(firebase_app);
+const AuthContext = createContext();
 
-export const AuthContext = React.createContext({});
+export const useAuthContext = () => useContext(AuthContext);
 
-export const useAuthContext = () => React.useContext(AuthContext);
+export const AuthContextProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-export const AuthContextProvider = ({
-    children,
-}) => {
-    const [user, setUser] = React.useState(null);
-    const [loading, setLoading] = React.useState(true);
-
-    React.useEffect(() => {
+    useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
@@ -30,9 +28,10 @@ export const AuthContextProvider = ({
         return () => unsubscribe();
     }, []);
 
-    return (
-        <AuthContext.Provider value={{ user }}>
-            {loading ? <div>Loading...</div> : children}
+  return (
+    <AuthContext.Provider value={{ user }}>
+            {/* {loading ? <div>Loading...</div> : children} */}
+            {children}
         </AuthContext.Provider>
-    );
+  );
 };

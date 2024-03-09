@@ -32,7 +32,7 @@ export default function Layout({children}: ScriptProps) {
     <html>
       <head></head>
       <body>
-      <AuthContextProvider>
+      
         <Fragment>
           <Head>
             <title>something</title>
@@ -53,17 +53,19 @@ export default function Layout({children}: ScriptProps) {
               <JoyCssVarsProvider>
                 <CssBaseline />
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <AuthContextProvider>
                   <SocketProvider>
                   <StoreProvider>
                     {children}
                   </StoreProvider>
                   </SocketProvider>
+                  </AuthContextProvider>
                 </LocalizationProvider>
               </JoyCssVarsProvider>
             </MaterialCssVarsProvider>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         </Fragment>
-        </AuthContextProvider>
+        
       </body>
     </html>
   );
