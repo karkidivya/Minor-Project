@@ -14,7 +14,7 @@ export default async function CategoryItem(){
 
   return (
     <div className={styles.categoryItem}>
-      {data.data.map((item: any, idx: number) =>  <Plumber key ={idx} image = {item.image} categoryName = {item.categoryName} categoryId = {item.categoryId} propHeight = "225px" />)}
+      {/* {data.data.map((item: any, idx: number) =>  <Plumber key ={idx} image = {item.image} categoryName = {item.categoryName} categoryId = {item.categoryId} propHeight = "225px" />)} */}
     </div>
   );
 };
