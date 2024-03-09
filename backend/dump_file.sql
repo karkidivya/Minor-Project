@@ -23,20 +23,20 @@ DROP TABLE IF EXISTS `Booking`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Booking` (
-  `bookingId` int NOT NULL,
+  `bookingId` int NOT NULL AUTO_INCREMENT,
   `customerId` int DEFAULT NULL,
   `serviceProviderId` int DEFAULT NULL,
   `serviceId` json DEFAULT NULL,
   `categoryId` int DEFAULT NULL,
   `dateAndTime` datetime DEFAULT NULL,
-  `location` double DEFAULT NULL,
+  `location` json DEFAULT NULL,
   `additionalNotes` varchar(255) DEFAULT NULL,
   `bookingStatus` varchar(255) DEFAULT NULL,
   `reviewId` json DEFAULT NULL,
   `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`bookingId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `Booking` (
 
 LOCK TABLES `Booking` WRITE;
 /*!40000 ALTER TABLE `Booking` DISABLE KEYS */;
-INSERT INTO `Booking` VALUES (1,1,1,'{\"serviceId\": 1}',1,'2024-02-25 09:00:00',123.456,'Additional notes for booking 1','Confirmed','{\"reviewId\": 1}','2024-02-26 00:45:48','2024-02-26 00:45:48'),(2,2,2,'{\"serviceId\": 2}',2,'2024-02-26 10:00:00',789.012,'Additional notes for booking 2','Pending',NULL,'2024-02-26 00:45:48','2024-02-26 00:45:48'),(3,1,3,'{\"serviceId\": 3}',1,'2024-02-27 11:00:00',456.789,'Additional notes for booking 3','Confirmed','{\"reviewId\": 3}','2024-02-26 00:45:48','2024-02-26 00:45:48'),(4,2,4,'{\"serviceId\": 4}',2,'2024-02-28 12:00:00',987.654,'Additional notes for booking 4','Pending',NULL,'2024-02-26 00:45:48','2024-02-26 00:45:48'),(5,1,5,'{\"serviceId\": 5}',1,'2024-02-29 13:00:00',321.987,'Additional notes for booking 5','Confirmed','{\"reviewId\": 5}','2024-02-26 00:45:48','2024-02-26 00:45:48'),(6,2,6,'{\"serviceId\": 6}',2,'2024-03-01 14:00:00',654.321,'Additional notes for booking 6','Pending',NULL,'2024-02-26 00:45:48','2024-02-26 00:45:48'),(7,1,7,'{\"serviceId\": 7}',1,'2024-03-02 15:00:00',135.246,'Additional notes for booking 7','Confirmed','{\"reviewId\": 7}','2024-02-26 00:45:48','2024-02-26 00:45:48'),(8,2,8,'{\"serviceId\": 8}',2,'2024-03-03 16:00:00',246.135,'Additional notes for booking 8','Pending',NULL,'2024-02-26 00:45:48','2024-02-26 00:45:48'),(9,1,9,'{\"serviceId\": 9}',1,'2024-03-04 17:00:00',369.258,'Additional notes for booking 9','Confirmed','{\"reviewId\": 9}','2024-02-26 00:45:48','2024-02-26 00:45:48'),(10,2,10,'{\"serviceId\": 10}',2,'2024-03-05 18:00:00',582.147,'Additional notes for booking 10','Pending',NULL,'2024-02-26 00:45:48','2024-02-26 00:45:48');
+INSERT INTO `Booking` VALUES (1,1,201,'{\"price\": 30, \"service\": \"Haircut\"}',1,'2024-03-10 10:00:00','{\"latitude\": 40.7128, \"longitude\": -74.006}','Please arrive 10 minutes before the appointment.','Confirmed','null','2024-03-09 12:42:50','2024-03-09 12:42:50');
 /*!40000 ALTER TABLE `Booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +185,7 @@ CREATE TABLE `ServiceProvider` (
   `fullName` varchar(255) DEFAULT NULL,
   `emailAddress` varchar(255) DEFAULT NULL,
   `phoneNumber` varchar(20) DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
+  `location` json DEFAULT NULL,
   `profilePicture` varchar(255) DEFAULT NULL,
   `introduction` text,
   `categoryId` int DEFAULT NULL,
@@ -203,10 +203,13 @@ CREATE TABLE `ServiceProvider` (
   `accountStatus` tinyint(1) DEFAULT NULL,
   `services` json DEFAULT NULL,
   `paymentHistory` json DEFAULT NULL,
+  `verificationStatus` tinyint(1) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`serviceProviderId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`serviceProviderId`),
+  KEY `fk_category` (`categoryId`),
+  CONSTRAINT `fk_category` FOREIGN KEY (`categoryId`) REFERENCES `ServiceCategory` (`categoryId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +218,7 @@ CREATE TABLE `ServiceProvider` (
 
 LOCK TABLES `ServiceProvider` WRITE;
 /*!40000 ALTER TABLE `ServiceProvider` DISABLE KEYS */;
-INSERT INTO `ServiceProvider` VALUES (1,'provider1','password1','John Doe','john@example.com','1234567890','City A','profile1.jpg','Experienced service provider',1,'Expert','Weekdays','Morning','Company A','Manager','9am-5pm','Reference1','Certificate1','Education1',4,100,1,'[1]','[{\"amount\": 100, \"paymentId\": 1}]','2024-02-24 18:15:00','2024-02-24 18:15:00'),(2,'provider2','password2','Jane Smith','jane@example.com','9876543210','City B','profile2.jpg','Friendly and reliable service provider',2,'Intermediate','Weekends','Afternoon','Company B','Technician','10am-6pm','Reference2','Certificate2','Education2',3,80,1,'[2]','[{\"amount\": 50, \"paymentId\": 2}]','2024-02-25 18:15:00','2024-02-25 18:15:00'),(3,'provider3','password3','Alice Johnson','alice@example.com','1234567890','City C','profile3.jpg','Experienced service provider',3,'Expert','Weekdays','Morning','Company C','Manager','9am-5pm','Reference3','Certificate3','Education3',4,100,1,'[3]','[{\"amount\": 80, \"paymentId\": 3}]','2024-02-26 18:15:00','2024-02-26 18:15:00'),(4,'provider4','password4','Bob Smith','bob@example.com','9876543210','City D','profile4.jpg','Friendly and reliable service provider',4,'Intermediate','Weekends','Afternoon','Company D','Technician','10am-6pm','Reference4','Certificate4','Education4',3,80,1,'[4]','[{\"amount\": 120, \"paymentId\": 4}]','2024-02-27 18:15:00','2024-02-27 18:15:00'),(5,'provider5','password5','John Doe','john2@example.com','1234567890','City E','profile5.jpg','Experienced service provider',5,'Expert','Weekdays','Morning','Company E','Manager','9am-5pm','Reference5','Certificate5','Education5',4,100,1,'[5]','[{\"amount\": 150, \"paymentId\": 5}]','2024-02-28 18:15:00','2024-02-28 18:15:00'),(6,'provider6','password6','Jane Smith','jane2@example.com','9876543210','City F','profile6.jpg','Friendly and reliable service provider',6,'Intermediate','Weekends','Afternoon','Company F','Technician','10am-6pm','Reference6','Certificate6','Education6',3,80,1,'[6]','[{\"amount\": 90, \"paymentId\": 6}]','2024-02-29 18:15:00','2024-02-29 18:15:00'),(7,'provider7','password7','Alice Johnson','alice2@example.com','1234567890','City G','profile7.jpg','Experienced service provider',7,'Expert','Weekdays','Morning','Company G','Manager','9am-5pm','Reference7','Certificate7','Education7',4,100,1,'[7]','[{\"amount\": 110, \"paymentId\": 7}]','2024-03-01 18:15:00','2024-03-01 18:15:00'),(8,'provider8','password8','Bob Smith','bob2@example.com','9876543210','City H','profile8.jpg','Friendly and reliable service provider',8,'Intermediate','Weekends','Afternoon','Company H','Technician','10am-6pm','Reference8','Certificate8','Education8',3,80,1,'[8]','[{\"amount\": 70, \"paymentId\": 8}]','2024-03-02 18:15:00','2024-03-02 18:15:00'),(9,'provider9','password9','John Doe','john3@example.com','1234567890','City I','profile9.jpg','Experienced service provider',9,'Expert','Weekdays','Morning','Company I','Manager','9am-5pm','Reference9','Certificate9','Education9',4,100,1,'[9]','[{\"amount\": 130, \"paymentId\": 9}]','2024-03-03 18:15:00','2024-03-03 18:15:00'),(10,'provider10','password10','Jane Smith','jane3@example.com','9876543210','City J','profile10.jpg','Friendly and reliable service provider',10,'Intermediate','Weekends','Afternoon','Company J','Technician','10am-6pm','Reference10','Certificate10','Education10',3,80,1,'[10]','[{\"amount\": 100, \"paymentId\": 10}]','2024-03-04 18:15:00','2024-03-04 18:15:00'),(11,NULL,'qqqqqqqq','Divya Raj Karki',NULL,'+977 1111111111','','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FprofilePicture%2Fundefined?alt=media&token=2c100974-e91d-4e7b-a730-1329506c19ef','',NULL,'intermediate','full-time',NULL,NULL,'cadadd','','','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FcertificateImage%2Fundefined?alt=media&token=36e222b5-3e8e-439b-aff4-8d9b95cd6ebf','primary',NULL,NULL,NULL,NULL,NULL,'2024-02-25 19:29:22','2024-02-25 19:29:22');
+INSERT INTO `ServiceProvider` VALUES (1,'john_doee','password123e','John Doee','john.doe@examplee.com','1234567890','{\"address\": \"Gaighat\", \"latitude\": 27.7172, \"longitude\": 85.324}','profile_pic.jpg','Experienced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-07 08:33:33','2024-03-07 08:33:33'),(2,'veaevjohn_doecdcdce','passwocdard123e','John Doecdse','jocshn.doe@examplee.com','12344567890','{\"address\": \"Gaigdhat\", \"latitude\": 27.7172, \"longitude\": 85.324}','proficsdle_pic.jpg','Expericsenced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-07 12:26:45','2024-03-07 12:26:45'),(3,'veacscsevjohn_doecdcdce','passwocdard123e','John Doecdse','josdcscshn.doe@examplee.com',NULL,'{\"address\": \"Gaigdhat\", \"latitude\": 27.7172, \"longitude\": 85.324}','proficsdle_pic.jpg','Expericsenced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-07 12:27:18','2024-03-07 12:27:18'),(4,NULL,'qqqqqqqq','diyan',NULL,'+977 3333333333','\"\"','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FprofilePicture%2Fundefined?alt=media&token=4246a645-57c0-4d21-94c9-a45870507834','',NULL,'beginner','full-time',NULL,NULL,'fawe','','','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FcertificateImage%2Fundefined?alt=media&token=da662d27-bdf7-4f5a-b181-75896d21825f','primary',NULL,NULL,NULL,NULL,NULL,NULL,'2024-03-07 13:54:15','2024-03-07 13:54:15');
 /*!40000 ALTER TABLE `ServiceProvider` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-26  8:55:04
+-- Dump completed on 2024-03-09 13:38:31

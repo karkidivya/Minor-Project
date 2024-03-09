@@ -22,13 +22,13 @@ const getData = async(setData: any) =>{
   return
 }
 interface ISkillAndProficiency{
-  skill : number
+  categoryId : number
   proficiency: 'beginner' | 'intermediate' | 'semi-pro' | 'pro'
 }
-const exampleObject : ISkillAndProficiency = { skill: 1, proficiency: 'beginner'}
+const exampleObject : ISkillAndProficiency = { categoryId: 1, proficiency: 'beginner'}
 const FrameParent: NextPage = () => {
   const [ skill, setSkill ] = useState([])
-  const [ skillAndProficiency, setSkillAndProficiency] = useState({...exampleObject})
+  const [ skillAndProficiency, setSkillAndProficiency] = useState(exampleObject)
   const router = useRouter();
   const dispatch: AppDispatch = useAppDispatch();
   useEffect(() => {getData(setSkill)},[])
@@ -42,7 +42,7 @@ const FrameParent: NextPage = () => {
   }
 
   const handleSubmit = () =>{
-    // console.log(skillAndProficiency)
+    console.log(skillAndProficiency)
     // handleSubmit
     dispatch(skillAndExpertise(skillAndProficiency))
     router.push('/sign-up/4')
@@ -110,9 +110,9 @@ const FrameParent: NextPage = () => {
           color="secondary"
           disableUnderline
           displayEmpty
-          name = "skill"
+          name = "categoryId"
           onChange = {handleChange}
-          value = {skill[0] ? `${skillAndProficiency.skill}` : ""}
+          value = {skill[0] ? `${skillAndProficiency.categoryId}` : ""}
         >
           {skill.map( (item: any, idx: number)=> {
               return <MenuItem key = {idx} value = {item.categoryId}>{item.categoryName}</MenuItem>
