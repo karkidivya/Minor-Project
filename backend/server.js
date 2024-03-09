@@ -3,8 +3,6 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import db from './db.js'
 import mainRouter from './routes/index.js'
-
-import mainRouter from './routes/index.js';
 import http from 'http';
 import { Server as SocketServer } from 'socket.io';
 import handleConnection from './socketFunctions.js';
@@ -12,7 +10,7 @@ import { Server } from "socket.io";
 const app = express();
 const server = http.createServer(app);
 // const io = new SocketServer(server);
-
+dotenv.config();
 
 const io = new SocketServer(server, {
   cors: {
