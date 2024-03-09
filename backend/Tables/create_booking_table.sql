@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS Booking (
   serviceProviderId INT,
   serviceId JSON,
   categoryId INT,
+  amount INT,
   dateAndTime DATETIME,
   location JSON,
   additionalNotes VARCHAR(255),

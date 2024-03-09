@@ -1,7 +1,6 @@
 "use client"
 import { Box, Container, Grid } from '@mui/material';
 import { Budget } from './components/dashboard/budget';
-// import { LatestOrders } from './components/dashboard/latest-orders';
 import { TasksProgress } from './components/dashboard/tasks-progress';
 import { TotalCustomers } from './components/dashboard/total-customers';
 import { TotalProfit } from './components/dashboard/total-profit';
@@ -74,12 +73,6 @@ const Page = () => {
           </Grid>
           <Grid item sm = {5}>
           </Grid>
-          {/* <Grid
-            item
-            xs={12}
-          >
-            <LatestOrders />
-          </Grid> */}
         </Grid>
       </Container>
     </Box>

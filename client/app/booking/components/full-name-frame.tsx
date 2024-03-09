@@ -37,14 +37,14 @@ const FullNameFrame: NextPage = () => {
   }
   return (
     <form className={styles.fullNameFrame}>
-
       <h1 className={styles.kaamsewa}>Your Information</h1>
-      
+
       <div className={styles.password}>Your Phone Number</div>
       <MuiTelInput defaultCountry="NP" 
                     value = {info.phoneNumber}
                     onChange = {(newPhone) => handleChange({target: {name: 'phoneNumber', value: newPhone}})} 
                     style={{alignSelf: 'flex-start', width: '100%'}}/>
+      
       <div className={styles.fullName}>Your Location</div>
       <GeoLocation address = {address} coordinate = {coordinate} latitude={location.latitude} longitude ={location.longitude}/>
 
