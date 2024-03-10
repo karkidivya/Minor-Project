@@ -1,17 +1,17 @@
 'use client'
-import React, { useEffect } from "react";
+import React from "react";
 import { FormEvent } from 'react';
 import type { NextPage } from "next";
 import styles from "./login.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@mui/material";
+import { Button, FormControl, IconButton, InputAdornment, OutlinedInput } from "@mui/material";
 import Link from "next/link";
 import signIn from "../firebase/auth/signin";
 import axios from "axios";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import { error } from "console";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const initialCredential = {email: "", password: ""}
 const Login: NextPage = () => {
@@ -19,6 +19,7 @@ const Login: NextPage = () => {
   const router = useRouter();
 
   const [ credential, setCredential ] = useState(initialCredential)
+  const [ showPassword, setShowPassword ] =  useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const email = e.currentTarget.name
@@ -38,22 +39,8 @@ const Login: NextPage = () => {
       const accessToken = await result?.user.getIdToken();
     
       console.log("Access Token:", accessToken);
-
-      // const fetchData = async(accessToken : string | undefined)=>{
-      //   const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/serviceProvider/serviceProviderLogin`,{
-      //       headers:{
-      //           'Authorization': `Bearer ${accessToken}`
-      //       }
-      //   });
-      //   console.log(response.data);
-      // }
-      // fetchData(accessToken);
       console.log(result)
-      // const {data} = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`,credential)
-      // console.log(data)
-      // if(!data){
-      //   setCredential(initialCredential);      
-      // }
+
       if(accessToken){
         router.push('/dashboard')
       }
@@ -62,39 +49,45 @@ const Login: NextPage = () => {
       toast.error(e, {hideProgressBar: true})
     }
   }
-  useEffect(() =>{
-    toast.error("Successfully initialized", {
-      hideProgressBar: true,
-    })
-  }, [])
+
   
   return (
     <div className={styles.login}>
       <form className={styles.emailAddressFrame} onSubmit={handleForm} >
       <h1 className={styles.kaamsewa}>KaamSewa</h1>
       <div className={styles.emailAddress}>Email Address</div>
-      <div className={styles.passwordFrame}>
-        <input
-          className={styles.emailAddress1}
-          placeholder="Email Address"
-          type="text"
+      <FormControl fullWidth sx={{ m: 1}} variant="outlined">
+        <OutlinedInput
           name = "email"
+          type='text'
           value = {credential.email}
           onChange = {handleChange}
+          placeholder="Enter your Email"
         />
-      </div>
+      </FormControl>
       <div className={styles.password}>Password</div>
-      <div className={styles.passwordFrame1}>
-        <input
-          className={styles.password1}
-          placeholder="Password"
-          type="password"
+      <FormControl fullWidth sx={{ m: 1}} variant="outlined">
+        <OutlinedInput
           name = "password"
+          type={showPassword ? 'text' : 'password'}
           value = {credential.password}
           onChange = {handleChange}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={() => setShowPassword(prev => !prev)}
+                onMouseDown={(e) => e.preventDefault()}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          placeholder="Password"
         />
+      </FormControl>
 
-      </div>
       <Link href = "#" className = {styles.forgetPassword}>Forgot Password</Link>
       <Button type = "submit" variant = "contained" fullWidth >
         Log In

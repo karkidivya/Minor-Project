@@ -75,8 +75,7 @@
   color: var(--text2);
   text-align: left;
 }
-.password1,
-.passwordFrame1 {
+.password1{
   display: flex;
   align-items: center;
 }
@@ -93,18 +92,7 @@
   color: var(--color-darkgray);
   text-align: left;
 }
-.passwordFrame1 {
-  width: 327px;
-  border-radius: var(--br-8xs);
-  background-color: var(--primary);
-  border: 1px solid var(--color-darkgray);
-  box-sizing: border-box;
-  overflow: hidden;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: var(--padding-5xs) var(--padding-2xs) var(--padding-6xs);
-  max-width: 100%;
-}
+
 .forgetPassword,
 .logIn {
   position: relative;

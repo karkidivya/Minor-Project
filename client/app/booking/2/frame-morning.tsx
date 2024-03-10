@@ -18,11 +18,13 @@ const FrameMorning: NextPage = () => {
   const dispatch = useAppDispatch()
   const router = useRouter();
   const {bookingStep, ...booking} = useAppSelector(state => state.booking)
+  
   const handleChange = (name: string , value: string | Date | Dayjs | null ) =>{
     setDateAndTime((prev) =>{
       return {...prev, [name]: value}
     })
   }
+  
   const handleSubmit = async () =>{
     dispatch(bookingDateAndTime({...dateAndTime, date: dateAndTime.date.toString()}))
     const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/booking/addBooking`, {...booking, categoryId: booking.category.categoryId})
