@@ -42,7 +42,6 @@ const bookingSlice = createSlice({
             state.serviceProviderId = action.payload.serviceProviderId
         },
         bookingDateAndTime:(state, action: PayloadAction<any>) =>{
-            console.log(action.payload)
             state.date = action.payload.date
             state.time = action.payload.time
         },

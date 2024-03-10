@@ -12,6 +12,8 @@ import axios from "axios";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useAppDispatch } from "@/lib/hooks";
+import { setAuthorization } from "@/lib/features/user/userSlice";
 
 const initialCredential = {email: "", password: ""}
 const Login: NextPage = () => {
@@ -20,13 +22,14 @@ const Login: NextPage = () => {
 
   const [ credential, setCredential ] = useState(initialCredential)
   const [ showPassword, setShowPassword ] =  useState(false)
+  const dispatch = useAppDispatch()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
-    const email = e.currentTarget.name
-    const password = e.currentTarget.value
+    const name = e.currentTarget.name
+    const value = e.currentTarget.value
 
     setCredential( (prev) =>{
-      return { ...prev, [email]: password}
+      return { ...prev, [name]: value}
     }) 
   }
 
@@ -37,11 +40,9 @@ const Login: NextPage = () => {
       const { result, error } = await signIn(credential.email, credential.password);
 
       const accessToken = await result?.user.getIdToken();
-    
-      console.log("Access Token:", accessToken);
-      console.log(result)
 
       if(accessToken){
+        dispatch(setAuthorization(true))
         router.push('/dashboard')
       }
 

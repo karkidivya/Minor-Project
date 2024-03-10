@@ -1,13 +1,12 @@
-import type { NextPage } from "next";
 import Plumber from "./plumber";
 import styles from "./category-item.module.css";
-import axios from "axios";
 
 async function getData(){
   const backendUrl = process.env.BACKEND_URL
   const res = await fetch(`${backendUrl}/serviceCategory`)
   return res.json()
 }
+
 export default async function CategoryItem(){
   const data = await getData()
 

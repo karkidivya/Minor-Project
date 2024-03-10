@@ -4,21 +4,19 @@ import { Budget } from './components/dashboard/budget';
 import { TasksProgress } from './components/dashboard/tasks-progress';
 import { TotalCustomers } from './components/dashboard/total-customers';
 import { TotalProfit } from './components/dashboard/total-profit';
-import {useAuthContext} from '../context/AuthContext'
 import { useSocket } from '../context/SocketContext';
 import { useEffect } from 'react';
+import { useAppSelector } from '@/lib/hooks';
 
 const Page = () => {
-  const auths = useAuthContext()
-  console.log(auths, "jbjbjbjhb")
-  // console.log(auths.user.email, "jbjbjbjhb")
   const socket = useSocket()
-  console.log(socket)
+  const {isAuthorized} = useAppSelector((state) => state.user)
   useEffect(() => {
-    socket?.emit("newServiceProvider", auths.user.email);
-  }, [socket, auths]);
-  return
-  (<>
+    if(isAuthorized) socket?.emit("newServiceProvider", "random@gmail.com")
+  }, [isAuthorized]);
+
+  return(
+  <>
     <Box
       component="main"
       sx={{
