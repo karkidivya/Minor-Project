@@ -1,136 +1,114 @@
-'use client'
-// login.page.tsx
-import React, { useEffect } from 'react';
-import styles from './customerDashboard.module.css';
-import { useState } from 'react';
-import Link from 'next/link';
+"use client"
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';``
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Button, Typography } from '@mui/material';
-
-
-
+import { Button, TextField, Typography } from '@mui/material';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const columns: GridColDef[] = [
-   { field: 'id', headerName: 'SN', width: 80, headerAlign: 'center' },
-   { field: 'BookingId', headerName: 'BookingId', width: 80, headerAlign: 'center' },
-   { field: 'serviceProviderName', headerName: 'Service Provider', width: 370, headerAlign: 'center' },
-   { field: 'serviceName', headerName: 'Service', width: 300, headerAlign: 'center' },
-   { field: 'Task', headerName: 'Task Status', width: 100, headerAlign: 'center' },
-   {
-     field: 'Amount',
-     headerName: 'Amount',
-     type: 'number',
-     width: 200,
-     headerAlign: 'center',
-   },
-   {
-     field: 'Payment',
-     headerName: 'Payment',
-     renderCell: (params: GridValueGetterParams) => (
-       <Button variant="outlined" onClick={() => handlePayment(params)}>
-         Pay Now
-       </Button>
-     ),
-     width: 100,
-     headerAlign: 'center',
-   },
-   {
-     field: 'Review',
-     headerName: 'Review',
-     renderCell: (params: GridValueGetterParams) => (
-       <Button variant="outlined" onClick={() => handleReview(params.row.id)}>
-         Write Review
-       </Button>
-     ),
-     width: 200,
-     headerAlign: 'center',
-   },
-   {
-     field: 'Rating',
-     headerName: 'Rating',
-     renderCell: (params: GridValueGetterParams) => (
-       <Button variant="outlined" onClick={() => handleRating(params.row.id)}>
-         Rate
-       </Button>
-     ),
-     width: 200,
-     headerAlign: 'center',
-   },
- ];
- const handlePayment = (params) => {
+  { field: 'id', headerName: 'SN', width: 80, headerAlign: 'center' },
+  { field: 'serviceProviderId', headerName: 'Service Provider', width: 200, headerAlign: 'center' },
+  { field: 'serviceId', headerName: 'Service', width: 200, headerAlign: 'center' },
+  { field: 'taskStatus', headerName: 'Task Status', width: 150, headerAlign: 'center' },
+  { field: 'totalAmount', headerName: 'Total Amount', type: 'number', width: 150, headerAlign: 'center' },
+  { field: 'paymentAmount', headerName: 'Payment Amount', type: 'number', width: 150, headerAlign: 'center' },
+  { field: 'paymentStatus', headerName: 'Payment Status', width: 150, headerAlign: 'center' },
+  {
+    field: 'payButton',
+    headerName: 'Pay',
+    renderCell: (params: GridValueGetterParams) => (
+      <Button variant="outlined" onClick={() => handlePayment(params)}>
+        Pay Now
+      </Button>
+    ),
+    width: 100,
+    headerAlign: 'center',
+  },
+  {
+    field: 'ratingInput',
+    headerName: 'Rating',
+    renderCell: (params: GridValueGetterParams) => (
+      <TextField
+        variant="outlined"
+        type="number"
+        placeholder="Rating"
+        value={params.row.rating || ''}
+        onChange={(e) => handleRatingChange(e, params)}
+      />
+    ),
+    width: 150,
+    headerAlign: 'center',
+  },
+  {
+    field: 'reviewInput',
+    headerName: 'Review',
+    renderCell: (params: GridValueGetterParams) => (
+      <TextField
+        variant="outlined"
+        placeholder="Write a review"
+        value={params.row.review || ''}
+        onChange={(e) => handleReviewChange(e, params)}
+      />
+    ),
+    width: 200,
+    headerAlign: 'center',
+  },
+];
 
-  const amount = params.row.Amount;
+const handlePayment = (params: GridValueGetterParams) => {
+  const amount = params.row.totalAmount;
   const bookingId = params.row.BookingId;
-  // console.log(amount);
-  // Call the esewaCall function with the selected bookingId
-  esewaCall(bookingId,amount);
+  console.log(`Pay ${amount} for Booking ID ${bookingId}`);
 };
-  const handleReview = (id: string) => {
-   // Implement your review logic
-   console.log(`Review for row with id ${id}`);
- };
-  const handleRating = (id: string) => {
-   // Implement your rating logic
-   console.log(`Rating for row with id ${id}`);
- };
 
+const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>, params: GridValueGetterParams) => {
+  const value = e.target.value;
+  console.log(`Rating changed to ${value} for row ID ${params.row.id}`);
+  // Update state or perform other actions based on the rating change
+};
 
- export default function CustomerDashboard() {
-   const [rows,setRows] = useState([])
-   const [data, setData] = useState([]);
-   const [error, setError] = useState<string | null>(null);
+const handleReviewChange = (e: React.ChangeEvent<HTMLInputElement>, params: GridValueGetterParams) => {
+  const value = e.target.value;
+  console.log(`Review changed to ${value} for row ID ${params.row.id}`);
+  // Update state or perform other actions based on the review change
+};
 
- useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/userDashboard/getUserDetails`, { customerId: 1})
-      console.log(response.data.data[0])
-      // const result = await response
-      setData(response.data);
-    } catch (error) {
-    
-      // setError(error);
-    }
-  };
+export default function CustomerDashboard() {
+  const [rows, setRows] = useState([]);
 
-  
-  fetchData();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/userDashboard/getUserDetails`, { customerId: 1 });
+        setRows(response.data.data.map((item, index) => ({ ...item, id: index + 1 })));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-  
-  return () => {
-  
-  };
-}, []); 
+    fetchData();
+  }, []);
 
-
- return (
-   <div className={styles.background}>
-      
-   <div style={{ height: 1000, width: '80%', margin: 'auto', textAlign: 'center',backgroundColor: 'white' }}>
-   <div style={{ display: 'flex', alignItems: 'center' }}>
-     <Button variant="contained" sx={{marginLeft:'30px'}}><ArrowBackIosIcon /></Button>
-     <Typography variant="h3" sx={{ margin: '30px',marginLeft:'250px' }}>
-       Customer Dashboard
-     </Typography>
-   </div>
- <DataGrid
- rows={rows}
- columns={columns}
- pageSize={5}
- disableColumnFilter
- disableColumnMenu
- autoHeight
- style={{ width: '100%',height:'87%' }}
-/>
-
-
-</div>
-
-
-</div>
- );
+  return (
+    <div style={{ height: '100vh', width: '100%' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Button variant="contained" sx={{ marginLeft: '30px' }}>
+          <ArrowBackIosIcon />
+        </Button>
+        <Typography variant="h3" sx={{ margin: '30px', marginLeft: '250px' }}>
+          Customer Dashboard
+        </Typography>
+      </div>
+      <div style={{ height: 'calc(100vh - 150px)', width: '80%', margin: 'auto', textAlign: 'center', backgroundColor: 'white' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          disableColumnFilter
+          disableColumnMenu
+          autoHeight
+        />
+      </div>
+    </div>
+  );
 }
