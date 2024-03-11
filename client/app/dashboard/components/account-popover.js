@@ -1,9 +1,15 @@
 import PropTypes from 'prop-types';
 import { Box, MenuItem, MenuList, Popover, Typography } from '@mui/material';
+import { useAppDispatch } from '@/lib/hooks';
+import { setAuthorization } from '@/lib/features/user/userSlice';
 
 export const AccountPopover = (props) => {
   const { anchorEl, onClose, fullName, open, ...other } = props;
+  const dispatch = useAppDispatch()
 
+  const handleSignOut = () =>{
+    dispatch(setAuthorization(false))
+  }
 
   return (
     <Popover
@@ -48,7 +54,7 @@ export const AccountPopover = (props) => {
           }
         }}
       >
-        <MenuItem>
+        <MenuItem onClick = {handleSignOut}>
           Sign out
         </MenuItem>
       </MenuList>

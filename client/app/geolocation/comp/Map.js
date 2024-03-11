@@ -10,13 +10,14 @@ const MapComponent = ({address, coordinate, latitude, longitude}) => {
   const [marker, setMarker] = useState(null);
   const dispatch = useAppDispatch()
 
-  const generateAddress = async () =>{
+  const generateAddress = async (latitude, longitude) =>{
     const result = await placeFromPoint(latitude, longitude)
-    dispatch(address(result))
+    // console.log(result)
+    dispatch(address(result?.address))
   }
   const onMapClick = (e) => {
     dispatch(coordinate({latitude: e.latlng.lat, longitude: e.latlng.lng}))
-    // generateAddress()
+    generateAddress(e.latlng.lat, e.latlng.lng)
   };
   
   const loadLeaflet = async () => {

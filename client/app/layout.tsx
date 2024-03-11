@@ -4,9 +4,7 @@ import Head from "next/head";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./globals.css";
 import {  ScriptProps } from "next/script";
-import { AuthContextProvider } from './context/AuthContext'
 import StoreProvider from "./StoreProvider";
-import { SocketProvider } from "./context/SocketContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs'
 import {
@@ -53,13 +51,9 @@ export default function Layout({children}: ScriptProps) {
               <JoyCssVarsProvider>
                 <CssBaseline />
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <AuthContextProvider>
-                  <SocketProvider>
                   <StoreProvider>
                     {children}
                   </StoreProvider>
-                  </SocketProvider>
-                  </AuthContextProvider>
                 </LocalizationProvider>
               </JoyCssVarsProvider>
             </MaterialCssVarsProvider>

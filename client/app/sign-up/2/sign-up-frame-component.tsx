@@ -37,7 +37,7 @@ const FrameComponent: NextPage = () => {
                     style={{alignSelf: 'flex-start', width: '100%'}}/>
                     
       <div className={styles.location}>Location</div>
-      <GeoLocation address={address} coordinate = {coordinate} latitude={location.latitude} longitude={location.longitude}/>
+      <GeoLocation address={address} coordinate = {coordinate} location={location}/>
 
       <Button
         className={styles.frameInner}
