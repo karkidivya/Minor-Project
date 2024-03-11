@@ -13,7 +13,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useAppDispatch } from "@/lib/hooks";
-import { setAuthorization } from "@/lib/features/user/userSlice";
+import { setAccessToken, setAuthorization, setUserDetail } from "@/lib/features/user/userSlice";
 
 const initialCredential = {email: "", password: ""}
 const Login: NextPage = () => {
@@ -43,13 +43,21 @@ const Login: NextPage = () => {
 
       if(accessToken){
         dispatch(setAuthorization(true))
+        dispatch(setAccessToken(accessToken))
+        // axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login/`,credential)
+        // .then( res => {
+        //   const payload = res.data?.payload
+        //   const {fullName, emailAddress, } = payload
+        //   dispatch(setUserDetail({fullName, emailAddress, }))
+        // })
         router.push('/dashboard')
       }
 
     }catch(e){
-      toast.error(e, {hideProgressBar: true})
+      toast.error(String(e), {hideProgressBar: true})
     }
   }
+
 
   
   return (

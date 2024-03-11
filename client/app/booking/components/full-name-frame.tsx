@@ -46,7 +46,7 @@ const FullNameFrame: NextPage = () => {
                     style={{alignSelf: 'flex-start', width: '100%'}}/>
       
       <div className={styles.fullName}>Your Location</div>
-      <GeoLocation address = {address} coordinate = {coordinate} latitude={location.latitude} longitude ={location.longitude}/>
+      <GeoLocation address = {address} coordinate = {coordinate} location={location} />
 
       
       <h1 className={styles.kaamsewa}>Work Description</h1>

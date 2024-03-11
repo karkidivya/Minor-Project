@@ -36,7 +36,7 @@ const bookingSlice = createSlice({
             state.location.longitude = action.payload.longitude
         },
         address: (state, action: PayloadAction<any>)=>{
-            state.location.address = action.payload.address
+            state.location.address = action.payload
         },
         serviceProvider: (state, action: PayloadAction<any>) =>{
             state.serviceProviderId = action.payload.serviceProviderId

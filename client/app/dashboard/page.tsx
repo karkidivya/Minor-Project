@@ -12,8 +12,8 @@ const Page = () => {
   const socket = useSocket()
   const {isAuthorized} = useAppSelector((state) => state.user)
   useEffect(() => {
-    if(isAuthorized) socket?.emit("newServiceProvider", "random@gmail.com")
-  }, [isAuthorized]);
+    socket?.emit("newServiceProvider", "random@gmail.com")
+  }, []);
 
   return(
   <>

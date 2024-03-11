@@ -9,7 +9,6 @@ const bookingController = {
         try {
             // Retrieve bookings from the database
             const bookings = await queryAsync('SELECT * FROM Booking');
-            console.log(bookings)
             // Send the bookings as JSON response
             res.status(200).json({ status: 'success', data: bookings });
         } catch (error) {

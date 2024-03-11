@@ -42,7 +42,7 @@ const signupSllice = createSlice({
             state.location.longitude = action.payload.longitude
         },
         address: (state, action: PayloadAction<any>)=>{
-            state.location.address = action.payload.address
+            state.location.address = action.payload
         },
         phoneNumber: (state, action: PayloadAction<any>) =>{
             state.phoneNumber = action.payload
