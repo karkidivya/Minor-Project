@@ -7,6 +7,7 @@ import serviceCategoryRoutes from './serviceCategoryRoutes.js';
 import serviceRoutes from './serviceRoutes.js';
 import otp from './otpRoutes.js'
 import esewaRouter from './esewa.js';
+import paymentRoutes from './paymentRoutes.js';
 
 const router = express.Router();
 
@@ -18,6 +19,7 @@ router.use('/serviceCategory', serviceCategoryRoutes);
 router.use('/service', serviceRoutes);
 router.use('/loginOtp', otp)
 router.use('/payment', esewaRouter );
+router.use('/paymentRoute', paymentRoutes );
 
 // Middleware for handling unmatched routes
 router.use((req, res, next) => {

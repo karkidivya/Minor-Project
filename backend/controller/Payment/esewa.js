@@ -6,10 +6,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Create a MySQL connection pool
-const host = process.env.HOST;
-const user = process.env.USERNAME;
-const password = process.env.PASSWORD;
-const database = process.env.DATABASE;
+const host = 'localhost';
+const user = 'root';
+const password = 'rootuser';
+const database = 'kamsewa';
 
 const pool = mysql.createPool({
   host: host,
@@ -58,45 +58,84 @@ export async function checkTransactionExists(transaction_uuid) {
   }
 }
 
-// Function to save the transaction record in the database
-export async function saveTransactionToDatabase(transactionDetails) {
-  let connection;
-  try {
-    connection = await pool.getConnection();
-    console.log('MySQL connection successful');
+// // Function to save the transaction record in the database
+// export async function saveTransactionToDatabase(transactionDetails) {
+//   let connection;
+//   try {
+//     connection = await pool.getConnection();
+//     console.log('MySQL connection successful');
 
-    const { transaction_uuid, status } = transactionDetails;
+//     const { transaction_uuid, status } = transactionDetails;
+//     console.log(transaction_uuid)
+//     // Update the status based on transaction_uuid
+//     await connection.query(
+//       'UPDATE Payment SET status = ? WHERE transaction_uuid = ?',
+//       [status, transaction_uuid]
+//     );
 
-    // Update the status based on transaction_uuid
-    await connection.query(
-      'UPDATE Payment SET status = ? WHERE transaction_uuid = ?',
-      [status, transaction_uuid]
-    );
+//     // Check if any rows were affected to determine if the transaction existed
+//     const rowsAffected = connection.affectedRows;
+//     if (rowsAffected > 0) {
+//       console.log('Transaction status updated');
+//       return { success: true, message: 'Transaction status updated successfully' };
+//     } else {
+//       console.log('Transaction not found');
+//       return { success: false, message: 'Transaction not found' };
+//     }
+//   } finally {
+//     if (connection) {
+//       connection.release();
+//     }
+//   }
+// }
 
-    // Check if any rows were affected to determine if the transaction existed
-    const rowsAffected = connection.affectedRows;
-    if (rowsAffected > 0) {
-      console.log('Transaction status updated');
-      return { success: true, message: 'Transaction status updated successfully' };
-    } else {
-      console.log('Transaction not found');
-      return { success: false, message: 'Transaction not found' };
-    }
-  } finally {
-    if (connection) {
-      connection.release();
-    }
-  }
-}
+// // Verify payment function
+// export async function verifyPayment(req, res, next) {
+//   try {
+//     const { data } = req.body;
+//     const decodedData = base64.decode(data.data);
+//     const decodedJSON = JSON.parse(decodedData.toString());
 
-// Verify payment function
+//     const { product_code, total_amount, transaction_uuid } = decodedJSON;
+
+//     const parsedUrl = new URL('https://uat.esewa.com.np/api/epay/transaction/status/');
+//     parsedUrl.searchParams.append('product_code', product_code);
+//     parsedUrl.searchParams.append('total_amount', total_amount);
+//     parsedUrl.searchParams.append('transaction_uuid', transaction_uuid);
+
+//     // Fetch external data
+//     let body;
+//     try {
+//       const response = await fetch(parsedUrl, { method: 'GET' });
+//       body = await response.json();
+//     } catch (fetchError) {
+//       throw new Error(`Error fetching external data: ${fetchError.message}`);
+//     }
+
+//     console.log('External API response:', body);
+
+//     if (body.status === 'COMPLETE') {
+//       // Call the function to save the transaction to the database
+//       await saveTransactionToDatabase({ ...decodedJSON, status: body.status });
+
+//       res.json({ status: body.status, orderId: transaction_uuid });
+//     } else {
+//       return res.status(400).json({ error: 'Payment not complete' });
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     return res.status(400).json({ error: err.message });
+//   }
+// }
+
+
 export async function verifyPayment(req, res, next) {
   try {
     const { data } = req.body;
     const decodedData = base64.decode(data.data);
     const decodedJSON = JSON.parse(decodedData.toString());
 
-    const { product_code, total_amount, transaction_uuid, ref_id } = decodedJSON;
+    const { product_code, total_amount, transaction_uuid } = decodedJSON;
 
     const parsedUrl = new URL('https://uat.esewa.com.np/api/epay/transaction/status/');
     parsedUrl.searchParams.append('product_code', product_code);
@@ -115,10 +154,24 @@ export async function verifyPayment(req, res, next) {
     console.log('External API response:', body);
 
     if (body.status === 'COMPLETE') {
-      // Call the function to save the transaction to the database
-      await saveTransactionToDatabase({ ...decodedJSON, status: body.status });
-
-      res.json({ status: body.status, orderId: transaction_uuid });
+      let connection;
+      try {
+        connection = await pool.getConnection();
+        console.log('MySQL connection successful');
+        // const data = await connection.query(
+        //   'Select * From Payment'
+        // )
+        console.log(data)
+        // Update the status based on transaction_uuid
+        await connection.query(
+          'UPDATE Payment SET status = ? WHERE transaction_uuid = ?',
+          [body.status, transaction_uuid]
+        );
+      } finally {
+        if (connection) {
+          connection.release();
+        }
+      }
     } else {
       return res.status(400).json({ error: 'Payment not complete' });
     }

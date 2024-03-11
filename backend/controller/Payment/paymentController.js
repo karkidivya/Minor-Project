@@ -53,7 +53,7 @@ const paymentController = {
     addPayment: async (req, res) => {
         const {
             bookingId,
-            transaction_uuid,
+            uuidf,
             amount
         } = req.body;
 
@@ -67,13 +67,11 @@ const paymentController = {
                     status,
                     created_at,
                     updated_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
+                ) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
             const values = [
                 bookingId,
-                transaction_uuid,
+                uuidf,
                 amount,
-                extraWorkDescription,
-                additionalAmount,
                 'waiting'
             ];
             await queryAsync(query, values);
