@@ -26,17 +26,22 @@ CREATE TABLE `Booking` (
   `bookingId` int NOT NULL AUTO_INCREMENT,
   `customerId` int DEFAULT NULL,
   `serviceProviderId` int DEFAULT NULL,
-  `serviceId` json DEFAULT NULL,
+  `serviceId` int DEFAULT NULL,
   `categoryId` int DEFAULT NULL,
-  `dateAndTime` datetime DEFAULT NULL,
+  `amount` int DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  `phoneNumber` varchar(255) DEFAULT NULL,
+  `workDescription` varchar(255) DEFAULT NULL,
   `location` json DEFAULT NULL,
   `additionalNotes` varchar(255) DEFAULT NULL,
   `bookingStatus` varchar(255) DEFAULT NULL,
+  `paymentStatus` varchar(255) DEFAULT NULL,
   `reviewId` json DEFAULT NULL,
   `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`bookingId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +50,7 @@ CREATE TABLE `Booking` (
 
 LOCK TABLES `Booking` WRITE;
 /*!40000 ALTER TABLE `Booking` DISABLE KEYS */;
-INSERT INTO `Booking` VALUES (1,1,201,'{\"price\": 30, \"service\": \"Haircut\"}',1,'2024-03-10 10:00:00','{\"latitude\": 40.7128, \"longitude\": -74.006}','Please arrive 10 minutes before the appointment.','Confirmed','null','2024-03-09 12:42:50','2024-03-09 12:42:50');
+INSERT INTO `Booking` VALUES (71,1,101,1,1,50,'2024-03-15','10:00','1234567890','Service description 1','{\"latitude\": 123.456, \"longitude\": 789.012}','Additional notes 1','confirmed','pending','{\"rating\": 4, \"comment\": \"Good service\"}','2024-03-12 03:00:13','2024-03-12 03:00:13'),(72,1,102,2,2,70,'2024-03-16','11:00','9876543210','Service description 2','{\"latitude\": 456.789, \"longitude\": 12.345}','Additional notes 2','pending','pending',NULL,'2024-03-12 03:00:13','2024-03-12 03:00:13'),(73,1,103,3,3,80,'2024-03-17','12:00','1112223333','Service description 3','{\"latitude\": 789.012, \"longitude\": 234.567}','Additional notes 3','confirmed','completed','{\"rating\": 5, \"comment\": \"Excellent service\"}','2024-03-12 03:00:13','2024-03-12 03:00:13'),(74,1,104,4,4,60,'2024-03-18','13:00','4445556666','Service description 4','{\"latitude\": 345.678, \"longitude\": 456.789}','Additional notes 4','confirmed','pending',NULL,'2024-03-12 03:00:13','2024-03-12 03:00:13'),(75,1,105,5,5,90,'2024-03-19','14:00','7778889999','Service description 5','{\"latitude\": 567.89, \"longitude\": 678.901}','Additional notes 5','pending','pending',NULL,'2024-03-12 03:00:13','2024-03-12 03:00:13'),(81,1,101,1,1,50,'2024-03-15','10:00','1234567890','Service description 1','{\"latitude\": 123.456, \"longitude\": 789.012}','Additional notes 1','confirmed','pending','{\"rating\": 4, \"comment\": \"Good service\"}','2024-03-12 03:02:03','2024-03-12 03:02:03'),(82,1,102,2,2,70,'2024-03-16','11:00','9876543210','Service description 2','{\"latitude\": 456.789, \"longitude\": 12.345}','Additional notes 2','pending','pending',NULL,'2024-03-12 03:02:03','2024-03-12 03:02:03'),(83,1,103,3,3,80,'2024-03-17','12:00','1112223333','Service description 3','{\"latitude\": 789.012, \"longitude\": 234.567}','Additional notes 3','confirmed','completed','{\"rating\": 5, \"comment\": \"Excellent service\"}','2024-03-12 03:02:03','2024-03-12 03:02:03'),(84,1,104,4,4,60,'2024-03-18','13:00','4445556666','Service description 4','{\"latitude\": 345.678, \"longitude\": 456.789}','Additional notes 4','confirmed','pending',NULL,'2024-03-12 03:02:03','2024-03-12 03:02:03'),(85,1,105,5,5,90,'2024-03-19','14:00','7778889999','Service description 5','{\"latitude\": 567.89, \"longitude\": 678.901}','Additional notes 5','pending','pending',NULL,'2024-03-12 03:02:03','2024-03-12 03:02:03');
 /*!40000 ALTER TABLE `Booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,15 +62,18 @@ DROP TABLE IF EXISTS `Payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Payment` (
-  `paymentId` int NOT NULL,
-  `bookingId` int DEFAULT NULL,
-  `amount` int DEFAULT NULL,
-  `paymentMethod` varchar(255) DEFAULT NULL,
-  `paymentStatus` varchar(255) DEFAULT NULL,
-  `createdAt` date DEFAULT NULL,
-  `updatedAt` date DEFAULT NULL,
-  PRIMARY KEY (`paymentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `product_code` varchar(255) NOT NULL,
+  `transaction_uuid` varchar(36) NOT NULL,
+  `total_amount` int NOT NULL,
+  `extraWorkDescription` varchar(255) DEFAULT NULL,
+  `additionalAmount` int DEFAULT NULL,
+  `status` varchar(50) NOT NULL,
+  `ref_id` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +82,7 @@ CREATE TABLE `Payment` (
 
 LOCK TABLES `Payment` WRITE;
 /*!40000 ALTER TABLE `Payment` DISABLE KEYS */;
-INSERT INTO `Payment` VALUES (1,1,100,'Credit Card','Completed','2024-02-25','2024-02-25'),(2,2,50,'PayPal','Pending','2024-02-26','2024-02-26'),(3,3,80,'Credit Card','Completed','2024-02-27','2024-02-27'),(4,4,120,'PayPal','Pending','2024-02-28','2024-02-28'),(5,5,150,'Credit Card','Completed','2024-02-29','2024-02-29'),(6,6,90,'PayPal','Pending','2024-03-01','2024-03-01'),(7,7,110,'Credit Card','Completed','2024-03-02','2024-03-02'),(8,8,70,'PayPal','Pending','2024-03-03','2024-03-03'),(9,9,130,'Credit Card','Completed','2024-03-04','2024-03-04'),(10,10,100,'PayPal','Pending','2024-03-05','2024-03-05');
+INSERT INTO `Payment` VALUES (1,'PRD001','1',50,'Extra work description 1',10,'completed','REF001','2024-03-11 20:45:03','2024-03-11 20:45:03'),(2,'PRD002','3',70,'Extra work description 2',15,'pending','REF002','2024-03-11 20:45:03','2024-03-11 20:45:03'),(3,'PROD001','5bb7c966-dfed-11ee-b989-d8126564fb4b',70,'Extra work description 1',10,'completed','REF001','2024-03-11 21:21:43','2024-03-11 21:21:43'),(4,'PROD002','5bb7cedb-dfed-11ee-b989-d8126564fb4b',71,'Extra work description 2',15,'pending','REF002','2024-03-11 21:21:43','2024-03-11 21:21:43'),(5,'PROD003','5bb7cfe9-dfed-11ee-b989-d8126564fb4b',72,'Extra work description 3',20,'completed','REF003','2024-03-11 21:21:43','2024-03-11 21:21:43'),(6,'PROD004','5bb7d076-dfed-11ee-b989-d8126564fb4b',73,'Extra work description 4',25,'pending','REF004','2024-03-11 21:21:43','2024-03-11 21:21:43'),(7,'PROD005','5bb7d0f6-dfed-11ee-b989-d8126564fb4b',74,'Extra work description 5',30,'completed','REF005','2024-03-11 21:21:43','2024-03-11 21:21:43'),(8,'PROD006','5bb7d2ce-dfed-11ee-b989-d8126564fb4b',75,'Extra work description 6',35,'pending','REF006','2024-03-11 21:21:43','2024-03-11 21:21:43'),(9,'PROD007','5bb7d351-dfed-11ee-b989-d8126564fb4b',76,'Extra work description 7',40,'completed','REF007','2024-03-11 21:21:43','2024-03-11 21:21:43'),(10,'PROD008','5bb7d3cb-dfed-11ee-b989-d8126564fb4b',77,'Extra work description 8',45,'pending','REF008','2024-03-11 21:21:43','2024-03-11 21:21:43'),(11,'PROD009','5bb7d463-dfed-11ee-b989-d8126564fb4b',78,'Extra work description 9',50,'completed','REF009','2024-03-11 21:21:43','2024-03-11 21:21:43'),(12,'PROD010','5bb7d75f-dfed-11ee-b989-d8126564fb4b',79,'Extra work description 10',55,'pending','REF010','2024-03-11 21:21:43','2024-03-11 21:21:43'),(13,'PRODUCT001','70',100,'Extra work description 1',20,'completed','REF001','2024-03-11 21:22:52','2024-03-11 21:22:52'),(14,'PRODUCT002','71',120,'Extra work description 2',30,'pending','REF002','2024-03-11 21:22:52','2024-03-11 21:22:52'),(15,'PRODUCT003','72',150,'Extra work description 3',25,'completed','REF003','2024-03-11 21:22:52','2024-03-11 21:22:52'),(16,'PRODUCT004','73',80,'Extra work description 4',10,'pending','REF004','2024-03-11 21:22:52','2024-03-11 21:22:52'),(17,'PRODUCT005','74',200,'Extra work description 5',40,'completed','REF005','2024-03-11 21:22:52','2024-03-11 21:22:52'),(18,'PRODUCT006','75',90,'Extra work description 6',15,'pending','REF006','2024-03-11 21:22:52','2024-03-11 21:22:52'),(19,'PRODUCT007','76',110,'Extra work description 7',20,'completed','REF007','2024-03-11 21:22:52','2024-03-11 21:22:52'),(20,'PRODUCT008','77',130,'Extra work description 8',35,'pending','REF008','2024-03-11 21:22:52','2024-03-11 21:22:52'),(21,'PRODUCT009','78',170,'Extra work description 9',30,'completed','REF009','2024-03-11 21:22:52','2024-03-11 21:22:52'),(22,'PRODUCT010','79',95,'Extra work description 10',15,'pending','REF010','2024-03-11 21:22:52','2024-03-11 21:22:52');
 /*!40000 ALTER TABLE `Payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +217,7 @@ CREATE TABLE `ServiceProvider` (
   PRIMARY KEY (`serviceProviderId`),
   KEY `fk_category` (`categoryId`),
   CONSTRAINT `fk_category` FOREIGN KEY (`categoryId`) REFERENCES `ServiceCategory` (`categoryId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +226,7 @@ CREATE TABLE `ServiceProvider` (
 
 LOCK TABLES `ServiceProvider` WRITE;
 /*!40000 ALTER TABLE `ServiceProvider` DISABLE KEYS */;
-INSERT INTO `ServiceProvider` VALUES (1,'john_doee','password123e','John Doee','john.doe@examplee.com','1234567890','{\"address\": \"Gaighat\", \"latitude\": 27.7172, \"longitude\": 85.324}','profile_pic.jpg','Experienced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-07 08:33:33','2024-03-07 08:33:33'),(2,'veaevjohn_doecdcdce','passwocdard123e','John Doecdse','jocshn.doe@examplee.com','12344567890','{\"address\": \"Gaigdhat\", \"latitude\": 27.7172, \"longitude\": 85.324}','proficsdle_pic.jpg','Expericsenced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-07 12:26:45','2024-03-07 12:26:45'),(3,'veacscsevjohn_doecdcdce','passwocdard123e','John Doecdse','josdcscshn.doe@examplee.com',NULL,'{\"address\": \"Gaigdhat\", \"latitude\": 27.7172, \"longitude\": 85.324}','proficsdle_pic.jpg','Expericsenced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-07 12:27:18','2024-03-07 12:27:18'),(4,NULL,'qqqqqqqq','diyan',NULL,'+977 3333333333','\"\"','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FprofilePicture%2Fundefined?alt=media&token=4246a645-57c0-4d21-94c9-a45870507834','',NULL,'beginner','full-time',NULL,NULL,'fawe','','','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FcertificateImage%2Fundefined?alt=media&token=da662d27-bdf7-4f5a-b181-75896d21825f','primary',NULL,NULL,NULL,NULL,NULL,NULL,'2024-03-07 13:54:15','2024-03-07 13:54:15');
+INSERT INTO `ServiceProvider` VALUES (1,'john_doee','password123e','John Doee','john.doe@examplee.com','1234567890','{\"address\": \"Gaighat\", \"latitude\": 27.7172, \"longitude\": 85.324}','profile_pic.jpg','Experienced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-07 08:33:33','2024-03-07 08:33:33'),(2,'veaevjohn_doecdcdce','passwocdard123e','John Doecdse','jocshn.doe@examplee.com','12344567890','{\"address\": \"Gaigdhat\", \"latitude\": 27.7172, \"longitude\": 85.324}','proficsdle_pic.jpg','Expericsenced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-07 12:26:45','2024-03-07 12:26:45'),(3,'veacscsevjohn_doecdcdce','passwocdard123e','John Doecdse','josdcscshn.doe@examplee.com',NULL,'{\"address\": \"Gaigdhat\", \"latitude\": 27.7172, \"longitude\": 85.324}','proficsdle_pic.jpg','Expericsenced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-07 12:27:18','2024-03-07 12:27:18'),(4,NULL,'qqqqqqqq','diyan',NULL,'+977 3333333333','\"\"','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FprofilePicture%2Fundefined?alt=media&token=4246a645-57c0-4d21-94c9-a45870507834','',NULL,'beginner','full-time',NULL,NULL,'fawe','','','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FcertificateImage%2Fundefined?alt=media&token=da662d27-bdf7-4f5a-b181-75896d21825f','primary',NULL,NULL,NULL,NULL,NULL,NULL,'2024-03-07 13:54:15','2024-03-07 13:54:15'),(5,'vjohn_doecdcdce','passwocdard123e','John Doecdse','joshn.doe@examplee.com',NULL,'{\"address\": \"Gaigdhat\", \"latitude\": 27.7172, \"longitude\": 85.324}','proficsdle_pic.jpg','Expericsenced service provider',1,'Expert','Full-time','Remote work preferred','ABC Company','Manager','9 AM - 5 PM','Available upon request','Certified in X','Bachelor\'s in Y',4,100,1,'{\"service1\": {\"price\": 50, \"duration\": \"1 hour\"}}','{\"payment1\": {\"date\": \"2024-03-07\", \"amount\": 50}}',NULL,'2024-03-10 09:29:58','2024-03-10 09:29:58'),(6,NULL,'qqqqqqqq','Aashish Shrestha','aashish@gmail.com','+977 983 2982323','{\"address\": \"\", \"latitude\": 27.71974110399233, \"longitude\": 85.33213153481485}','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FprofilePicture%2Fundefined?alt=media&token=ca4d19e1-65aa-4bb7-914c-6c0876022065','I am a very specialized and experience professional with more than 12 years of experience in this field.',1,'semi-pro','full-time','kathmandu',NULL,'Cleaner','','','https://firebasestorage.googleapis.com/v0/b/kamsewa-62691.appspot.com/o/user%2FcertificateImage%2Fundefined?alt=media&token=b0d820ee-dd74-4a92-926f-ea5adb9a9bb2','higher-secondary',NULL,NULL,NULL,NULL,NULL,NULL,'2024-03-10 10:03:02','2024-03-10 10:03:02');
 /*!40000 ALTER TABLE `ServiceProvider` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +251,7 @@ CREATE TABLE `User` (
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +260,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'user1','password1','Alice Johnson','alice@example.com','1234567890','Address A',800,1,'{\"paymentMethod\": \"Credit Card\"}','2024-02-24 18:15:00','2024-02-24 18:15:00'),(2,'user2','password2','Bob Smith','bob@example.com','9876543210','Address B',750,1,'{\"paymentMethod\": \"PayPal\"}','2024-02-25 18:15:00','2024-02-25 18:15:00'),(3,'user3','password3','Charlie Brown','charlie@example.com','1234567890','Address C',820,1,'{\"paymentMethod\": \"Credit Card\"}','2024-02-26 18:15:00','2024-02-26 18:15:00'),(4,'user4','password4','David Johnson','david@example.com','9876543210','Address D',780,1,'{\"paymentMethod\": \"PayPal\"}','2024-02-27 18:15:00','2024-02-27 18:15:00'),(5,'user5','password5','Eva Smith','eva@example.com','1234567890','Address E',790,1,'{\"paymentMethod\": \"Credit Card\"}','2024-02-28 18:15:00','2024-02-28 18:15:00'),(6,'user6','password6','Franklin White','franklin@example.com','9876543210','Address F',830,1,'{\"paymentMethod\": \"PayPal\"}','2024-02-29 18:15:00','2024-02-29 18:15:00'),(7,'user7','password7','Grace Johnson','grace@example.com','1234567890','Address G',810,1,'{\"paymentMethod\": \"Credit Card\"}','2024-03-01 18:15:00','2024-03-01 18:15:00'),(8,'user8','password8','Henry Smith','henry@example.com','9876543210','Address H',760,1,'{\"paymentMethod\": \"PayPal\"}','2024-03-02 18:15:00','2024-03-02 18:15:00'),(9,'user9','password9','Isabella Brown','isabella@example.com','1234567890','Address I',830,1,'{\"paymentMethod\": \"Credit Card\"}','2024-03-03 18:15:00','2024-03-03 18:15:00'),(10,'user10','password10','Jack Johnson','jack@example.com','9876543210','Address J',770,1,'{\"paymentMethod\": \"PayPal\"}','2024-03-04 18:15:00','2024-03-04 18:15:00');
+INSERT INTO `User` VALUES (1,'user1','password1','Alice Johnson','alice@example.com','1234567890','Address A',800,1,'{\"paymentMethod\": \"Credit Card\"}','2024-02-24 18:15:00','2024-02-24 18:15:00'),(2,'user2','password2','Bob Smith','bob@example.com','9876543210','Address B',750,1,'{\"paymentMethod\": \"PayPal\"}','2024-02-25 18:15:00','2024-02-25 18:15:00'),(3,'user3','password3','Charlie Brown','charlie@example.com','1234567890','Address C',820,1,'{\"paymentMethod\": \"Credit Card\"}','2024-02-26 18:15:00','2024-02-26 18:15:00'),(4,'user4','password4','David Johnson','david@example.com','9876543210','Address D',780,1,'{\"paymentMethod\": \"PayPal\"}','2024-02-27 18:15:00','2024-02-27 18:15:00'),(5,'user5','password5','Eva Smith','eva@example.com','1234567890','Address E',790,1,'{\"paymentMethod\": \"Credit Card\"}','2024-02-28 18:15:00','2024-02-28 18:15:00'),(6,'user6','password6','Franklin White','franklin@example.com','9876543210','Address F',830,1,'{\"paymentMethod\": \"PayPal\"}','2024-02-29 18:15:00','2024-02-29 18:15:00'),(7,'user7','password7','Grace Johnson','grace@example.com','1234567890','Address G',810,1,'{\"paymentMethod\": \"Credit Card\"}','2024-03-01 18:15:00','2024-03-01 18:15:00'),(8,'user8','password8','Henry Smith','henry@example.com','9876543210','Address H',760,1,'{\"paymentMethod\": \"PayPal\"}','2024-03-02 18:15:00','2024-03-02 18:15:00'),(9,'user9','password9','Isabella Brown','isabella@example.com','1234567890','Address I',830,1,'{\"paymentMethod\": \"Credit Card\"}','2024-03-03 18:15:00','2024-03-03 18:15:00'),(10,'user10','password10','Jack Johnson','jack@example.com','9876543210','Address J',770,1,'{\"paymentMethod\": \"PayPal\"}','2024-03-04 18:15:00','2024-03-04 18:15:00'),(11,NULL,'qqqq','userAdmin',NULL,'44444444444',NULL,NULL,NULL,NULL,'2024-03-11 14:28:09','2024-03-11 14:28:09'),(12,NULL,'csdsc','AdminGPON',NULL,'44444444444',NULL,NULL,NULL,NULL,'2024-03-11 14:29:05','2024-03-11 14:29:05'),(13,NULL,'dca','Class-Routine',NULL,'44444444444',NULL,NULL,NULL,NULL,'2024-03-11 14:30:28','2024-03-11 14:30:28'),(14,NULL,'dascs','',NULL,'44444444444',NULL,NULL,NULL,NULL,'2024-03-11 14:31:01','2024-03-11 14:31:01'),(15,NULL,'csc','Routine_keeper5',NULL,'44444444444',NULL,NULL,NULL,NULL,'2024-03-11 14:32:21','2024-03-11 14:32:21'),(16,NULL,'cssdcs','userAdmin',NULL,'44444444444',NULL,NULL,NULL,NULL,'2024-03-11 14:33:24','2024-03-11 14:33:24'),(17,NULL,'csc','sdcuserAdmin',NULL,'44444444444',NULL,NULL,NULL,NULL,'2024-03-11 14:34:53','2024-03-11 14:34:53'),(18,NULL,'cs','userAdmin',NULL,'cs',NULL,NULL,NULL,NULL,'2024-03-11 16:09:30','2024-03-11 16:09:30'),(19,NULL,'dassfs','Class-Routine',NULL,'44444444444',NULL,NULL,NULL,NULL,'2024-03-11 16:09:47','2024-03-11 16:09:47'),(20,NULL,'cds','AdminGPON',NULL,'cs',NULL,NULL,NULL,NULL,'2024-03-11 16:11:22','2024-03-11 16:11:22'),(21,NULL,'csc','scscd',NULL,'',NULL,NULL,NULL,NULL,'2024-03-11 16:12:41','2024-03-11 16:12:41'),(22,NULL,'vasdv','userAdminsdcsa',NULL,'44444444444',NULL,NULL,NULL,NULL,'2024-03-11 16:13:49','2024-03-11 16:13:49');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -265,4 +273,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-09 13:38:31
+-- Dump completed on 2024-03-12  3:18:18
