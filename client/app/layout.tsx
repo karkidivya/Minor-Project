@@ -4,7 +4,6 @@ import Head from "next/head";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./globals.css";
 import {  ScriptProps } from "next/script";
-import { AuthContextProvider } from './context/AuthContext'
 import StoreProvider from "./StoreProvider";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs'
@@ -31,10 +30,10 @@ export default function Layout({children}: ScriptProps) {
     <html>
       <head></head>
       <body>
-      <AuthContextProvider>
+      
         <Fragment>
           <Head>
-            <title>something</title>
+            <title>KaamSewa</title>
             <meta
               name="viewport"
               content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -60,7 +59,7 @@ export default function Layout({children}: ScriptProps) {
             </MaterialCssVarsProvider>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         </Fragment>
-        </AuthContextProvider>
+        
       </body>
     </html>
   );

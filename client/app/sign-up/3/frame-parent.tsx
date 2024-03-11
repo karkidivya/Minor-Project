@@ -8,20 +8,30 @@ import {
   Button,
 } from "@mui/material";
 import styles from "./frame-parent.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AppDispatch, RootState } from "@/lib/store";
+import { AppDispatch } from "@/lib/store";
 import { skillAndExpertise } from "@/lib/features/signup/signupSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch } from "@/lib/hooks";
+import axios from "axios";
+
+const getData = async(setData: any) =>{
+  const {data} = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceCategory/`)  
+  if(data)
+    setData(data.data)
+  return
+}
 interface ISkillAndProficiency{
-  skill : 'carpenter' | 'plumber' | 'electrician' | 'mechanic' | 'cleaner' | 'painter'
+  categoryId : number
   proficiency: 'beginner' | 'intermediate' | 'semi-pro' | 'pro'
 }
-const exampleObject : ISkillAndProficiency = { skill: 'carpenter' , proficiency: 'beginner'}
+const exampleObject : ISkillAndProficiency = { categoryId: 1, proficiency: 'beginner'}
 const FrameParent: NextPage = () => {
+  const [ skill, setSkill ] = useState([])
   const [ skillAndProficiency, setSkillAndProficiency] = useState(exampleObject)
   const router = useRouter();
   const dispatch: AppDispatch = useAppDispatch();
+  useEffect(() => {getData(setSkill)},[])
 
   const handleChange = (e: any) =>{
     const name = e.target.name
@@ -32,10 +42,10 @@ const FrameParent: NextPage = () => {
   }
 
   const handleSubmit = () =>{
-    // console.log(skillAndProficiency)
+    console.log(skillAndProficiency)
     // handleSubmit
     dispatch(skillAndExpertise(skillAndProficiency))
-    router.push('/sign-up/3')
+    router.push('/sign-up/4')
   }
   return (
     <div className={styles.frameParent}>
@@ -53,7 +63,6 @@ const FrameParent: NextPage = () => {
           borderRightWidth: "1px",
           borderBottomWidth: "1px",
           borderLeftWidth: "1px",
-          // backgroundColor: "#fff",
           borderRadius: "5px",
           width: "311px",
           height: "29px",
@@ -101,16 +110,13 @@ const FrameParent: NextPage = () => {
           color="secondary"
           disableUnderline
           displayEmpty
-          name = "skill"
+          name = "categoryId"
           onChange = {handleChange}
-          value = {skillAndProficiency.skill}
+          value = {skill[0] ? `${skillAndProficiency.categoryId}` : ""}
         >
-          <MenuItem value = {'Carpenter'}>Carpenter</MenuItem>
-          <MenuItem value = {'Electrician'}>Electrician</MenuItem>
-          <MenuItem value = {'Plumber'}>Plumber</MenuItem>
-          <MenuItem value = {'Painter'}>Painter</MenuItem>
-          <MenuItem value = {'Auto-Repair'}>Auto Repair</MenuItem>
-          <MenuItem value = {'Computer-Repair'}>Computer Repair</MenuItem>
+          {skill.map( (item: any, idx: number)=> {
+              return <MenuItem key = {idx} value = {item.categoryId}>{item.categoryName}</MenuItem>
+          })}
         </Select>
 
         <FormHelperText />

@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '@mui/material/Button'
+import { divIcon } from 'leaflet'
 
 type Props = {
   image: File | undefined | string
@@ -30,6 +31,8 @@ const FileUploader = (props: Props) => {
 
   return (
     <>
+      {props.image && <img src = {`${URL.createObjectURL(props.image)}`} style={{maxWidth: '300px'}} />}
+      {props.image && <div>{props.image.name}</div>}
       <label htmlFor={inputId}>
         <Button variant='contained' component='span' sx = {{whiteSpace: 'nowrap'}}>
           Choose an Image
@@ -43,7 +46,6 @@ const FileUploader = (props: Props) => {
           style={{ display: 'none' }}
         />
       </label>
-        {props.image && <div style = {{color: 'black'}}>{props.image.name}</div>}
 
 
     </>

@@ -17,9 +17,9 @@ import { workPreference as f_workPreference } from "@/lib/features/signup/signup
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 interface IWorkPreference{
   availability : 'full-time' | 'part-time'
-  location: 'kathmandu' | 'pokhara' | 'biratnagar' | 'dharan'
+  preference: 'kathmandu' | 'pokhara' | 'biratnagar' | 'dharan'
 }
-const exampleObject : IWorkPreference = { availability: 'full-time' , location: 'kathmandu'}
+const exampleObject : IWorkPreference = { availability: 'full-time' , preference: 'kathmandu'}
 const AvailabilityFrameSet: NextPage = () => {
   const [ workPreferences, setWorkPreference] = useState(exampleObject)
   const router = useRouter()
@@ -38,7 +38,7 @@ const AvailabilityFrameSet: NextPage = () => {
     console.log(workPreferences)
     // handleSubmit
     dispatch(f_workPreference(workPreferences))
-    router.push('/sign-up/4')
+    router.push('/sign-up/5')
     
   }
   return (
@@ -174,7 +174,7 @@ const AvailabilityFrameSet: NextPage = () => {
           disableUnderline
           displayEmpty
           name = 'location'
-          value = {workPreferences.location}
+          value = {workPreferences.preference}
           onChange={handleChange}
         >
           <MenuItem value = 'kathmandu'>Kathmandu</MenuItem>

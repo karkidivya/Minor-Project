@@ -1,10 +1,23 @@
 import PropTypes from 'prop-types';
 import { Box, MenuItem, MenuList, Popover, Typography } from '@mui/material';
-
+import { useSocket } from '../../../context/SocketContext';
+import { useEffect, useState } from 'react';
 export const Notification = (props) => {
   const { anchorEl, onClose, fullName, open, ...other } = props;
-
-
+  const socket = useSocket();
+  const [notify  , setNotify] = useState({message : ''})
+  useEffect(() => {
+    if (socket) {
+      // Use socket here
+      socket.on('receiveNotification', data => {
+        console.log('Received notification:', data);
+        setNotify({message : data})
+        console.log(notify,"vdfv")
+        // Handle the received notification, e.g., show a notification popup
+    });
+    }
+  }, [socket]);
+  console.log(notify,"dadvdfv")
   return (
     <Popover
       anchorEl={anchorEl}
@@ -26,13 +39,14 @@ export const Notification = (props) => {
         }}
       >
         <Typography variant="overline">
-          Notifications
+          Notifications 
         </Typography>
         <Typography
           color="text.secondary"
           variant="body2"
         >
-          {fullName}
+          
+          {/* {fullName} */}
         </Typography>
       </Box>
       <MenuList

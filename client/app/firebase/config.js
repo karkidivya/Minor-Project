@@ -24,7 +24,6 @@ export default firebase_app;
 export const profileImage = async (imageUrl) => {
   const response = await fetch(imageUrl)
   const file = await response.blob();
-  console.log(file.name)
   const userStorageRef = ref(storageRef, `/user/profilePicture/${file.name}`);
 
   const uploadTask = uploadBytesResumable(userStorageRef, file);
@@ -51,7 +50,6 @@ export const profileImage = async (imageUrl) => {
 export const certificateImage = async (imageUrl) => {
   const response = await fetch(imageUrl)
   const file = await response.blob();
-  console.log(file.name)
   const userStorageRef = ref(storageRef, `/user/certificateImage/${file.name}`);
 
   const uploadTask = uploadBytesResumable(userStorageRef, file);

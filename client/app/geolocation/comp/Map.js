@@ -2,23 +2,22 @@ import React, { useState, useEffect } from 'react';
 import Script from 'next/script';
 import "../../../public/leaflet/dist/leaflet.css";
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { coordinate, address } from '@/lib/features/booking/bookingSlice';
 import placeFromPoint from '@/app/components/Search/placeFromPoint';
 
 
-const MapComponent = () => {
+const MapComponent = ({address, coordinate, latitude, longitude}) => {
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
-  const {latitude, longitude, reloadMap} = useAppSelector((state) => state.booking.location)
   const dispatch = useAppDispatch()
 
-  const generateAddress = async () =>{
+  const generateAddress = async (latitude, longitude) =>{
     const result = await placeFromPoint(latitude, longitude)
-    dispatch(address(result))
+    // console.log(result)
+    dispatch(address(result?.address))
   }
   const onMapClick = (e) => {
     dispatch(coordinate({latitude: e.latlng.lat, longitude: e.latlng.lng}))
-    // generateAddress()
+    generateAddress(e.latlng.lat, e.latlng.lng)
   };
   
   const loadLeaflet = async () => {
@@ -52,7 +51,7 @@ const MapComponent = () => {
   }, [])
 
   useEffect(() => {
-    console.log('Map useEffect 0');
+    // console.log('Map useEffect 0');
     if (!map) return;
   
   
@@ -68,7 +67,7 @@ const MapComponent = () => {
   }, [map]);
 
   useEffect(() => {
-    console.log('Map useEffect 1');
+    // console.log('Map useEffect 1');
     if (!map || !latitude || !longitude) return;
 
     if (marker) {

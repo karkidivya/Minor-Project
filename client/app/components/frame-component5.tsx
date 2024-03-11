@@ -36,6 +36,15 @@ const FrameComponent5: NextPage = () => {
           <div className={styles.about} onClick={() => router.push('/about')}>
             <div className={styles.home3} >About</div>
           </div>
+          <div className={styles.about} onClick={() => router.push('/payment')}>
+            <div className={styles.home3} >Payment</div>
+          </div>
+          <button className={styles.register} onClick={() => router.push('/login')}>
+            <div className={styles.becomeAProParent}>
+              <div className={styles.becomeAPro} />
+              <div className={styles.register1} >Login</div>
+            </div>
+          </button>
           <button className={styles.register} onClick={() => router.push('/sign-up')}>
             <div className={styles.becomeAProParent}>
               <div className={styles.becomeAPro} />

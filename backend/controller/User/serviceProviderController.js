@@ -44,7 +44,7 @@ const serviceProviderController = {
         fullName,
         emailAddress,
         phoneNumber,
-        location,
+        location: JSON.stringify(location),
         profilePicture,
         introduction,
         categoryId,
@@ -72,10 +72,10 @@ const serviceProviderController = {
 
       // Insert the newServiceProvider into the database
       const result = await queryAsync('INSERT INTO ServiceProvider SET ?', newServiceProvider);
-
+      const serviceProvider = await queryAsync('SELECT * FROM ServiceProvider WHERE name = ?', [newServiceProvider.emailAddress])
       // Check if the registration was successful
       if (result.affectedRows === 1) {
-        res.status(201).json({ message: 'Service provider registered successfully', payload: "data required to be determined 6969" });
+        res.status(201).json({ message: 'Service provider registered successfully', payload: serviceProvider });
       } else {
         res.status(500).json({ error: 'Failed to register service provider' });
       }
@@ -165,7 +165,7 @@ const serviceProviderController = {
         fullName,
         emailAddress,
         phoneNumber,
-        location,
+        location: JSON.stringify(location),
         profilePicture,
         introduction,
         categoryId,

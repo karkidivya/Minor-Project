@@ -5,13 +5,17 @@ const signupSllice = createSlice({
     name: "signup",
     initialState: {
         fullName: "",
-        email: "",
+        emailAddress: "",
         password: "",
         phoneNumber: "",
         profilePicture: undefined,
         introduction: "",
-        location: "",
-        skill: "",
+        location: {
+            address: "",
+            latitude: 27.7172,
+            longitude: 85.3240
+        },
+        categoryId: "",
         proficiency: "",
         availability: "",
         preference: "",
@@ -25,19 +29,26 @@ const signupSllice = createSlice({
     },
     reducers: {
         personalInformation: (state, action: PayloadAction<any>) =>{
-            
             state.fullName = action.payload.fullName
-            state.email = action.payload.email
+            state.emailAddress = action.payload.emailAddress
             state.password = action.payload.password
         },
         profileInformation: (state, action: PayloadAction<any>) =>{
             state.profilePicture = action.payload.profilePicture
             state.introduction = action.payload.introduction
-            state.location = action.payload.location
-            state.phoneNumber = action.payload.phoneNumber
+        },
+        coordinate: (state, action: PayloadAction<any>) =>{
+            state.location.latitude = action.payload.latitude
+            state.location.longitude = action.payload.longitude
+        },
+        address: (state, action: PayloadAction<any>)=>{
+            state.location.address = action.payload
+        },
+        phoneNumber: (state, action: PayloadAction<any>) =>{
+            state.phoneNumber = action.payload
         },
         skillAndExpertise: (state, action: PayloadAction<any>) =>{
-            state.skill = action.payload.skill
+            state.categoryId = action.payload.categoryId
             state.proficiency = action.payload.proficiency
         },
         workPreference: (state, action: PayloadAction<any>) =>{
@@ -53,7 +64,7 @@ const signupSllice = createSlice({
             state.education = action.payload.education
         },
         paymentInformation: (state, action: PayloadAction<any>) =>{
-            state.payment = action.payload.payment
+            state.payment = action.payload
         },
         /**
             personalInformation
@@ -63,8 +74,8 @@ const signupSllice = createSlice({
             workHistory
             certificationAndQualification
             paymentInformation
-
-
+            address
+            coordinate
          */
     }
 
@@ -73,7 +84,10 @@ const signupSllice = createSlice({
 export const {
             personalInformation,
             profileInformation,
+            phoneNumber,
             skillAndExpertise,
+            address,
+            coordinate,
             workPreference,
             workHistory,
             certificationAndQualification,

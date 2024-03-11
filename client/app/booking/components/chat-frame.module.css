@@ -33,7 +33,6 @@
   flex-shrink: 0;
 }
 .helpFrameChild {
-  width: 108px;
   height: 41px;
 }
 .materialSymbolsstarIcon {
@@ -45,6 +44,8 @@
   min-height: 22px;
 }
 .reviews {
+  margin-left: 10px;
+  font-weight: bold;
   position: relative;
   letter-spacing: 0.03em;
 }

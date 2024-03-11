@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
-import SignUpFrame from "./sign-up-frame";
-import styles from "./sign-up6.module.css";
+import Divlayout from "./divlayout";
+import styles from "./sign-up5.module.css";
 
-const SignUp5: NextPage = () => {
+const SignUp4: NextPage = () => {
   return (
     <div className={styles.signup6}>
-      <SignUpFrame />
+      <Divlayout />
     </div>
   );
 };
 
-export default SignUp5;
+export default SignUp4;

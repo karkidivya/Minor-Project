@@ -6,7 +6,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/lib/hooks";
 import { certificateImage, profileImage } from "@/app/firebase/config";
+import signUp from '@/app/firebase/auth/signup'
 import axios from "axios";
+
 
 const SignUpFrame1: NextPage = () => {
   const [ isChecked, setIsChecked ] = useState(false)
@@ -19,16 +21,16 @@ const SignUpFrame1: NextPage = () => {
   const handleSubmit = async () =>{
     const profilePicUrl = await profileImage(signupInfo.profilePicture)
     const certificationUrl = await certificateImage(signupInfo.certificate)
+    const { result, error } = await signUp(signupInfo.emailAddress, signupInfo.password)
+    const accessToken = await result?.user.getIdToken()    
+    if(error) console.log(error)
+    if(accessToken){
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceProvider/registerServiceProvider`, {...signupInfo, profilePicture: profilePicUrl, certificate: certificationUrl})
+      console.log(result)
+      router.push('/dashboard')
+      if(result) router.push('/dashboard')
 
-    console.log(certificationUrl)
-    console.log(profilePicUrl)
-    const result = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/registerServiceProvider`, {...signupInfo, profilePicture: profilePicUrl, certificate: certificationUrl})
-
-    console.log(result)
-    router.push('/dashboard')
-    if(result) router.push('/dashboard')
-
-    //do something
+    }
   }
   return (
     <div className={styles.signUpFrame}>
