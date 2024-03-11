@@ -8,7 +8,7 @@ export default async function esewaCall(bookingId, amount) {
   const paymentdata = {bookingId,uuidf,amount}
   try {
     // Make an asynchronous axios call
-    await axios.post(`${backEnd}/payment`,paymentdata);
+    await axios.post(`${backEnd}/payment/addPayment`,paymentdata);
 
     // Continue with the rest of the code only if the axios call is successful
     const Message = `total_amount=${amount},transaction_uuid=${uuidf},product_code=EPAYTEST`;

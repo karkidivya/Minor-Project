@@ -52,37 +52,29 @@ const paymentController = {
 
     addPayment: async (req, res) => {
         const {
-            product_code,
+            bookingId,
             transaction_uuid,
-            total_amount,
-            extraWorkDescription,
-            additionalAmount,
-            status,
-            ref_id
+            amount
         } = req.body;
 
         try {
             // Insert the new payment into the database
             const query = `
                 INSERT INTO Payment (
-                    product_code,
+                    bookingId,
                     transaction_uuid,
                     total_amount,
-                    extraWorkDescription,
-                    additionalAmount,
                     status,
-                    ref_id,
                     created_at,
                     updated_at
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
             const values = [
-                product_code,
+                bookingId,
                 transaction_uuid,
-                total_amount,
+                amount,
                 extraWorkDescription,
                 additionalAmount,
-                status,
-                ref_id
+                'waiting'
             ];
             await queryAsync(query, values);
 
@@ -95,19 +87,23 @@ const paymentController = {
 
     updatePaymentStatus: async (req, res) => {
         try {
-            // Extract paymentId and status from request body
-            const { paymentId, status } = req.body;
-
-            // Update the payment status in the database
+            // Extract paymentId from request body
+            const { paymentId } = req.body;
+    
+            // Update the payment status in the database to 'Success'
             const query = 'UPDATE Payment SET status = ? WHERE id = ?';
+            const status = 'Success'; // Set the status to 'Success'
+    
+            // Assuming queryAsync is a function that executes the SQL query asynchronously
             await queryAsync(query, [status, paymentId]);
-
+    
             res.status(200).json({ success: true, message: 'Payment status updated successfully' });
         } catch (error) {
             console.error('Error updating payment status:', error);
             res.status(500).json({ success: false, error: 'Internal server error' });
         }
     },
+    
 
     getPaymentByStatus: async (req, res) => {
         const status = req.params.status;

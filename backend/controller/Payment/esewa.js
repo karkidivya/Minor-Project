@@ -65,22 +65,23 @@ export async function saveTransactionToDatabase(transactionDetails) {
     connection = await pool.getConnection();
     console.log('MySQL connection successful');
 
-    const { product_code, total_amount, transaction_uuid, status, ref_id } = transactionDetails;
+    const { transaction_uuid, status } = transactionDetails;
 
-    // Check if the transaction has already been processed (additional check)
-    const transactionExists = await checkTransactionExists(transaction_uuid);
-    if (transactionExists) {
-      console.log('Transaction already exists in the database');
-      return;
-    }
-
-    // Insert the transaction into the database
+    // Update the status based on transaction_uuid
     await connection.query(
-      'INSERT INTO Payment (product_code, total_amount, transaction_uuid, status, ref_id) VALUES (?, ?, ?, ?, ?)',
-      [product_code, total_amount, transaction_uuid, status, ref_id]
+      'UPDATE Payment SET status = ? WHERE transaction_uuid = ?',
+      [status, transaction_uuid]
     );
 
-    console.log('Transaction saved');
+    // Check if any rows were affected to determine if the transaction existed
+    const rowsAffected = connection.affectedRows;
+    if (rowsAffected > 0) {
+      console.log('Transaction status updated');
+      return { success: true, message: 'Transaction status updated successfully' };
+    } else {
+      console.log('Transaction not found');
+      return { success: false, message: 'Transaction not found' };
+    }
   } finally {
     if (connection) {
       connection.release();
