@@ -31,7 +31,7 @@ const userController = {
       };
 
       // Check if username and email are unique
-      const existingUser = await queryAsync('SELECT * FROM User WHERE name = ? OR emailAddress = ?', [newUser.name, newUser.emailAddress]);
+      const existingUser = await queryAsync('SELECT * FROM User WHERE name = ? OR emailAddress = ?', [newUser.username, newUser.emailAddress]);
       if (existingUser.length > 0) {
         return res.status(400).json({ error: 'Username or email already exists' });
       }

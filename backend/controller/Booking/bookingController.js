@@ -121,6 +121,7 @@ const bookingController = {
             workDescription,
             additionalNotes,
             bookingStatus,
+            paymentStatus,
             reviewId
         } = req.body;
     
@@ -139,10 +140,11 @@ const bookingController = {
                     workDescription,
                     additionalNotes,
                     bookingStatus,
+                    paymentStatus,
                     reviewId,
                     createdAt,
                     updatedAt
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
             const values = [
                 customerId,
                 serviceProviderId,
@@ -155,6 +157,7 @@ const bookingController = {
                 workDescription,
                 additionalNotes,
                 bookingStatus,
+                paymentStatus,
                 JSON.stringify(reviewId) 
             ];
             await queryAsync(query, values);
