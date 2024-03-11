@@ -1,5 +1,5 @@
 'use client'
-import BillingForm from "../dashboard/components/BillingForm"
+import BillingForm from "../dashboard/orders/components/BillingForm"
 
 export default function Home(){
   return <>

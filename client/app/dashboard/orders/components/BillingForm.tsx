@@ -3,10 +3,11 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { Box, Button, Divider, Stack, TextField } from '@mui/material';
+import axios from 'axios';
 
 const exampleObject = {
     transaction_uuid: "",
-    remarks: "",
+    extraWorkDescription: "",
     total_amount: "",
     name: "",
 }
@@ -20,14 +21,20 @@ export default function BillingForm({bookingId}: {bookingId: string}) {
       ...billingInfo,
       [e.target.name]: e.target.value
     })
-
+  }
+  const handleSubmit = () =>{
+    axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/paymentRoute/addPayment`, billingInfo)
+    .then((res) => {
+      console.log(res.status)
+    })
   }
     
   return (
     <Card sx = {{maxWidth: 350, p: 4}}>
       <Stack gap = {2}>
         <Stack gap = {4}>
-          <Typography variant = 'h5'>Billing</Typography>
+          <Typography variant = 'h5'>{`Booking Id: ${bookingId}`}</Typography>
+
             <TextField 
                     name = "name"
                     value = {billingInfo.name}
@@ -42,9 +49,9 @@ export default function BillingForm({bookingId}: {bookingId: string}) {
                     onChange = {handleChange}
                     />
             <TextField 
-                label = "Remarks"
-                name = "remarks"
-                value = {billingInfo.remarks}
+                label = "Extra Work Description"
+                name = "extraWorkDescription"
+                value = {billingInfo.extraWorkDescription}
                 onChange = {handleChange}
                 />
 
@@ -56,6 +63,7 @@ export default function BillingForm({bookingId}: {bookingId: string}) {
           <Typography variant = "h6">Total</Typography>
           <Typography sx = {{ml: 'auto'}}>{`Rs. ${billingInfo.total_amount}`}</Typography>
         </Box>
+        <Button variant = "contained" onClick = {handleSubmit}>Submit</Button>
         
       </Stack>
 

@@ -1,3 +1,5 @@
+'use client'
+import { useAppSelector } from '@/lib/hooks';
 import {
   Avatar,
   Box,
@@ -18,7 +20,10 @@ const user = {
   timezone: 'GTM-7'
 };
 
-export const AccountProfile = (props: any) => (
+export const AccountProfile = (props: any) => {
+  const userDetail = useAppSelector(state => state.user.userDetail)
+
+  return (
   <Card {...props}>
     <CardContent>
       <Box
@@ -29,7 +34,7 @@ export const AccountProfile = (props: any) => (
         }}
       >
         <Avatar
-          src={user.avatar}
+          src={userDetail?.profilePicture}
           sx={{
             height: 64,
             mb: 2,
@@ -41,13 +46,13 @@ export const AccountProfile = (props: any) => (
           gutterBottom
           variant="h5"
         >
-          {user.name}
+          {userDetail?.fullName}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          {`${user.city} ${user.country}`}
+          {userDetail?.location?.address}
         </Typography>
 
       </Box>
@@ -64,3 +69,4 @@ export const AccountProfile = (props: any) => (
     </CardActions>
   </Card>
 );
+}

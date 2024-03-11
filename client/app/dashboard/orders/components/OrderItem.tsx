@@ -15,7 +15,7 @@ function chooseColor(status: string){
     return 'error'
 }
 const handleApiCall = async (bookingId: string, bookingStatus: string) => {
-  const backendUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/`
+  const backendUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
   const res = await axios.post(`${backendUrl}/booking/updateBookingStatus`,{bookingId, bookingStatus})
 
 }
@@ -29,7 +29,7 @@ export default function OrderItem({booking}: {booking: any}) {
 
   const handleCompleted = () => {
     handleApiCall(booking.bookingId, 'completed')
-    router.push(`/dashboard/orders/billing${booking.bookingId}`)
+    router.push(`/dashboard/orders/billing/${booking.bookingId}`)
     // to handle completed
   }
 

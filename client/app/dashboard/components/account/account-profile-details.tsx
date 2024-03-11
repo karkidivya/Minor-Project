@@ -11,6 +11,7 @@ import {
   TextField
 } from '@mui/material';
 import { MuiTelInput } from 'mui-tel-input';
+import { useAppSelector } from '@/lib/hooks';
 
 export const AccountProfileDetails = (props: ReactPropTypes) => {
   const [values, setValues] = useState({
@@ -20,6 +21,8 @@ export const AccountProfileDetails = (props: ReactPropTypes) => {
     phoneNumber: '',
     address: 'Alabama',
   });
+
+  const { fullName, emailAddress, phoneNumber, location} = useAppSelector(state => state.user.userDetail)
 
   const handleChange = (event: any) => {
     setValues({
@@ -63,13 +66,20 @@ export const AccountProfileDetails = (props: ReactPropTypes) => {
                 name="firstName"
                 onChange={handleChange}
                 required
-                value={values.firstName}
+                value={fullName}
                 variant="outlined"
               />
             </Grid>
             <Grid
               item
               md={6}
+              xs={12}
+            >
+              <MuiTelInput value = {values.phoneNumber} defaultCountry='NP' value ={phoneNumber}/>
+            </Grid>
+            <Grid
+              item
+              // md={6}
               xs={12}
             >
               <TextField
@@ -78,16 +88,9 @@ export const AccountProfileDetails = (props: ReactPropTypes) => {
                 name="emailAddress"
                 onChange={handleChange}
                 required
-                value={values.emailAddress}
+                value={emailAddress}
                 variant="outlined"
               />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <MuiTelInput value = {values.phoneNumber} />
             </Grid>
 
             <Grid
@@ -101,7 +104,7 @@ export const AccountProfileDetails = (props: ReactPropTypes) => {
                 name="address"
                 onChange={handleChange}
                 required
-                value={values.address}
+                value={location?.address}
                 variant="outlined"
               >
 
