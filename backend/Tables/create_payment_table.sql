@@ -3,6 +3,8 @@ CREATE TABLE IF NOT EXISTS Payment (
   product_code VARCHAR(255) NOT NULL,
   transaction_uuid VARCHAR(36) NOT NULL,
   total_amount INT NOT NULL,
+  extraWorkDescription VARCHAR(255),
+  additionalAmount INT,
   status VARCHAR(50) NOT NULL,
   ref_id VARCHAR(255),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
