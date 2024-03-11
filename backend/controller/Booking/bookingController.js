@@ -86,6 +86,27 @@ const bookingController = {
             res.status(500).json({ status: 'error', message: 'Internal server error' });
         }
     },
+    updateBookingStatus: async (req, res) => {
+        try {
+          // Extract bookingId and bookingStatus from request body
+          const { bookingId, bookingStatus } = req.body;
+      
+          // Update the booking status in the database
+          const query = 'UPDATE Booking SET bookingStatus = ? WHERE bookingId = ?';
+          const result = await queryAsync(query, [bookingStatus, bookingId]);
+      
+          // Check if the update was successful
+          if (result.affectedRows === 1) {
+            res.status(200).json({ success: true, message: 'Booking status updated successfully' });
+          } else {
+            res.status(404).json({ success: false, error: 'Booking not found or unable to update status' });
+          }
+        } catch (error) {
+          console.error('Error updating booking status:', error);
+          res.status(500).json({ success: false, error: 'Internal server error' });
+        }
+      },
+      
 
     addBooking: async (req, res) => {
         const {
