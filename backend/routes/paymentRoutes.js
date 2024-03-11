@@ -3,11 +3,11 @@ import paymentController from '../controller/Payment/paymentController.js';
 
 const router = express.Router();
 
-router.get('/payment/getPayment/:id', paymentController.getPaymentById);
-router.get('/payment/getPayment', paymentController.getPayment);
-router.delete('/payment/deletePayment/:id', paymentController.deletePayment);
-router.post('/payment/addPayment', paymentController.addPayment);
-router.get('/payment/getPaymentByStatus/:status', paymentController.getPaymentByStatus);
-router.post('/payment/updatePaymentStatus', paymentController.updatePaymentStatus);
+router.get('/getPayment/:id', paymentController.getPaymentById);
+router.get('/getPayment', paymentController.getPayment);
+router.delete('/deletePayment/:id', paymentController.deletePayment);
+router.post('/addPayment', paymentController.addPayment);
+router.get('/getPaymentByStatus/:status', paymentController.getPaymentByStatus);
+router.post('/updatePaymentStatus', paymentController.updatePaymentStatus);
 
 export default router;

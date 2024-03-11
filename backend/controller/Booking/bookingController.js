@@ -35,6 +35,24 @@ const bookingController = {
             res.status(500).json({ status: 'error', message: 'Internal server error' });
         }
     },
+    getBookingByUserId: async (req, res) => {
+        const customerId = req.params.id;
+        try {
+            // Retrieve the booking with the specified ID from the database
+            const booking = await queryAsync('SELECT * FROM Booking WHERE customerId = ?', [customerId]);
+
+            // Check if booking exists
+            if (!booking.length) {
+                return res.status(404).json({ status: 'error', message: 'Booking not found' });
+            }
+
+            // Send the booking as JSON response
+            res.status(200).json({ status: 'success', data: booking[0] });
+        } catch (error) {
+            console.log('An error occurred while fetching booking by ID:', error);
+            res.status(500).json({ status: 'error', message: 'Internal server error' });
+        }
+    },
     getBookingByServiceId: async (req, res) => {
         const serviceId = req.params.id;
         try {
