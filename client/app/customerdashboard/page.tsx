@@ -16,6 +16,7 @@ import { Button, Typography } from '@mui/material';
 
 const columns: GridColDef[] = [
    { field: 'id', headerName: 'SN', width: 80, headerAlign: 'center' },
+   { field: 'BookingId', headerName: 'BookingId', width: 80, headerAlign: 'center' },
    { field: 'serviceProviderName', headerName: 'Service Provider', width: 370, headerAlign: 'center' },
    { field: 'serviceName', headerName: 'Service', width: 300, headerAlign: 'center' },
    { field: 'Task', headerName: 'Task Status', width: 100, headerAlign: 'center' },
@@ -30,7 +31,7 @@ const columns: GridColDef[] = [
      field: 'Payment',
      headerName: 'Payment',
      renderCell: (params: GridValueGetterParams) => (
-       <Button variant="outlined" onClick={() => handlePayment(params.row.id)}>
+       <Button variant="outlined" onClick={() => handlePayment(params)}>
          Pay Now
        </Button>
      ),
@@ -60,10 +61,13 @@ const columns: GridColDef[] = [
      headerAlign: 'center',
    },
  ];
-  const handlePayment = (id: string) => {
-   // Implement your payment logic
-   console.log(`Payment for row with id ${id}`);
- };
+ const handlePayment = (params) => {
+  const amount = params.row.Amount;
+  const bookingId = params.row.BookingId;
+  // console.log(amount);
+  // Call the esewaCall function with the selected bookingId
+  esewaCall(bookingId,amount);
+};
   const handleReview = (id: string) => {
    // Implement your review logic
    console.log(`Review for row with id ${id}`);
