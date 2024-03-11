@@ -12,3 +12,4 @@ router.get('/Booking', bookingController.getBooking);
 router.delete('/deleteBooking/:id', bookingController.deleteBooking);
 
 export default router;
+// http://localhost:9000/booking/getBookingByServiceProviderId/6​
