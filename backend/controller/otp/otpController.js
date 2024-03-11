@@ -19,7 +19,7 @@ const otpController = {
     const phoneNumber = req.body.phoneNumber;
     console.log(phoneNumber, accountSid)
     const otp = await generateOTP();
-    console.log(otp)
+    console.log(otp, twilioPhoneNumber)
 
     // Store the OTP with the phone number
     otps[phoneNumber] = otp;
@@ -31,7 +31,7 @@ const otpController = {
         to: phoneNumber
     })
     .then(message => {
-        console.log(`OTP sent successfully to ${phoneNumber}`);
+        console.log(`OTP sent successfully to ${phoneNumber}`, message);
         res.status(200).send('OTP sent successfully');
     })
     .catch(error => {
