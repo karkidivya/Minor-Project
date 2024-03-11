@@ -17,6 +17,7 @@ const otps = {};
 const otpController = {
  sendOTP : async (req, res) => {
     const phoneNumber = req.body.phoneNumber;
+    console.log(phoneNumber, accountSid)
     const otp = await generateOTP();
     console.log(otp)
 

@@ -17,8 +17,7 @@ const Page = () => {
   useEffect(() => {
     socket?.emit("newServiceProvider", auths.user.email);
   }, [socket, auths]);
-  return
-  (<>
+  return (<>
     <Box
       component="main"
       sx={{
