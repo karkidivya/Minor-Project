@@ -31,14 +31,15 @@ const userController = {
       };
 
       // Check if username and email are unique
-      const existingUser = await queryAsync('SELECT * FROM User WHERE username = ? OR emailAddress = ?', [newUser.username, newUser.emailAddress]);
+      const existingUser = await queryAsync('SELECT * FROM User WHERE name = ? OR emailAddress = ?', [newUser.name, newUser.emailAddress]);
       if (existingUser.length > 0) {
         return res.status(400).json({ error: 'Username or email already exists' });
       }
       const result = await queryAsync('INSERT INTO User SET ?', newUser);
-      
+      const user = await queryAsync('SELECT * FROM User WHERE name = ?', [newUser.name])
+      console.log(user)
       if (result.affectedRows === 1) {
-        res.status(201).json({ message: 'User registered successfully' , payload : "data required to be determined 6969 " });
+        res.status(201).json({ message: 'User registered successfully' , payload : user[0] });
       } else {
         res.status(500).json({ error: 'Failed to register user' });
       }
