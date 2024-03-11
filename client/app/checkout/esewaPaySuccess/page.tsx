@@ -3,11 +3,12 @@ import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation'; // Importing from next/navigation
 import axios from 'axios';
 
+
 export default function EsewaSuccess() {
     const router = useRouter();
     const searchParams = new URLSearchParams(location.search);
-const data = Object.fromEntries(searchParams.entries());
-console.log(data.data, "dads ggggg dkdkdkkdkkd")
+    const data = Object.fromEntries(searchParams.entries());
+    console.log(data.data, "dads ggggg dkdkdkkdkkd")
 
     const gotoOrderDetails = (data : any) => {
         router.push(`/`);
