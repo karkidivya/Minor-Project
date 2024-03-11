@@ -6,7 +6,7 @@ import axios from "axios";
 async function getData(){
   const backendUrl = process.env.BACKEND_URL
 
-  const res = await fetch(`${backendUrl}/serviceCategory`)
+  const res = await fetch(`${backendUrl}serviceCategory`)
   return res.json()
 }
 export default async function CategoryItem(){
