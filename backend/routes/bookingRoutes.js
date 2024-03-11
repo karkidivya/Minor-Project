@@ -6,6 +6,7 @@ const router = express.Router();
 router.post('/addBooking', bookingController.addBooking);
 router.get('/getBooking/:id', bookingController.getBookingById);
 router.get('/getBookingByServiceId/:id', bookingController.getBookingByServiceId);
+router.get('/getBookingByServiceProviderId/:id', bookingController.getBookingByServiceProviderId);
 router.get('/Booking', bookingController.getBooking);
 router.delete('/deleteBooking/:id', bookingController.deleteBooking);
 
