@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { ReactPropTypes, useState } from 'react';
 import {
   Box,
   Button,
@@ -10,38 +10,29 @@ import {
   Grid,
   TextField
 } from '@mui/material';
+import { MuiTelInput } from 'mui-tel-input';
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
-
-export const AccountProfileDetails = (props) => {
+export const AccountProfileDetails = (props: ReactPropTypes) => {
   const [values, setValues] = useState({
     firstName: 'Katarina',
     lastName: 'Smith',
-    email: 'demo@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
+    emailAddress: 'demo@devias.io',
+    phoneNumber: '',
+    address: 'Alabama',
   });
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value
     });
   };
+
+  const handleSubmit = () => {
+    // handle submit here
+
+  }
+
 
   return (
     <form
@@ -67,8 +58,8 @@ export const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
-                label="First name"
+                helperText="Please specify your Full Name"
+                label="Full name"
                 name="firstName"
                 onChange={handleChange}
                 required
@@ -83,26 +74,11 @@ export const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                label="Last name"
-                name="lastName"
-                onChange={handleChange}
-                required
-                value={values.lastName}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
                 label="Email Address"
-                name="email"
+                name="emailAddress"
                 onChange={handleChange}
                 required
-                value={values.email}
+                value={values.emailAddress}
                 variant="outlined"
               />
             </Grid>
@@ -111,16 +87,9 @@ export const AccountProfileDetails = (props) => {
               md={6}
               xs={12}
             >
-              <TextField
-                fullWidth
-                label="Phone Number"
-                name="phone"
-                onChange={handleChange}
-                type="number"
-                value={values.phone}
-                variant="outlined"
-              />
+              <MuiTelInput value = {values.phoneNumber} />
             </Grid>
+
             <Grid
               item
               md={6}
@@ -128,38 +97,14 @@ export const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                label="Country"
-                name="country"
+                label="Your Location"
+                name="address"
                 onChange={handleChange}
                 required
-                value={values.country}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Select State"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                value={values.state}
+                value={values.address}
                 variant="outlined"
               >
-                {states.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
+
               </TextField>
             </Grid>
           </Grid>
@@ -175,6 +120,7 @@ export const AccountProfileDetails = (props) => {
           <Button
             color="primary"
             variant="contained"
+            onClick = {handleSubmit}
           >
             Save details
           </Button>

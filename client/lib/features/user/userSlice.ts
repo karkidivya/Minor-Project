@@ -5,6 +5,7 @@ const userSlice = createSlice({
     name: "booking",
     initialState: {
         isAuthorized: false,
+        profilePicture: "",
         accessToken: "",
         emailAddress: "",
         fullName: "",
@@ -27,13 +28,15 @@ const userSlice = createSlice({
             state.accessToken = action.payload.accessToken
         },
         setUserDetail: (state, action: PayloadAction<any>) => {
+            // console.log('User Set up')
             state.fullName = action.payload.fullName
             state.emailAddress = action.payload.emailAddress
+            state.profilePicture = action.payload.profilePicture
             state.phoneNumber = action.payload.phoneNumber
             state.password = action.payload.password
             state.location.address = action.payload.location.address
             state.location.latitude = action.payload.location.latitude
-            state.location.longitude = action.payload.loaction.longitude
+            state.location.longitude = action.payload.location.longitude
             state.id = action.payload.id
         },
         /**

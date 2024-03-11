@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { AccountProfile } from '../components/account/account-profile';
 import { AccountProfileDetails } from '../components/account/account-profile-details';
-import { DashboardLayout } from '../components/dashboard-layout';
 
 const Page = () => (
   <>
@@ -51,10 +50,5 @@ const Page = () => (
   </>
 );
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
 
 export default Page;
