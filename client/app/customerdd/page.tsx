@@ -62,6 +62,7 @@ const columns: GridColDef[] = [
    },
  ];
  const handlePayment = (params) => {
+
   const amount = params.row.Amount;
   const bookingId = params.row.BookingId;
   // console.log(amount);
@@ -76,8 +77,36 @@ const columns: GridColDef[] = [
    // Implement your rating logic
    console.log(`Rating for row with id ${id}`);
  };
+
+
  export default function CustomerDashboard() {
    const [rows,setRows] = useState([])
+   const [data, setData] = useState([]);
+   const [error, setError] = useState<string | null>(null);
+
+ useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/userDashboard/getUserDetails`, { customerId: 1})
+      console.log(response.data.data[0])
+      // const result = await response
+      setData(response.data);
+    } catch (error) {
+    
+      // setError(error);
+    }
+  };
+
+  
+  fetchData();
+
+  
+  return () => {
+  
+  };
+}, []); 
+
+
  return (
    <div className={styles.background}>
       
