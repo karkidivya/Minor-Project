@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS Booking (
   bookingId INT AUTO_INCREMENT PRIMARY KEY,
   customerId INT,
   serviceProviderId INT,
-  serviceId JSON,
+  serviceId INT,
   categoryId INT,
   amount INT,
   date VARCHAR(255),

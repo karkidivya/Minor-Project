@@ -3,6 +3,7 @@ import styles from "./category-item.module.css";
 
 async function getData(){
   const backendUrl = process.env.BACKEND_URL
+
   const res = await fetch(`${backendUrl}/serviceCategory`)
   return res.json()
 }
