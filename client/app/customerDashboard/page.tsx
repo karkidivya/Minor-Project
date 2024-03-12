@@ -5,6 +5,7 @@ import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, TextField, Typography } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import esewaCall from '../checkout/esewa';
+import { useRouter } from 'next/navigation';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'SN', width: 80, headerAlign: 'center' },
@@ -18,7 +19,7 @@ const columns: GridColDef[] = [
     field: 'payButton',
     headerName: 'Pay',
     renderCell: (params: GridRenderCellParams) => (
-      params.row.paymentStatus === 'pending' && (
+      (
       <Button variant="outlined" onClick={() => handlePayment(params)}>
         Pay Now
       </Button>
@@ -111,11 +112,12 @@ export default function CustomerDashboard() {
 
     fetchData();
   }, []);
+  const router = useRouter()
 
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Button variant="contained" sx={{ marginLeft: '30px' }}>
+        <Button variant="contained" sx={{ marginLeft: '30px' }} onClick = {() => router.push('/')}>
           <ArrowBackIosIcon />
         </Button>
         <Typography variant="h3" sx={{ margin: '30px', marginLeft: '250px' }}>

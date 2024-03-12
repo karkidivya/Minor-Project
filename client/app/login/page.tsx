@@ -28,7 +28,7 @@ const userLogin: NextPage = () => {
       <h3>Choose your login</h3>
       <Box display = 'flex' gap = {2}>
         <Button variant = "contained" sx = {{p: 2, px: 3, minWidth: 200}} onClick = {() => router.push('/login/userLogin')}>User Login</Button>
-        <Button variant="contained" sx = {{p: 2, px: 3, minWidth: 200}} onClick = {() => router.push('/login/serviceProvider')}>Service Provider Login</Button>
+        <Button variant="contained" sx = {{p: 2, px: 3, minWidth: 200}} onClick = {() => router.push('/login/serviceProviderLogin')}>Service Provider Login</Button>
 
       </Box>
     </form>

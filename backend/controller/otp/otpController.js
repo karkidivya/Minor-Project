@@ -26,6 +26,7 @@ const otpController = {
         .services(verifySid)
         .verifications.create({ to: "+9779828896039", channel: "sms" })
         .then((verification) => {
+            console.log(verification)
             if(verification.status == 'pending')
                 return
             else 
@@ -35,7 +36,7 @@ const otpController = {
             console.log("otp sent")
             res.status(200).send('OTP sent successfully');
         }).catch((err) => {
-        console.log('From Otp controller',err )
+        console.log('Error Otp sendinng controller' )
         res.status(500).json({reason: err})
         })
     },

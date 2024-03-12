@@ -4,9 +4,11 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { Box, Button, Divider, Stack, TextField } from '@mui/material';
 import axios from 'axios';
+import { Router } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const exampleObject = {
-    transaction_uuid: "",
+    bookingId: "",
     extraWorkDescription: "",
     total_amount: "",
     name: "",
@@ -14,8 +16,9 @@ const exampleObject = {
 export default function BillingForm({bookingId}: {bookingId: string}) {
   const [billingInfo, setBillingInfo] = React.useState(exampleObject);
     React.useEffect( () => {
-        setBillingInfo({...billingInfo, transaction_uuid: bookingId})
+        setBillingInfo({...billingInfo,  bookingId})
     },[])
+    const router = useRouter()
   const handleChange = (e: any) =>{
     setBillingInfo({
       ...billingInfo,
@@ -26,6 +29,7 @@ export default function BillingForm({bookingId}: {bookingId: string}) {
     axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/paymentRoute/addPayment`, billingInfo)
     .then((res) => {
       console.log(res.status)
+      router.push('/dashboard/orders')
     })
   }
     

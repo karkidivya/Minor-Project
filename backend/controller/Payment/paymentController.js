@@ -53,8 +53,7 @@ const paymentController = {
     addPayment: async (req, res) => {
         const {
             bookingId,
-            uuidf,
-            amount
+            amount,
         } = req.body;
 
         try {
