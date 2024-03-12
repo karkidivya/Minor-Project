@@ -25,16 +25,15 @@ const otpController = {
         client.verify.v2
         .services(verifySid)
         .verifications.create({ to: "+9779828896039", channel: "sms" })
-        .then((verification) => console.log(verification.status))
+        .then((verification) => {
+            if(verification.status == 'pending')
+                return
+            else 
+                throw Error("Couldn't be sent")
+        })
         .then(() => {
             console.log("otp sent")
             res.status(200).send('OTP sent successfully');
-        // client.verify.v2
-        // .services(verifySid)
-        // .verificationChecks.create({ to: "+9779828896039", code: otpCode })
-        // .then((verification_check) => console.log(verification_check.status))
-        // .then(() => readline.close());
-        
         }).catch((err) => {
         console.log('From Otp controller',err )
         res.status(500).json({reason: err})
@@ -50,7 +49,10 @@ const otpController = {
         .verificationChecks.create({to: "+9779828896039", code: otp})
         .then((verification_check) => {
             console.log(verification_check)
-            res.status(200).send('OTP verification successful');
+            if(verification_check.status == 'approved')
+                res.status(200).send('OTP verification successful');
+            else
+                throw Error("Wrong Otp")
         }).catch((err) => {
             console.log('From Otp controller',err )
             res.status(500).json({reason: error})
