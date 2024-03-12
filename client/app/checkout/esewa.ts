@@ -5,7 +5,7 @@ import axios from "axios";
 export default async function esewaCall(bookingId, amount) {
   const uuidf = uuidv4();
   const backEnd = process.env.NEXT_PUBLIC_BACKEND_URL; // Replace with your actual backend URL
-  const paymentdata = {bookingId,uuidf,amount}
+  const paymentdata = {bookingId , uuidf ,amount}
   console.log(paymentdata)
   try {
     // Make an asynchronous axios call

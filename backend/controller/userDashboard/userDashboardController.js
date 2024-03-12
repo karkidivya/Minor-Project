@@ -13,7 +13,8 @@ const userDashboardController = {
             const query = `
                 SELECT 
                     Booking.serviceProviderId, 
-                    Booking.amount, 
+                    Booking.amount,
+                    Booking.bookingId, 
                     Booking.serviceId, 
                     Booking.bookingStatus, 
                     Payment.total_amount as paymentAmount,
@@ -31,6 +32,7 @@ const userDashboardController = {
             const userDashboardDetails = userDashboardData.map(entry => ({
                 serviceProviderId: entry.serviceProviderId,
                 totalAmount: entry.amount,
+                bookingId: entry.bookingId,
                 serviceId: entry.serviceId,
                 taskStatus: entry.bookingStatus,
                 paymentAmount: entry.paymentAmount,

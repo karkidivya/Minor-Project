@@ -8,7 +8,7 @@ dotenv.config();
 // Create a MySQL connection pool
 const host = 'localhost';
 const user = 'root';
-const password = 'rootuser';
+const password = 'root';
 const database = 'kamsewa';
 
 const pool = mysql.createPool({

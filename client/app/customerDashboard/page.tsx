@@ -77,8 +77,9 @@ const handleSendReview = async (params: GridRenderCellParams) => {
 
 
 const handlePayment = (params: GridRenderCellParams) => {
+  console.log(params.row)
   const amount = params.row.totalAmount;
-  const bookingId = params.row.BookingId;
+  const bookingId = params.row.bookingId;
   console.log(`Pay ${amount} for Booking ID ${bookingId}`);
   esewaCall(bookingId,amount);
 };

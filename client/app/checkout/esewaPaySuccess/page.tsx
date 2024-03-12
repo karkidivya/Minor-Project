@@ -31,6 +31,16 @@ export default function EsewaSuccess() {
         }
     }, [data, router]);
 
+    useEffect(() => {
+        // Redirect logic can be placed here if needed
+        // For example, redirecting after a delay
+        const redirectTimer = setTimeout(() => {
+            gotoOrderDetails();
+        }, 1000); // Redirect after 1 seconds
+
+        return () => clearTimeout(redirectTimer); // Cleanup timer on component unmount
+    }, []);
+
     return (
         <div className="mx-auto max-w-7xl px-2 lg:px-0">
             <div className="mx-auto max-w-2xl py-8 lg:max-w-7xl">
