@@ -2,12 +2,12 @@
 import React from "react";
 import { FormEvent } from 'react';
 import type { NextPage } from "next";
-import styles from "../login.module.css";
+import styles from "./registerUser.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, FormControl, IconButton, InputAdornment, OutlinedInput } from "@mui/material";
 import Link from "next/link";
-import signIn from "../../firebase/auth/signin";
+import signIn from "../firebase/auth/signin";
 import axios from "axios";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -34,14 +34,29 @@ const userLogin: NextPage = () => {
     event.preventDefault()
 
     try{
+      // const { result, error } = await signIn(credential.phoneNo, credential.password);
+
+      // const accessToken = await result?.user.getIdToken();
+    
+      // console.log("Access Token:", accessToken);
+      // console.log(result)
+
+      // if(accessToken){
+      //   router.push('/dashboard')
+      // }
       console.log(credential)
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/registerUser`, {name: credential.name,phoneNumber: credential.phoneNo, password: credential.password})
       console.log(res.data,"chsbdhcja")
       if(res.status= 201){
-        router.push('/');
+        await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/loginOtp/send-otp`, {phoneNumber: credential.phoneNo}).then((res) =>{
+          router.push(`/registerUser/OTP?phoneNumber=${credential.phoneNo}`);
+
+        })
       }
+
     }catch(e){
       toast.error(e, {hideProgressBar: true})
+      router.push('/')
     }
   }
 
@@ -123,6 +138,7 @@ const userLogin: NextPage = () => {
 };
 
 export default userLogin;
+
 
 /**
   {

@@ -12,7 +12,7 @@ const GetStarted: NextPage = () => {
           rectangle9="/rectangle-9-1@2x.png"
           hearThatTheSweetSignOfRel="Hear that? The sweet sign of relief. Start getting more done."
           signUp="Sign Up"
-          goTo = 'sign-up'
+          goTo = 'registerUser'
         />
         <div className={styles.footerAboutUsHeader} />
         <FrameComponent1

@@ -1,6 +1,7 @@
 'use client'
-import { Box, Button, Card, CardContent, Chip, Collapse, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Chip, Collapse, Stack, Typography } from "@mui/material";
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {useState} from "react";
 
@@ -41,40 +42,44 @@ export default function OrderItem({booking}: {booking: any}) {
 
 
   return (
+    // <Button variant = "div">
+      
+    // </Button>
     <Card sx={{ maxWidth: 400, p: 0, minWidth: 300 }} onClick = {handleExpandClick}>
       <Box m = {2} display={'flex'}>
 
-          <Typography fontWeight={600}>Location: </Typography>
-          <Typography> Some Random Location</Typography>
-          <Chip color={chooseColor(booking.bookingStatus)} label = {booking.bookingStatus} variant = "filled" />
+        <Typography fontWeight={600}></Typography>
+        <Typography> {booking.location.address}</Typography>
+        <Chip color={chooseColor(booking.bookingStatus)} label = {booking.bookingStatus} variant = "filled" sx = {{ml: 'auto'}}/>
       </Box>
       
       
       <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-              <Box>
+              <Stack gap = {2}>
 
-                  <Typography fontWeight={600}>Address: </Typography>
-                  <Typography>{booking.location.address}</Typography>
-                  
-                  <Typography fontWeight={600}>Phone Number: </Typography>
-                  <Typography>{booking.phoneNumber}</Typography>
-                  
-                  <Typography fontWeight={600}>Work Description: </Typography>
-                  <Typography>{booking.workDescription}</Typography>
-                  
-                  <Typography fontWeight={600}>Registered At: </Typography>
-                  <Typography>{booking.createdAt}</Typography>
-                  <Box display = 'flex' justifyContent={"flex-end"} gap={3} sx = {{py: 2}}>
-                    <Button variant = "outlined" onClick = {handleInProgress}>
-                      On It
-                    </Button>
-                    <Button variant = "contained" onClick = {handleCompleted}>
-                      Completed
-                    </Button>
+                <Typography fontWeight={600}>Address: </Typography>
+                <Typography>{booking.location.address}</Typography>
+                <a target = "_blank" href = {`https://www.google.com/maps/dir//${booking.location.latitude},${booking.location.longitude}/@${booking.location.latitude},${booking.location.longitude},17.63z?entry=ttu`}>Google Maps Link</a>
+                
+                <Typography fontWeight={600}>Phone Number: </Typography>
+                <Typography>{booking.phoneNumber}</Typography>
+                
+                <Typography fontWeight={600}>Work Description: </Typography>
+                <Typography>{booking.workDescription}</Typography>
+                
+                <Typography fontWeight={600}>Registered At: </Typography>
+                <Typography>{booking.createdAt}</Typography>
+                <Box display = 'flex' justifyContent={"flex-end"} gap={3} sx = {{py: 2}}>
+                  <Button variant = "outlined" onClick = {handleInProgress}>
+                    On It
+                  </Button>
+                  <Button variant = "contained" onClick = {handleCompleted}>
+                    Completed
+                  </Button>
 
-                  </Box>
-              </Box>
+                </Box>
+              </Stack>
           
 
           </CardContent>
