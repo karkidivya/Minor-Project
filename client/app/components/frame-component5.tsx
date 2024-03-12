@@ -36,8 +36,8 @@ const FrameComponent5: NextPage = () => {
           <div className={styles.about} onClick={() => router.push('/about')}>
             <div className={styles.home3} >About</div>
           </div>
-          <div className={styles.about} onClick={() => router.push('/payment')}>
-            <div className={styles.home3} >Payment</div>
+          <div className={styles.about} onClick={() => router.push('/customerDashboard')}>
+            <div className={styles.home3} >Dashboard</div>
           </div>
           <button className={styles.register} onClick={() => router.push('/login')}>
             <div className={styles.becomeAProParent}>
