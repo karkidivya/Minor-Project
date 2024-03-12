@@ -9,6 +9,7 @@ import serviceRoutes from './serviceRoutes.js';
 import userDashboardRoutes from './userDashboardRoutes.js';
 import otp from './otpRoutes.js'
 import esewaRouter from './esewa.js';
+import paymentRoutes from './paymentRoutes.js';
 
 const router = express.Router();
 
