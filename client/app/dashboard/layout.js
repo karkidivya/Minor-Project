@@ -17,11 +17,11 @@ registerChartJs();
 const App = ({children}) => {
   const {isAuthorized} = useAppSelector((state) => state.user)
   const router = useRouter()
-  // useEffect(() => {
-  //   if (!isAuthorized){
-  //     router.push('/')
-  //   }
-  // },[isAuthorized])
+  useEffect(() => {
+    if (!isAuthorized){
+      router.push('/')
+    }
+  },[isAuthorized])
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={de}>

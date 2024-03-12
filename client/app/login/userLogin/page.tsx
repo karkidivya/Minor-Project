@@ -50,7 +50,7 @@ const userLogin: NextPage = () => {
     <div className={styles.login}>
       <form className={styles.emailAddressFrame} onSubmit={handleForm} >
       <h1 className={styles.kaamsewa}>KaamSewa</h1>
-      <div className={styles.emailAddress}>full name</div>
+      <div className={styles.emailAddress}>Full Name</div>
       <FormControl fullWidth sx={{ m: 1}} variant="outlined">
         <OutlinedInput
           name = "name"

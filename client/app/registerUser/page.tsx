@@ -48,10 +48,13 @@ const userLogin: NextPage = () => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/registerUser`, {name: credential.name,phoneNumber: credential.phoneNo, password: credential.password})
       console.log(res.data,"chsbdhcja")
       if(res.status= 201){
-        await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/loginOtp/send-otp`, {phoneNumber: credential.phoneNo}).then((res) =>{
-          router.push(`/registerUser/OTP?phoneNumber=${credential.phoneNo}`);
+        // await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/loginOtp/send-otp`, {phoneNumber: credential.phoneNo}).then((res) =>{
+        //   // router.push(`/registerUser/OTP?phoneNumber=${credential.phoneNo}`);
+        //   router.push('/')
 
-        })
+        // })
+        
+        router.push('/')
       }
 
     }catch(e){
