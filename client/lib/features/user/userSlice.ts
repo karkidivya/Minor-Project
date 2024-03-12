@@ -7,18 +7,6 @@ const userSlice = createSlice({
         isAuthorized: false,
         accessToken: "",
         userDetail: {}
-        // profilePicture: "",
-        // emailAddress: "",
-        // fullName: "",
-        // phoneNumber: "",
-        // password: "",
-        // role: "",
-        // id: "",
-        // location: {
-        //     address: "",
-        //     latitude: "",
-        //     longitude: "",
-        // },
     },
     
     reducers: {
@@ -29,17 +17,7 @@ const userSlice = createSlice({
             state.accessToken = action.payload.accessToken
         },
         setUserDetail: (state, action: PayloadAction<any>) => {
-            // console.log('User Set up')
             state.userDetail = action.payload
-            // state.fullName = action.payload.fullName
-            // state.emailAddress = action.payload.emailAddress
-            // state.profilePicture = action.payload.profilePicture
-            // state.phoneNumber = action.payload.phoneNumber
-            // state.password = action.payload.password
-            // state.location.address = action.payload.location.address
-            // state.location.latitude = action.payload.location.latitude
-            // state.location.longitude = action.payload.location.longitude
-            // state.id = action.payload.id
         },
         /**
             setCategory,

@@ -34,7 +34,6 @@ export default function BillingForm({bookingId}: {bookingId: string}) {
       <Stack gap = {2}>
         <Stack gap = {4}>
           <Typography variant = 'h5'>{`Booking Id: ${bookingId}`}</Typography>
-
             <TextField 
                     name = "name"
                     value = {billingInfo.name}

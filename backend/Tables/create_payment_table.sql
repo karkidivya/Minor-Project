@@ -1,6 +1,5 @@
 CREATE TABLE IF NOT EXISTS Payment (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  bookingId VARCHAR(36) NOT NULL
   product_code VARCHAR(255) NULL,
   transaction_uuid VARCHAR(36) NOT NULL,
   total_amount INT NOT NULL,
