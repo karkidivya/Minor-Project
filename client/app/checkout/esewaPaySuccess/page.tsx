@@ -10,8 +10,9 @@ export default function EsewaSuccess() {
     const data = Object.fromEntries(searchParams.entries());
     console.log(data.data, "dads ggggg dkdkdkkdkkd")
 
-    const gotoOrderDetails = (data : any) => {
-        router.push(`/`);
+    
+    const gotoOrderDetails = () => {
+        router.push('/customerDashboard');
     }
 
     useEffect(() => {
@@ -19,7 +20,7 @@ export default function EsewaSuccess() {
             
             try {
                 const response = await axios.post(`http://localhost:9000/payment/verify-payment`, { data });
-                gotoOrderDetails(response.data);
+                gotoOrderDetails();
             } catch (error) {
                 console.log(error);
             }

@@ -9,7 +9,6 @@ import serviceRoutes from './serviceRoutes.js';
 import userDashboardRoutes from './userDashboardRoutes.js';
 import otp from './otpRoutes.js'
 import esewaRouter from './esewa.js';
-
 const router = express.Router();
 
 router.use('/booking', bookingRoutes);

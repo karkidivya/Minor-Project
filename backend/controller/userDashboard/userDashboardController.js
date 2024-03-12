@@ -26,7 +26,7 @@ const userDashboardController = {
                     Booking.customerId = ?`;
 
             const userDashboardData = await queryAsync(query, [customerId]);
-            console.log(userDashboardData)
+            // console.log(userDashboardData)
             // Format the data as array of objects with desired details
             const userDashboardDetails = userDashboardData.map(entry => ({
                 serviceProviderId: entry.serviceProviderId,
