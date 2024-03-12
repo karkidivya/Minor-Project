@@ -5,4 +5,4 @@
 
 # mysqldump -u your_username -p your_database_name > dump_file.sql
 
-mysqldump -u root -p kamsewa > dump_file.sql
+mysqldump -u alpha -p kaamsewa > dump_file.sql

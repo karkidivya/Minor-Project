@@ -5,4 +5,4 @@
 
 # mysql -u your_username -p your_database_name < dump_file.sql
 
-mysql -u root -p kaamsewa < dump_file.sql
+mysql -u alpha -p kaamsewa < dump_file.sql
