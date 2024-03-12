@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, TextField, Typography } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
@@ -16,58 +16,78 @@ const columns: GridColDef[] = [
   {
     field: 'payButton',
     headerName: 'Pay',
-    renderCell: (params: GridValueGetterParams) => (
+    renderCell: (params: GridRenderCellParams) => (
+      params.row.paymentStatus === 'pending' && (
       <Button variant="outlined" onClick={() => handlePayment(params)}>
         Pay Now
       </Button>
-    ),
+    )),
     width: 100,
     headerAlign: 'center',
   },
   {
     field: 'ratingInput',
     headerName: 'Rating',
-    renderCell: (params: GridValueGetterParams) => (
+    renderCell: (params: GridRenderCellParams) => (
       <TextField
         variant="outlined"
         type="number"
+        inputProps={{ min: 0, max: 5 }}
         placeholder="Rating"
         value={params.row.rating || ''}
         onChange={(e) => handleRatingChange(e, params)}
       />
     ),
-    width: 150,
+    width: 100,
     headerAlign: 'center',
   },
   {
     field: 'reviewInput',
     headerName: 'Review',
-    renderCell: (params: GridValueGetterParams) => (
+    renderCell: (params: GridRenderCellParams) => (
+      <div>
       <TextField
         variant="outlined"
+        multiline
         placeholder="Write a review"
         value={params.row.review || ''}
         onChange={(e) => handleReviewChange(e, params)}
       />
+      {/* <Button variant="outlined" onClick={() => handleSendReview(params)}>Send</Button> */}
+      </div>
     ),
     width: 200,
     headerAlign: 'center',
   },
 ];
 
-const handlePayment = (params: GridValueGetterParams) => {
+const handleSendReview = async (params: GridRenderCellParams) => {
+  const review = params.row.review;
+  // const bookingId = params.row.BookingId;
+  // try {
+  //   await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sendReview`, { bookingId, review });
+  //   console.log('Review sent successfully');
+  //   // Optionally update state or perform other actions after sending the review
+  // } catch (error) {
+  //   console.error('Error sending review:', error);
+  //   // Handle error
+  // }
+};
+
+
+const handlePayment = (params: GridRenderCellParams) => {
   const amount = params.row.totalAmount;
   const bookingId = params.row.BookingId;
   console.log(`Pay ${amount} for Booking ID ${bookingId}`);
 };
 
-const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>, params: GridValueGetterParams) => {
+const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>, params: GridRenderCellParams) => {
   const value = e.target.value;
   console.log(`Rating changed to ${value} for row ID ${params.row.id}`);
   // Update state or perform other actions based on the rating change
 };
 
-const handleReviewChange = (e: React.ChangeEvent<HTMLInputElement>, params: GridValueGetterParams) => {
+const handleReviewChange = (e: React.ChangeEvent<HTMLInputElement>, params: GridRenderCellParams) => {
   const value = e.target.value;
   console.log(`Review changed to ${value} for row ID ${params.row.id}`);
   // Update state or perform other actions based on the review change
@@ -103,7 +123,10 @@ export default function CustomerDashboard() {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 10 } },
+          }}
+          pageSizeOptions={[5, 10, 25]}
           disableColumnFilter
           disableColumnMenu
           autoHeight
