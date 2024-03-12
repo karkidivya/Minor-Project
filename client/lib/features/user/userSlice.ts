@@ -6,17 +6,7 @@ const userSlice = createSlice({
     initialState: {
         isAuthorized: false,
         accessToken: "",
-        emailAddress: "",
-        fullName: "",
-        phoneNumber: "",
-        password: "",
-        role: "",
-        id: "",
-        location: {
-            address: "",
-            latitude: "",
-            longitude: "",
-        },
+        userDetail: {}
     },
     
     reducers: {
@@ -27,14 +17,7 @@ const userSlice = createSlice({
             state.accessToken = action.payload.accessToken
         },
         setUserDetail: (state, action: PayloadAction<any>) => {
-            state.fullName = action.payload.fullName
-            state.emailAddress = action.payload.emailAddress
-            state.phoneNumber = action.payload.phoneNumber
-            state.password = action.payload.password
-            state.location.address = action.payload.location.address
-            state.location.latitude = action.payload.location.latitude
-            state.location.longitude = action.payload.loaction.longitude
-            state.id = action.payload.id
+            state.userDetail = action.payload
         },
         /**
             setCategory,

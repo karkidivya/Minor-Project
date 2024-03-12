@@ -1,3 +1,4 @@
+'use client'
 import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
@@ -7,6 +8,7 @@ import { Bell as BellIcon } from '../icons/bell';
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
 import { AccountPopover } from './account-popover';
 import { Notification } from './notification'
+import { useAppSelector } from '@/lib/hooks';
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -14,11 +16,16 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
 }));
 
 export const DashboardNavbar = (props) => {
-  const { onSidebarOpen, fullName, profilePicture, ...other } = props;
+  const { onSidebarOpen,  ...other } = props;
   const settingsRef = useRef(null);
   const notificationRef = useRef(null);
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
   const [openNotification, setOpenNotification ] = useState(false)
+
+  const userDetail = useAppSelector(state => state.user.userDetail)
+
+  
+
   return (
     <>
       <DashboardNavbarRoot
@@ -73,7 +80,7 @@ export const DashboardNavbar = (props) => {
               width: 40,
               ml: 1
             }}
-            src={profilePicture}
+            src={userDetail?.profilePicture}
             >
             <UserCircleIcon fontSize="small" />
           </Avatar>
