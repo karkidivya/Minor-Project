@@ -77,7 +77,7 @@ const columns: GridColDef[] = [
 ];
 // ...
 
-const handlePayment = (params) => {
+const handlePayment = (params :any) => {
   const amount = params.row.Amount;
   const bookingId = params.row.BookingId;
   console.log(bookingId);

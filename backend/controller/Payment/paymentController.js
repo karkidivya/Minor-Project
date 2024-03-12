@@ -61,16 +61,14 @@ const paymentController = {
             // Insert the new payment into the database
             const query = `
                 INSERT INTO Payment (
-                    bookingId,
                     transaction_uuid,
                     total_amount,
                     status,
                     created_at,
                     updated_at
-                ) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
+                ) VALUES (?, ?, ?,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
             const values = [
                 bookingId,
-                uuidf,
                 amount,
                 'waiting'
             ];

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, TextField, Typography } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import esewaCall from '../checkout/esewa';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'SN', width: 80, headerAlign: 'center' },
@@ -79,6 +80,7 @@ const handlePayment = (params: GridRenderCellParams) => {
   const amount = params.row.totalAmount;
   const bookingId = params.row.BookingId;
   console.log(`Pay ${amount} for Booking ID ${bookingId}`);
+  esewaCall(bookingId,amount);
 };
 
 const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>, params: GridRenderCellParams) => {
