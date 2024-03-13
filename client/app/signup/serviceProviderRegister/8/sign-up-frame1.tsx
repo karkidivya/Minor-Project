@@ -27,7 +27,7 @@ const SignUpFrame1: NextPage = () => {
     if(accessToken){
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceProvider/registerServiceProvider`, {...signupInfo, profilePicture: profilePicUrl, certificate: certificationUrl})
       console.log(result)
-      router.push('/dashboard')
+      // router.push('/dashboard')
       if(result) router.push('/dashboard')
 
     }

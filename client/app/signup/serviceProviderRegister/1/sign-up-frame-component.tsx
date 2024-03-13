@@ -4,7 +4,7 @@ import {
   Button,
 } from "@mui/material";
 import styles from "./sign-up-frame-component.module.css";
-import FileUploader from "../../components/FileUploader";
+import FileUploader from "../../../components/FileUploader";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppDispatch } from "@/lib/store";
@@ -26,7 +26,7 @@ const FrameComponent: NextPage = () => {
     const imageUrl = URL.createObjectURL(profileInfo.profilePicture as File)
     
     dispatch(profileInformation({...profileInfo, profilePicture: imageUrl}))
-    router.push('/sign-up/2')
+    router.push('/signup/serviceProviderRegister/2')
   }
   
   return (

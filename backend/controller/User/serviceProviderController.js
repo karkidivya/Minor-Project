@@ -72,7 +72,7 @@ const serviceProviderController = {
 
       // Insert the newServiceProvider into the database
       const result = await queryAsync('INSERT INTO ServiceProvider SET ?', newServiceProvider);
-      const serviceProvider = await queryAsync('SELECT * FROM ServiceProvider WHERE name = ?', [newServiceProvider.emailAddress])
+      const serviceProvider = await queryAsync('SELECT * FROM ServiceProvider WHERE emailAddress = ?', [newServiceProvider.emailAddress])
       // Check if the registration was successful
       if (result.affectedRows === 1) {
         res.status(201).json({ message: 'Service provider registered successfully', payload: serviceProvider });

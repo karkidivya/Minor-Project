@@ -10,7 +10,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { paymentInformation } from "@/lib/features/signup/signupSlice";
-import Select from '../../components/Select'
+import Select from '../../../components/Select'
 const exampleOption = [
   {
     label : <img
@@ -48,7 +48,7 @@ const SignUpFrame: NextPage = () => {
   const [ paymentMethod, setPaymentMethod ] = React.useState("");
   const handleSubmit = () =>{
     dispatch(paymentInformation(paymentMethod))
-    router.push('8');
+    router.push('/signup/serviceProviderRegister/8');
   }
   return (
     <div className={styles.signUpFrame}>

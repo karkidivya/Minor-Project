@@ -38,7 +38,7 @@ const AvailabilityFrameSet: NextPage = () => {
     console.log(workPreferences)
     // handleSubmit
     dispatch(f_workPreference(workPreferences))
-    router.push('/sign-up/5')
+    router.push('/signup/serviceProviderRegister/5')
     
   }
   return (
