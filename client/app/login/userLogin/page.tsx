@@ -13,7 +13,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-const initialCredential = {name: "",phoneNo:"", password: ""}
+const initialCredential = {name: "", password: ""}
 const userLogin: NextPage = () => {
 
   const router = useRouter();
@@ -35,7 +35,7 @@ const userLogin: NextPage = () => {
 
     try{
       console.log(credential)
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/registerUser`, {name: credential.name,phoneNumber: credential.phoneNo, password: credential.password})
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/registerUser`, {name: credential.name, password: credential.password})
       console.log(res.data,"chsbdhcja")
       if(res.status= 201){
         router.push('/');
@@ -60,7 +60,7 @@ const userLogin: NextPage = () => {
           placeholder="Enter your Phone Number"
         />
       </FormControl>
-      <div className={styles.emailAddress}>phone number</div>
+      {/* <div className={styles.emailAddress}>phone number</div>
       <FormControl fullWidth sx={{ m: 1}} variant="outlined">
         <OutlinedInput
           name = "phoneNo"
@@ -69,7 +69,7 @@ const userLogin: NextPage = () => {
           onChange = {handleChange}
           placeholder="Enter your Phone Number"
         />
-      </FormControl>
+      </FormControl> */}
       <div className={styles.password}>Password</div>
       <FormControl fullWidth sx={{ m: 1}} variant="outlined">
         <OutlinedInput
