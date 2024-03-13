@@ -35,7 +35,7 @@ const userLogin: NextPage = () => {
 
     try{
       console.log(credential)
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/registerUser`, {name: credential.name, password: credential.password})
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/userLogin`, {name: credential.name, password: credential.password})
       console.log(res.data,"chsbdhcja")
       if(res.status= 201){
         router.push('/');

@@ -52,14 +52,14 @@ const userController = {
   login: async (req, res) => {
     try {
       const { name, password } = req.body;
-
+      console.log(name, password)
       // Check if username and password are provided
       if (!name || !password) {
-        return res.status(400).json({ error: 'Username and password are required' });
+        return res.status(400).json({ error: 'name and password are required' });
       }
 
       // Check if the user exists in the database
-      const user = await queryAsync('SELECT * FROM User WHERE username = ?', [name]);
+      const user = await queryAsync('SELECT * FROM User WHERE name = ?', [name]);
       console.log(user ," users data ")
       if (user.length === 0) {
         return res.status(404).json({ error: 'User not found' });
