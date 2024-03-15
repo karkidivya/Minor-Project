@@ -6,13 +6,14 @@ import { Button, TextField, Typography } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import esewaCall from '../checkout/esewa';
 import { useRouter } from 'next/navigation';
+import { ContactPageSharp } from '@mui/icons-material';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'SN', width: 80, headerAlign: 'center' },
-  { field: 'serviceProviderId', headerName: 'Service Provider', width: 200, headerAlign: 'center' },
-  { field: 'serviceId', headerName: 'Service', width: 200, headerAlign: 'center' },
+  { field: 'serviceProviderName', headerName: 'Officer Name', width: 200, headerAlign: 'center' },
+  { field: 'categoryName', headerName: 'Selected-Service', width: 200, headerAlign: 'center' },
   { field: 'taskStatus', headerName: 'Task Status', width: 150, headerAlign: 'center' },
-  { field: 'totalAmount', headerName: 'Total Amount', type: 'number', width: 150, headerAlign: 'center' },
+  { field: 'extraWorkDescription', headerName: 'Work Description', type: 'number', width: 150, headerAlign: 'center' },
   { field: 'paymentAmount', headerName: 'Payment Amount', type: 'number', width: 150, headerAlign: 'center' },
   { field: 'paymentStatus', headerName: 'Payment Status', width: 150, headerAlign: 'center' },
   {
@@ -104,6 +105,7 @@ export default function CustomerDashboard() {
     const fetchData = async () => {
       try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/userDashboard/getUserDetails`, { customerId: 1 });
+        console.log(response,"userdetails")
         setRows(response.data.data.map((item, index) => ({ ...item, id: index + 1 })));
       } catch (error) {
         console.error('Error fetching data:', error);

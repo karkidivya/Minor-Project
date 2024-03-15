@@ -15,10 +15,11 @@ const userDashboardController = {
                     Booking.serviceProviderId, 
                     Booking.amount,
                     Booking.bookingId, 
-                    Booking.serviceId, 
+                    Booking.categoryId, 
                     Booking.bookingStatus, 
                     Payment.total_amount as paymentAmount,
-                    Payment.status as paymentStatus
+                    Payment.status as paymentStatus,
+                    Payment.extraWorkDescription
                 FROM 
                     Booking 
                 LEFT JOIN 
@@ -29,14 +30,21 @@ const userDashboardController = {
             const userDashboardData = await queryAsync(query, [customerId]);
             // console.log(userDashboardData)
             // Format the data as array of objects with desired details
-            const userDashboardDetails = userDashboardData.map(entry => ({
-                serviceProviderId: entry.serviceProviderId,
+          
+            const userDashboardDetails = await Promise.all(userDashboardData.map(async entry => {
+                const provider = await queryAsync('SELECT fullName FROM ServiceProvider WHERE serviceProviderId = ?', [entry.serviceProviderId]);
+                const category = await queryAsync('SELECT categoryName FROM ServiceCategory WHERE categoryId = ?', [entry.categoryId]);
+                // console.log(provider[0].fullName,"name",category)
+
+                return { 
+                serviceProviderName: provider[0].fullName,
                 totalAmount: entry.amount,
                 bookingId: entry.bookingId,
-                serviceId: entry.serviceId,
+                categoryName: category[0].categoryName,
+                extraWorkDescription : entry.extraWorkDescription,
                 taskStatus: entry.bookingStatus,
                 paymentAmount: entry.paymentAmount,
-                paymentStatus: entry.paymentStatus
+                paymentStatus: entry.paymentStatus}
             }));
 
             res.status(200).json({ status: 'success', data: userDashboardDetails });
