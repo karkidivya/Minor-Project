@@ -5,7 +5,7 @@ import OrderItem from './OrderItem'
 import axios from "axios";
 
 
-const databaseSavedId = 6
+const databaseSavedId = 1
 const getData = async (accessToken: string, setData: (x: any) => any) => {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/booking/getBookingByServiceProviderId/${databaseSavedId}`
     console.log(url)

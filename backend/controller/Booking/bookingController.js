@@ -142,7 +142,7 @@ const bookingController = {
             paymentStatus,
             reviewId
         } = req.body;
-    
+        console.log(req.body)
         try {
             // Insert the new booking into the database
             const query = `
@@ -152,6 +152,7 @@ const bookingController = {
                     serviceId,
                     categoryId,
                     location,
+                    amount,
                     date ,
                     time,
                     phoneNumber,
@@ -162,13 +163,14 @@ const bookingController = {
                     reviewId,
                     createdAt,
                     updatedAt
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
+                ) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
             const values = [
                 customerId,
                 serviceProviderId,
                 serviceId, 
                 categoryId,
                 JSON.stringify(location),
+                amount,
                 date ,
                 time,
                 phoneNumber,

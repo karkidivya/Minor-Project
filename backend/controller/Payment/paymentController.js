@@ -53,7 +53,8 @@ const paymentController = {
     addPayment: async (req, res) => {
         const {
             bookingId,
-            amount,
+            total_amount,
+            extraWorkDescription
         } = req.body;
 
         try {
@@ -62,13 +63,15 @@ const paymentController = {
                 INSERT INTO Payment (
                     transaction_uuid,
                     total_amount,
+                    extraWorkDescription,
                     status,
                     created_at,
                     updated_at
-                ) VALUES (?, ?, ?,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
+                ) VALUES (?, ?, ?,?,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`;
             const values = [
                 bookingId,
-                amount,
+                total_amount,
+                extraWorkDescription,
                 'waiting'
             ];
             await queryAsync(query, values);

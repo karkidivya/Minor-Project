@@ -10,7 +10,7 @@ import { AppDispatch} from "@/lib/store";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 // import { phoneNumber as f_phoneNumber } from "@/lib/features/signup/signupSlice";
 import { MuiTelInput } from "mui-tel-input";
-import GeoLocation from '../../../geolocation'
+import GeoLocation from '../../geolocation'
 import { coordinate, address, phoneNumber as f_phoneNumber } from "@/lib/features/signup/signupSlice";
 
 const FrameComponent: NextPage = () => {
