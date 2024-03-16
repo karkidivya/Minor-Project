@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';``
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Button, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -74,12 +75,13 @@ const columns: GridColDef[] = [
  };
  export default function CustomerDashboard() {
    const [rows,setRows] = useState([])
+   const router = useRouter()
  return (
    <div className={styles.background}>
       
    <div style={{ height: 1000, width: '80%', margin: 'auto', textAlign: 'center',backgroundColor: 'white' }}>
    <div style={{ display: 'flex', alignItems: 'center' }}>
-     <Button variant="contained" sx={{marginLeft:'30px'}}><ArrowBackIosIcon /></Button>
+     <Button variant="contained" sx={{marginLeft:'30px'}} onClick={()=>router.push('/home')}><ArrowBackIosIcon /></Button>
      <Typography variant="h3" sx={{ margin: '30px',marginLeft:'250px' }}>
        Customer Dashboard
      </Typography>
@@ -87,7 +89,6 @@ const columns: GridColDef[] = [
  <DataGrid
  rows={rows}
  columns={columns}
- pageSize={5}
  disableColumnFilter
  disableColumnMenu
  autoHeight

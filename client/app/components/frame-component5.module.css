@@ -16,6 +16,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   padding: 0 var(--padding-11xs) var(--padding-11xs) 0;
 }
 .home2 {
@@ -23,6 +24,7 @@
   letter-spacing: 0.03em;
   font-weight: 800;
   white-space: nowrap;
+  cursor: pointer;
 }
 .customerService {
   display: flex;
@@ -35,6 +37,7 @@
   position: relative;
   letter-spacing: 0.03em;
   font-weight: 800;
+  cursor: pointer;
 }
 .about {
   display: flex;
