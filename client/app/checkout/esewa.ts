@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
 
 export default async function esewaCall(bookingId :any, paymentId:any, amount:any) { 
-  // const uuidf = uuidv4();
-  const uuidf = 6;
+  const uuidf = uuidv4();
+  // const uuidf = 6;
   const total_amount = amount;
   const backEnd = process.env.NEXT_PUBLIC_BACKEND_URL; // Replace with your actual backend URL
   const paymentdata = {bookingId , uuidf , total_amount}

@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { bookingDateAndTime } from "@/lib/features/booking/bookingSlice";
 import axios from "axios";
+import { useSocket } from "@/app/context/SocketContext";
 
 
 
@@ -19,7 +20,8 @@ const FrameMorning: NextPage = () => {
   const router = useRouter();
   const {bookingStep, ...booking} = useAppSelector(state => state.booking)
   const { id } = useAppSelector((state) => state.user.userDetail)
-  
+  const socket = useSocket();
+  console.log(socket)
   const handleChange = (name: string , value: string | Date | Dayjs | null ) =>{
     setDateAndTime((prev) =>{
       return {...prev, [name]: value}
@@ -31,7 +33,7 @@ const FrameMorning: NextPage = () => {
     const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/booking/addBooking`, {...booking,customerId: id,  categoryId: booking.category.categoryId, bookingStatus: 'pending'})
     console.log(booking, "adcjsc")
     
-    router.push('/')
+    router.push('/home')
     console.log(booking)
   }
   

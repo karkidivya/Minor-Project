@@ -19,7 +19,7 @@ export default function EsewaSuccess() {
         const verifyEsewaPayment = async () => {
             
             try {
-                const response = await axios.post(`http://localhost:9000/payment/verify-payment`, { data });
+                const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/payment/verify-payment`, { data });
                 console.log(response , "response")
                 gotoUserDashboard();
             } catch (error) {

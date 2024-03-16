@@ -109,6 +109,7 @@ export async function verifyPayment(req, res, next) {
     const { data } = req.body;
     const decodedData = base64.decode(data.data);
     const decodedJSON = JSON.parse(decodedData.toString());
+    // console.log(decodedJSON)
     const { product_code, total_amount, transaction_uuid } = decodedJSON;
     const formattedTotalAmount = parseFloat(total_amount.replace(',', ''));
     const parsedUrl = new URL('https://uat.esewa.com.np/api/epay/transaction/status/');
@@ -120,6 +121,7 @@ export async function verifyPayment(req, res, next) {
     let body;
     try {
       const response = await fetch(parsedUrl, { method: 'GET' });
+      // console.log(response)
       body = await response.json();
     } catch (fetchError) {
       throw new Error(`Error fetching external data: ${fetchError.message}`);
