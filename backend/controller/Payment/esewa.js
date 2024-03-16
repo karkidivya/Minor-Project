@@ -2,24 +2,28 @@ import base64 from 'base-64';
 import fetch from 'node-fetch';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
+import util from 'util';
+import db from '../../db.js'; // Adjust the path based on your directory structure
 
+// Promisify the db.query method
+const queryAsync = util.promisify(db.query).bind(db);
 dotenv.config();
 
-// Create a MySQL connection pool
-const host = 'localhost';
-const user = 'root';
-const password = 'root';
-const database = 'kamsewa';
+// // Create a MySQL connection pool
+// const host = 'localhost';
+// const user = 'root';
+// const password = 'root';
+// const database = 'kamsewa';
 
-const pool = mysql.createPool({
-  host: host,
-  user: user,
-  password: password,
-  database: database,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
+// const pool = mysql.createPool({
+//   host: host,
+//   user: user,
+//   password: password,
+//   database: database,
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0,
+// });
 
 // Function to check whether the booking exists in the database
 export async function paymentDetail(req, res, next) {
@@ -58,36 +62,7 @@ export async function checkTransactionExists(transaction_uuid) {
   }
 }
 
-// // Function to save the transaction record in the database
-// export async function saveTransactionToDatabase(transactionDetails) {
-//   let connection;
-//   try {
-//     connection = await pool.getConnection();
-//     console.log('MySQL connection successful');
 
-//     const { transaction_uuid, status } = transactionDetails;
-//     console.log(transaction_uuid)
-//     // Update the status based on transaction_uuid
-//     await connection.query(
-//       'UPDATE Payment SET status = ? WHERE transaction_uuid = ?',
-//       [status, transaction_uuid]
-//     );
-
-//     // Check if any rows were affected to determine if the transaction existed
-//     const rowsAffected = connection.affectedRows;
-//     if (rowsAffected > 0) {
-//       console.log('Transaction status updated');
-//       return { success: true, message: 'Transaction status updated successfully' };
-//     } else {
-//       console.log('Transaction not found');
-//       return { success: false, message: 'Transaction not found' };
-//     }
-//   } finally {
-//     if (connection) {
-//       connection.release();
-//     }
-//   }
-// }
 
 // // Verify payment function
 // export async function verifyPayment(req, res, next) {
@@ -134,12 +109,11 @@ export async function verifyPayment(req, res, next) {
     const { data } = req.body;
     const decodedData = base64.decode(data.data);
     const decodedJSON = JSON.parse(decodedData.toString());
-
     const { product_code, total_amount, transaction_uuid } = decodedJSON;
-
+    const formattedTotalAmount = parseFloat(total_amount.replace(',', ''));
     const parsedUrl = new URL('https://uat.esewa.com.np/api/epay/transaction/status/');
     parsedUrl.searchParams.append('product_code', product_code);
-    parsedUrl.searchParams.append('total_amount', total_amount);
+    parsedUrl.searchParams.append('total_amount', formattedTotalAmount);
     parsedUrl.searchParams.append('transaction_uuid', transaction_uuid);
 
     // Fetch external data
@@ -154,24 +128,28 @@ export async function verifyPayment(req, res, next) {
     console.log('External API response:', body);
 
     if (body.status === 'COMPLETE') {
-      let connection;
-      try {
-        connection = await pool.getConnection();
-        console.log('MySQL connection successful');
-        // const data = await connection.query(
-        //   'Select * From Payment'
-        // )
-        console.log(data)
-        // Update the status based on transaction_uuid
-        await connection.query(
-          'UPDATE Payment SET status = ? WHERE transaction_uuid = ?',
-          [body.status, transaction_uuid]
-        );
-      } finally {
-        if (connection) {
-          connection.release();
-        }
-      }
+      // let connection;
+      // try {
+      //   connection = await pool.getConnection();
+      //   console.log('MySQL connection successful');
+      //   // const data = await connection.query(
+      //   //   'Select * From Payment'
+      //   // )
+      //   console.log(data)
+      //   // Update the status based on transaction_uuid
+      //   await connection.query(
+      //     'UPDATE Payment SET status = ? WHERE transaction_uuid = ?',
+      //     [body.status, transaction_uuid]
+      //   );
+      // } finally {
+      //   if (connection) {
+      //     connection.release();
+      //   }
+      // }
+      // const query = 'UPDATE Payment SET status = ? WHERE transaction_uuid = ?';
+      // const status = body.status; // Set the status to 'Success'
+      // await queryAsync(query, [status, transaction_uuid]);
+      res.json({ status: body.status, orderId: transaction_uuid });
     } else {
       return res.status(400).json({ error: 'Payment not complete' });
     }

@@ -2,45 +2,59 @@
 import type { NextPage } from "next";
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./hero-section-rectangle.module.css";
+import styles from "./frame-component5.module.css";
+import { Button } from "@mui/material";
+import { RoundaboutLeftRounded } from "@mui/icons-material";
 
-const HeroSectionRectangle: NextPage = () => {
+const FrameComponent5: NextPage = () => {
   const router = useRouter();
 
-  const onCloudsImageClick = useCallback(() => {
+  const onMainBGImageClick = useCallback(() => {
     router.push("/");
   }, [router]);
 
+  const handleClick = () =>{
+    router.push('/sign-up')
+  }
   return (
-    <header className={styles.heroSectionRectangle}>
-      <div className={styles.navbarInner}>
+    <section className={styles.container}>
+      <header className={styles.navbarInner}>
         <img
-          className={styles.cloudsIcon}
+          className={styles.mainBgIcon}
           loading="eager"
           alt=""
           src="/ellipse-1@2x.png"
-          onClick={onCloudsImageClick}
+          onClick={onMainBGImageClick}
         />
-        <div className={styles.homeFrame}>
-          <div className={styles.home}>
+        <div className={styles.text}>
+          {/* <div className={styles.home} onClick={() => router.push('/home')}>
             <div className={styles.home1}>Home</div>
+          </div> */}
+          <div className={styles.customerService} onClick={() => router.push('/customer-service')}>
+            <div className={styles.home2} >Customer Service</div>
           </div>
-          <div className={styles.customerService}>
-            <div className={styles.home2}>Customer Service</div>
+          <div className={styles.about} onClick={() => router.push('/about')}>
+            <div className={styles.home3} >About</div>
           </div>
-          <div className={styles.about}>
-            <div className={styles.home3}>About</div>
-          </div>
-          <button className={styles.register}>
-            <div className={styles.searchEllipseShapeParent}>
-              <div className={styles.searchEllipseShape} />
-              <div className={styles.register1}>Register</div>
+          {/* <div className={styles.about} onClick={() => router.push('/customerDashboard')}>
+            <div className={styles.home3} >Dashboard</div>
+          </div> */}
+          <button className={styles.register} onClick={() => router.push('/login')}>
+            <div className={styles.becomeAProParent}>
+              <div className={styles.becomeAPro} />
+              <div className={styles.register1} >Login</div>
+            </div>
+          </button>
+          <button className={styles.register} onClick={() => router.push('/signup')}>
+            <div className={styles.becomeAProParent}>
+              <div className={styles.becomeAPro} />
+              <div className={styles.register1} >Register</div>
             </div>
           </button>
         </div>
-      </div>
-    </header>
+      </header>
+    </section>
   );
 };
 
-export default HeroSectionRectangle;
+export default FrameComponent5;
