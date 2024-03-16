@@ -8,7 +8,7 @@ dotenv.config();
 const accountSid = process.env.accountSid;
 const authToken = process.env.authToken;
 const twilioPhoneNumber = process.env.twilioPhoneNumber;
-
+const verifySid = process.env.verifySid
 // Create Twilio client
 const client = twilio(accountSid, authToken);
 
@@ -22,40 +22,43 @@ const otps = {};
 
 const otpController = {
     sendOTP: async (req, res) => {
-        try {
-            const phoneNumber = req.body.phoneNumber;
-            const otp = generateOTP();
-
-            // Store the OTP with the phone number
-            otps[phoneNumber] = otp;
-
-            // Send OTP via Twilio
-            const message = await client.messages.create({
-                body: `Your OTP is ${otp}`,
-                from: twilioPhoneNumber,
-                to: phoneNumber
-            });
-
-            console.log(`OTP sent successfully to ${phoneNumber}`, message);
+        client.verify.v2
+        .services(verifySid)
+        .verifications.create({ to: "+9779863867235", channel: "sms" })
+        .then((verification) => {
+            console.log(verification)
+            if(verification.status == 'pending')
+                return
+            else 
+                throw Error("Couldn't be sent")
+        })
+        .then(() => {
+            console.log("otp sent")
             res.status(200).send('OTP sent successfully');
-        } catch (error) {
-            console.error(`Error sending OTP:`, error);
-            res.status(500).send('Failed to send OTP');
-        }
+        }).catch((err) => {
+        console.log('Error Otp sendinng controller' )
+        res.status(500).json({reason: err})
+        })
     },
 
     verifyOTP: async (req, res) => {
-        const phoneNumber = req.body.phoneNumber;
+        // const phoneNumber = req.body.phoneNumber;
         const otp = req.body.otp;
 
-        // Check if OTP matches
-        if (otps[phoneNumber] && otps[phoneNumber] == otp) {
-            // Clear OTP from storage
-            delete otps[phoneNumber];
-            res.status(200).send('OTP verification successful');
-        } else {
-            res.status(400).send('Invalid OTP');
-        }
+        client.verify.v2
+        .services(verifySid)
+        .verificationChecks.create({to: "+9779863867235", code: otp})
+        .then((verification_check) => {
+            console.log(verification_check)
+            if(verification_check.status == 'approved')
+                res.status(200).send('OTP verification successful');
+            else
+                throw Error("Wrong Otp")
+        }).catch((err) => {
+            console.log('From Otp controller',err )
+            res.status(500).json({reason: error})
+        })
+
     }
 };
 

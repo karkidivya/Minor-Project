@@ -72,7 +72,7 @@ const serviceProviderController = {
 
       // Insert the newServiceProvider into the database
       const result = await queryAsync('INSERT INTO ServiceProvider SET ?', newServiceProvider);
-      const serviceProvider = await queryAsync('SELECT * FROM ServiceProvider WHERE name = ?', [newServiceProvider.emailAddress])
+      const serviceProvider = await queryAsync('SELECT * FROM ServiceProvider WHERE emailAddress = ?', [newServiceProvider.emailAddress])
       // Check if the registration was successful
       if (result.affectedRows === 1) {
         res.status(201).json({ message: 'Service provider registered successfully', payload: serviceProvider });
@@ -97,15 +97,16 @@ const serviceProviderController = {
   login: async (req, res) => {
     try {
       // Extract username and password from the request body
-      const { username, password } = req.body;
+
+      const { emailAddress, password } = req.body;
 
       // Check if username and password are provided
-      if (!username || !password) {
+      if (!emailAddress || !password) {
         return res.status(400).json({ error: 'Username and password are required' });
       }
 
       // Check if the user exists in the database
-      const serviceProvider = await queryAsync('SELECT * FROM ServiceProvider WHERE username = ?', [username]);
+      const serviceProvider = await queryAsync('SELECT * FROM ServiceProvider WHERE emailAddress = ?', [emailAddress]);
       console.log(serviceProvider, " service providers data ");
       if (serviceProvider.length === 0) {
         return res.status(404).json({ error: 'Service provider not found' });
@@ -117,7 +118,7 @@ const serviceProviderController = {
       }
 
       // Send success response with service provider data
-      res.status(200).json({ success: 'Login successful', payload: serviceProvider });
+      res.status(200).json({ success: 'Login successful', payload: serviceProvider[0] });
 
     } catch (error) {
       console.error('Error logging in:', error);

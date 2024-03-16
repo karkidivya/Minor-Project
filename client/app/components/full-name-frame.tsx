@@ -35,7 +35,7 @@ const FullNameFrame: NextPage = () => {
 
   const handleSubmit = async() =>{
     dispatch(personalInformation(signupCredential))
-    router.push('/sign-up/1')
+    router.push('serviceProviderRegister/1')
     
     // handle submit
   }

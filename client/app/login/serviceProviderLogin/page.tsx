@@ -12,11 +12,14 @@ import axios from "axios";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useAppDispatch } from "@/lib/hooks";
+import { setAuthorization, setUserDetail } from "@/lib/features/user/userSlice";
 
-const initialCredential = {email: "", password: ""}
+const initialCredential = {emailAddress: "", password: ""}
 const providerLogin: NextPage = () => {
 
   const router = useRouter();
+  const dispatch = useAppDispatch()
 
   const [ credential, setCredential ] = useState(initialCredential)
   const [ showPassword, setShowPassword ] =  useState(false)
@@ -34,7 +37,7 @@ const providerLogin: NextPage = () => {
     event.preventDefault()
 
     try{
-      const { result, error } = await signIn(credential.email, credential.password);
+      const { result, error } = await signIn(credential.emailAddress, credential.password);
 
       const accessToken = await result?.user.getIdToken();
     
@@ -42,7 +45,14 @@ const providerLogin: NextPage = () => {
       console.log(result)
 
       if(accessToken){
+        dispatch(setAuthorization(true))
         router.push('/dashboard')
+        axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceProvider/serviceProviderLogin`, credential)
+        .then((res) => {
+          console.log(res.data.payload)
+
+          dispatch(setUserDetail({...(res.data.payload), id: res.data.payload.serviceProviderId}))
+        })
       }
 
     }catch(e){
@@ -58,9 +68,9 @@ const providerLogin: NextPage = () => {
       <div className={styles.emailAddress}>Email Address</div>
       <FormControl fullWidth sx={{ m: 1}} variant="outlined">
         <OutlinedInput
-          name = "email"
+          name = "emailAddress"
           type='text'
-          value = {credential.email}
+          value = {credential.emailAddress}
           onChange = {handleChange}
           placeholder="Enter your Email"
         />

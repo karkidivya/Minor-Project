@@ -21,7 +21,7 @@ const io = new SocketServer(server, {
 io.on('connection', handleConnection(io));
 dotenv.config();
 
-const PORT = 9000;
+const PORT = 8000;
 
 
 // app.use(express.urlencoded({ extended: true }));
