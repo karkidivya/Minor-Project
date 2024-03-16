@@ -16,7 +16,10 @@
   letter-spacing: normal;
 }
 
-.emailAddress,
+.emailAddress{
+  font-size: large;
+}
+
 .kaamsewa {
   position: relative;
   letter-spacing: 0.03em;

@@ -57,7 +57,7 @@ const userLogin: NextPage = () => {
           type='text'
           value = {credential.name}
           onChange = {handleChange}
-          placeholder="Enter your Phone Number"
+          placeholder="Enter your Full Name"
         />
       </FormControl>
       {/* <div className={styles.emailAddress}>phone number</div>
@@ -114,7 +114,7 @@ const userLogin: NextPage = () => {
       </div>
       <div className={styles.ifYouDoContainer}>
         <span className={styles.ifYouDo}>{`If you do not have account `}</span>
-        <Link href = '/sign-up' className = {styles.signUp}>Sign Up</Link>
+        <Link href = '/signup' className = {styles.signUp}>Sign Up</Link>
       </div>
       <ToastContainer />
     </form>
@@ -123,25 +123,3 @@ const userLogin: NextPage = () => {
 };
 
 export default userLogin;
-
-/**
-  {
-    fullName: String,
-    email: String,
-    password: String,
-    profilePicture: Single Image,
-    introduction: String,
-    location: String,
-    skill: String,
-    proficiency: String,
-    availability: String,
-    preference: String,
-    company: String,
-    position: String,
-    timeOfWork: String,
-    reference: String,
-    certificate: Single Image,
-    education: String,
-    payment: String,
-  }
- */

@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import styles from "./divlayout.module.css";
 import { useState } from "react";
-import FileUploader from "../../components/FileUploader";
+import FileUploader from "../../../components/FileUploader";
 import { useRouter } from "next/navigation";
 import { certificationAndQualification } from "@/lib/features/signup/signupSlice";
 import { useAppDispatch } from "@/lib/hooks";

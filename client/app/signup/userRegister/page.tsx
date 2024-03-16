@@ -34,19 +34,9 @@ const userLogin: NextPage = () => {
     event.preventDefault()
 
     try{
-      // const { result, error } = await signIn(credential.phoneNo, credential.password);
-
-      // const accessToken = await result?.user.getIdToken();
-    
-      // console.log("Access Token:", accessToken);
-      // console.log(result)
-
-      // if(accessToken){
-      //   router.push('/dashboard')
-      // }
       console.log(credential)
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/registerUser`, {name: credential.name,phoneNumber: credential.phoneNo, password: credential.password})
-      console.log(res.data,"chsbdhcja")
+      console.log(res.data)
       if(res.status= 201){
         await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/loginOtp/send-otp`, {phoneNumber: credential.phoneNo}).then((res) =>{
           // router.push(`/registerUser/OTP?phoneNumber=${credential.phoneNo}`);
@@ -58,7 +48,7 @@ const userLogin: NextPage = () => {
       }
 
     }catch(e){
-      toast.error(e, {hideProgressBar: true})
+      // toast.error(e, {hideProgressBar: true})
       // router.push('/')
     }
   }
@@ -68,17 +58,17 @@ const userLogin: NextPage = () => {
     <div className={styles.login}>
       <form className={styles.emailAddressFrame} onSubmit={handleForm} >
       <h1 className={styles.kaamsewa}>KaamSewa</h1>
-      <div className={styles.emailAddress}>full name</div>
+      <div className={styles.emailAddress}>Full name</div>
       <FormControl fullWidth sx={{ m: 1}} variant="outlined">
         <OutlinedInput
           name = "name"
           type='text'
           value = {credential.name}
           onChange = {handleChange}
-          placeholder="Enter your Phone Number"
+          placeholder="Enter your Full Name"
         />
       </FormControl>
-      <div className={styles.emailAddress}>phone number</div>
+      <div className={styles.emailAddress}>Phone number</div>
       <FormControl fullWidth sx={{ m: 1}} variant="outlined">
         <OutlinedInput
           name = "phoneNo"
@@ -111,12 +101,11 @@ const userLogin: NextPage = () => {
         />
       </FormControl>
 
-      <Link href = "#" className = {styles.forgetPassword}>Forgot Password</Link>
-      <Button type = "submit" variant = "contained" fullWidth >
-        Log In
+      <Button type = "submit" variant = "contained" fullWidth  >
+        Register
       </Button>
       <div className={styles.googleFrame}>
-        <div className={styles.loginWith}>{`Login with `}</div>
+        <div className={styles.loginWith}>{`Register with `}</div>
         <img
           className={styles.devicongoogle}
           loading="eager"
@@ -131,8 +120,8 @@ const userLogin: NextPage = () => {
         />
       </div>
       <div className={styles.ifYouDoContainer}>
-        <span className={styles.ifYouDo}>{`If you do not have account `}</span>
-        <Link href = '/sign-up' className = {styles.signUp}>Sign Up</Link>
+        <span className={styles.ifYouDo}>{`If you already have account `}</span>
+        <Link href = '/login' className = {styles.signUp}>Login</Link>
       </div>
       <ToastContainer />
     </form>
