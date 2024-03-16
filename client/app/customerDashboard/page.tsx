@@ -79,11 +79,14 @@ const handleSendReview = async (params: GridRenderCellParams) => {
 
 
 const handlePayment = (params: GridRenderCellParams) => {
-  console.log(params.row)
-  const amount = params.row.totalAmount;
+  console.log(params.row, "dacsd")
+  const amount = params.row.paymentAmount;
+  console.log(amount,"dhsabhcash")
   const bookingId = params.row.bookingId;
+  const paymentId = params.row.paymentId;
+  console.log(paymentId,"dhsabhcash")
   console.log(`Pay ${amount} for Booking ID ${bookingId}`);
-  esewaCall(bookingId,amount);
+  esewaCall(bookingId, paymentId, amount);
 };
 
 const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>, params: GridRenderCellParams) => {

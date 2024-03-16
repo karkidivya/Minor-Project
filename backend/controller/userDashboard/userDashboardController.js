@@ -19,7 +19,8 @@ const userDashboardController = {
                     Booking.bookingStatus, 
                     Payment.total_amount as paymentAmount,
                     Payment.status as paymentStatus,
-                    Payment.extraWorkDescription
+                    Payment.extraWorkDescription,
+                    Payment.id
                 FROM 
                     Booking 
                 LEFT JOIN 
@@ -40,6 +41,7 @@ const userDashboardController = {
                 serviceProviderName: provider[0].fullName,
                 totalAmount: entry.amount,
                 bookingId: entry.bookingId,
+                paymentId : entry.id,
                 categoryName: category[0].categoryName,
                 extraWorkDescription : entry.extraWorkDescription,
                 taskStatus: entry.bookingStatus,

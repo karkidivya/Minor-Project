@@ -87,6 +87,7 @@ const paymentController = {
         try {
             // Extract paymentId from request body
             const { paymentId } = req.body;
+            console.log(paymentId, "divya is hero")
     
             // Update the payment status in the database to 'Success'
             const query = 'UPDATE Payment SET status = ? WHERE id = ?';

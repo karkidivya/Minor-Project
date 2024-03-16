@@ -2,14 +2,15 @@ import CryptoJS from "crypto-js";
 import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
 
-export default async function esewaCall(bookingId, amount) {
+export default async function esewaCall(bookingId, paymentId, amount) {
   const uuidf = uuidv4();
+  const total_amount = amount;
   const backEnd = process.env.NEXT_PUBLIC_BACKEND_URL; // Replace with your actual backend URL
-  const paymentdata = {bookingId , uuidf ,amount}
+  const paymentdata = {bookingId , uuidf , total_amount}
   console.log(paymentdata)
   try {
     // Make an asynchronous axios call
-    const res = await axios.post(`${ process.env.NEXT_PUBLIC_BACKEND_URL}/paymentRoute/addPayment`,paymentdata);
+    const res = await axios.post(`${ process.env.NEXT_PUBLIC_BACKEND_URL}/paymentRoute/updatePaymentStatus`,{paymentId});
 
     // Continue with the rest of the code only if the axios call is successful
     const Message = `total_amount=${amount},transaction_uuid=${uuidf},product_code=EPAYTEST`;
