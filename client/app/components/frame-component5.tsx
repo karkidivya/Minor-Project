@@ -1,6 +1,6 @@
 'use client'
 import type { NextPage } from "next";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./frame-component5.module.css";
 import { Button } from "@mui/material";
@@ -8,14 +8,25 @@ import { RoundaboutLeftRounded } from "@mui/icons-material";
 
 const FrameComponent5: NextPage = () => {
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track user's login status
 
   const onMainBGImageClick = useCallback(() => {
     router.push("/home");
   }, [router]);
 
-  const handleClick = () =>{
-    router.push('/sign-up')
-  }
+  const handleClick = () => {
+    if (isLoggedIn) {
+      // If logged in, perform logout
+      // You can add your logout logic here
+      setIsLoggedIn(false);
+      // Redirect to login page
+      router.push('/');
+    } else {
+      // If not logged in, redirect to login page
+      router.push('/login');
+    }
+  };
+
   return (
     <section className={styles.container}>
       <header className={styles.navbarInner}>
@@ -31,20 +42,23 @@ const FrameComponent5: NextPage = () => {
             <div className={styles.home1}>Home</div>
           </div>
           <div className={styles.about} onClick={() => router.push('/customerDashboard')}>
-            <div className={styles.home3} >Dashboard</div>
+            <div className={styles.home3}>Dashboard</div>
           </div>
-          <button className={styles.register} onClick={() => router.push('/')}>
-            <div className={styles.becomeAProParent}>
-              <div className={styles.becomeAPro} />
-              <div className={styles.register1} >Logout</div>
-            </div>
-          </button>
-          {/* <button className={styles.register} onClick={() => router.push('/signup')}>
-            <div className={styles.becomeAProParent}>
-              <div className={styles.becomeAPro} />
-              <div className={styles.register1} >Register</div>
-            </div>
-          </button> */}
+          {isLoggedIn ? ( // Render "Logout" button if user is logged in
+            <button className={styles.register} onClick={handleClick}>
+              <div className={styles.becomeAProParent}>
+                <div className={styles.becomeAPro} />
+                <div className={styles.register1}>Logout</div>
+              </div>
+            </button>
+          ) : ( // Render "Login" button if user is not logged in
+            <button className={styles.register} onClick={handleClick}>
+              <div className={styles.becomeAProParent}>
+                <div className={styles.becomeAPro} />
+                <div className={styles.register1}>Login</div>
+              </div>
+            </button>
+          )}
         </div>
       </header>
       <h3 className={styles.categories}>Categories</h3>
