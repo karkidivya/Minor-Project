@@ -10,7 +10,7 @@ const FrameComponent5: NextPage = () => {
   const router = useRouter();
 
   const onMainBGImageClick = useCallback(() => {
-    router.push("/");
+    router.push("/home");
   }, [router]);
 
   const handleClick = () =>{
@@ -30,12 +30,12 @@ const FrameComponent5: NextPage = () => {
           {/* <div className={styles.home} onClick={() => router.push('/home')}>
             <div className={styles.home1}>Home</div>
           </div> */}
-          <div className={styles.customerService} onClick={() => router.push('/customer-service')}>
+          {/* <div className={styles.customerService} onClick={() => router.push('/customer-service')}>
             <div className={styles.home2} >Customer Service</div>
           </div>
           <div className={styles.about} onClick={() => router.push('/about')}>
             <div className={styles.home3} >About</div>
-          </div>
+          </div> */}
           {/* <div className={styles.about} onClick={() => router.push('/customerDashboard')}>
             <div className={styles.home3} >Dashboard</div>
           </div> */}

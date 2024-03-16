@@ -7,10 +7,6 @@ import styles from "./hero-section.module.css";
 const HeroSection: NextPage = () => {
   const router = useRouter();
 
-  const onCloudsContainer1Click = useCallback(() => {
-    router.push("/");
-  }, [router]);
-
   return (
     <div className={styles.heroSection1}>
       <img
@@ -28,7 +24,7 @@ const HeroSection: NextPage = () => {
             <p className={styles.elevateYourEveryday}>Elevate Your Everyday</p>
           </h1>
         </div>
-        <div className={styles.clouds2} onClick={onCloudsContainer1Click}>
+        <div className={styles.clouds2} onClick={() => router.push('/home')}>
           <div className={styles.clouds3}>
             <div className={styles.getStarted}>Get Started</div>
           </div>

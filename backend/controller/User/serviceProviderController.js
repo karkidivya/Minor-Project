@@ -108,9 +108,9 @@ const serviceProviderController = {
       // Check if the user exists in the database
       const serviceProvider = await queryAsync('SELECT * FROM ServiceProvider WHERE emailAddress = ?', [emailAddress]);
       console.log(serviceProvider, " service providers data ");
-      if (serviceProvider.length === 0) {
-        return res.status(404).json({ error: 'Service provider not found' });
-      }
+      // if (serviceProvider.length === 0) {
+      //   return res.status(404).json({ error: 'Service provider not found' });
+      // }
 
       // Check if the password is correct
       if (serviceProvider[0].password !== password) {
