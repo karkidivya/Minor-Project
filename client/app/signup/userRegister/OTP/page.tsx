@@ -20,7 +20,7 @@ const userLogin: NextPage = () => {
 
     axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/loginOtp/verify-otp`, {phoneNumber, otp})
     .then(res => {
-        router.push('/')
+        router.push('/home')
     })
     .catch(err => {
         console.log("Error from OTP/page.tsx", err)

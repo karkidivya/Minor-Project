@@ -45,7 +45,7 @@ const userLogin: NextPage = () => {
         dispatch(setAuthorization(true))
         dispatch(setUserDetail({...res.data.payload, id: res.data.payload.userId}))
         
-        router.push('/');
+        router.push('/home');
       }
     }catch(e){
       toast.error(e, {hideProgressBar: true})

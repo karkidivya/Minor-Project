@@ -29,18 +29,18 @@ const FrameComponent5: NextPage = () => {
           <div className={styles.about} onClick={() => router.push('/customerDashboard')}>
             <div className={styles.home3} >Dashboard</div>
           </div>
-          <button className={styles.register} onClick={() => router.push('/login')}>
+          <button className={styles.register} onClick={() => router.push('/')}>
             <div className={styles.becomeAProParent}>
               <div className={styles.becomeAPro} />
-              <div className={styles.register1} >Login</div>
+              <div className={styles.register1} >Logout</div>
             </div>
           </button>
-          <button className={styles.register} onClick={() => router.push('/signup')}>
+          {/* <button className={styles.register} onClick={() => router.push('/signup')}>
             <div className={styles.becomeAProParent}>
               <div className={styles.becomeAPro} />
               <div className={styles.register1} >Register</div>
             </div>
-          </button>
+          </button> */}
         </div>
       </header>
       <h3 className={styles.categories}>Categories</h3>

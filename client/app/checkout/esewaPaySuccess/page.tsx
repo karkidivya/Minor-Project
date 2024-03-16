@@ -11,7 +11,7 @@ export default function EsewaSuccess() {
     console.log(data.data, "dads ggggg dkdkdkkdkkd")
 
     
-    const gotoOrderDetails = () => {
+    const gotoUserDashboard = () => {
         router.push('/customerDashboard');
     }
 
@@ -20,7 +20,8 @@ export default function EsewaSuccess() {
             
             try {
                 const response = await axios.post(`http://localhost:9000/payment/verify-payment`, { data });
-                gotoOrderDetails();
+                console.log(response , "response")
+                gotoUserDashboard();
             } catch (error) {
                 console.log(error);
             }
@@ -31,15 +32,15 @@ export default function EsewaSuccess() {
         }
     }, [data, router]);
 
-    useEffect(() => {
-        // Redirect logic can be placed here if needed
-        // For example, redirecting after a delay
-        const redirectTimer = setTimeout(() => {
-            gotoOrderDetails();
-        }, 1000); // Redirect after 1 seconds
+    // useEffect(() => {
+    //     // Redirect logic can be placed here if needed
+    //     // For example, redirecting after a delay
+    //     const redirectTimer = setTimeout(() => {
+    //         gotoOrderDetails();
+    //     }, 1000); // Redirect after 1 seconds
 
-        return () => clearTimeout(redirectTimer); // Cleanup timer on component unmount
-    }, []);
+    //     return () => clearTimeout(redirectTimer); // Cleanup timer on component unmount
+    // }, []);
 
     return (
         <div className="mx-auto max-w-7xl px-2 lg:px-0">
