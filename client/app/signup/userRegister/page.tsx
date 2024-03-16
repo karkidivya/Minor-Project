@@ -34,29 +34,21 @@ const userLogin: NextPage = () => {
     event.preventDefault()
 
     try{
-      // const { result, error } = await signIn(credential.phoneNo, credential.password);
 
-      // const accessToken = await result?.user.getIdToken();
-    
-      // console.log("Access Token:", accessToken);
-      // console.log(result)
-
-      // if(accessToken){
-      //   router.push('/dashboard')
-      // }
       console.log(credential)
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/registerUser`, {name: credential.name,phoneNumber: credential.phoneNo, password: credential.password})
       console.log(res.data,"chsbdhcja")
       if(res.status= 201){
         await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/loginOtp/send-otp`, {phoneNumber: credential.phoneNo}).then((res) =>{
-          // router.push(`/registerUser/OTP?phoneNumber=${credential.phoneNo}`);
-          router.push('/signup/userRegister/OTP')
+          router.push(`/signup/userRegister/OTP?phoneNumber=${credential.phoneNo}`);
+          // router.push('/signup/userRegister/OTP')
 
         })
-        
-        router.push('/signup/userRegister/OTP')
       }
-
+        
+      else{
+        throw(Error("There seems to be some error. The user cannot be registered"))
+      }
     }catch(e){
       toast.error(e, {hideProgressBar: true})
       // router.push('/')
@@ -113,7 +105,7 @@ const userLogin: NextPage = () => {
 
       <Link href = "#" className = {styles.forgetPassword}>Forgot Password</Link>
       <Button type = "submit" variant = "contained" fullWidth >
-        Log In
+        Register
       </Button>
       <div className={styles.googleFrame}>
         <div className={styles.loginWith}>{`Login with `}</div>

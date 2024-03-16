@@ -12,11 +12,15 @@ import axios from "axios";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useAppDispatch } from "@/lib/hooks";
+import { setAuthorization, setUserDetail } from "@/lib/features/user/userSlice";
 
 const initialCredential = {name: "", password: ""}
 const userLogin: NextPage = () => {
 
   const router = useRouter();
+  const dispatch = useAppDispatch()
+
 
   const [ credential, setCredential ] = useState(initialCredential)
   const [ showPassword, setShowPassword ] =  useState(false)
@@ -38,6 +42,9 @@ const userLogin: NextPage = () => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/userLogin`, {name: credential.name, password: credential.password})
       console.log(res.data,"chsbdhcja")
       if(res.status= 201){
+        dispatch(setAuthorization(true))
+        dispatch(setUserDetail({...res.data.payload, id: res.data.payload.userId}))
+        
         router.push('/');
       }
     }catch(e){
@@ -60,16 +67,6 @@ const userLogin: NextPage = () => {
           placeholder="Enter your Phone Number"
         />
       </FormControl>
-      {/* <div className={styles.emailAddress}>phone number</div>
-      <FormControl fullWidth sx={{ m: 1}} variant="outlined">
-        <OutlinedInput
-          name = "phoneNo"
-          type='text'
-          value = {credential.phoneNo}
-          onChange = {handleChange}
-          placeholder="Enter your Phone Number"
-        />
-      </FormControl> */}
       <div className={styles.password}>Password</div>
       <FormControl fullWidth sx={{ m: 1}} variant="outlined">
         <OutlinedInput
@@ -114,7 +111,7 @@ const userLogin: NextPage = () => {
       </div>
       <div className={styles.ifYouDoContainer}>
         <span className={styles.ifYouDo}>{`If you do not have account `}</span>
-        <Link href = '/sign-up' className = {styles.signUp}>Sign Up</Link>
+        <Link href = '/signup/userRegister' className = {styles.signUp}>Sign Up</Link>
       </div>
       <ToastContainer />
     </form>

@@ -6,7 +6,8 @@ const userSlice = createSlice({
     initialState: {
         isAuthorized: false,
         accessToken: "",
-        userDetail: {}
+        userDetail: {},
+        role: "",
     },
     
     reducers: {
@@ -19,6 +20,9 @@ const userSlice = createSlice({
         setUserDetail: (state, action: PayloadAction<any>) => {
             state.userDetail = action.payload
         },
+        setRole: (state, action: PayloadAction<any>) => {
+            state.role = action.payload
+        }
         /**
             setCategory,
             bookingStep,
@@ -36,7 +40,7 @@ export const {
     setAuthorization,
     setAccessToken, 
     setUserDetail,
-
+    setRole,
 } = userSlice.actions
 
 export default userSlice.reducer

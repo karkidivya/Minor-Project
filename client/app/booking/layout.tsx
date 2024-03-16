@@ -13,10 +13,12 @@ import { useAppSelector } from "@/lib/hooks";
 const FrameComponent5 = ({children}: {children: React.ReactNode}) => {
   const router = useRouter();
 
-  const onMainBGImageClick = useCallback(() => {
-    router.push("/");
-  }, [router]);
+
   const { bookingStep } = useAppSelector((state) => state.booking)
+  const user = useAppSelector((state) => state.user)
+  if( !user.isAuthorized){
+    router.push('/login/userLogin')
+  }
   return (
     <div style = {{display:'flex', flexDirection: 'column', alignItems: 'center', background: '#F3F3F3'}}>
         <section className={styles.container}>
@@ -26,7 +28,7 @@ const FrameComponent5 = ({children}: {children: React.ReactNode}) => {
             loading="eager"
             alt=""
             src="/ellipse-1@2x.png"
-            onClick={onMainBGImageClick}
+            onClick={() => router.push('/')}
             />
             <Stepper step = {bookingStep}/>
         </header>

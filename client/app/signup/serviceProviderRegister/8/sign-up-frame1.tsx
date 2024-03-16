@@ -4,16 +4,18 @@ import { Button,  FormControlLabel, Checkbox } from "@mui/material";
 import styles from "./sign-up-frame1.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { certificateImage, profileImage } from "@/app/firebase/config";
 import signUp from '@/app/firebase/auth/signup'
 import axios from "axios";
+import { setAccessToken, setAuthorization, setRole } from "@/lib/features/user/userSlice";
 
 
 const SignUpFrame1: NextPage = () => {
   const [ isChecked, setIsChecked ] = useState(false)
   const signupInfo = useAppSelector((state) => state.signup)
   const router = useRouter()
+  const dispatch = useAppDispatch()
   const handleChange = () => {
     setIsChecked(!isChecked as boolean)
   }
@@ -25,6 +27,9 @@ const SignUpFrame1: NextPage = () => {
     const accessToken = await result?.user.getIdToken()    
     if(error) console.log(error)
     if(accessToken){
+      dispatch(setAuthorization(true))
+      dispatch(setAccessToken(accessToken))
+      dispatch(setRole("serviceProvider"))
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceProvider/registerServiceProvider`, {...signupInfo, profilePicture: profilePicUrl, certificate: certificationUrl})
       console.log(result)
       // router.push('/dashboard')

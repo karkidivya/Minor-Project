@@ -70,7 +70,7 @@ const ChatFrame: NextPage<ChatFrameType> = ({
                 className={styles.assemblyStatusTextChild}
                 loading="eager"
                 alt=""
-                src="/ellipse-22@2x.png"
+                src={serviceProvider.profilePicture || ""}
               />
 
             </div>

@@ -16,8 +16,9 @@ const dummyData = {
 }
 
 async function getServiceProvider(categoryId: string, setData: any){
-  const backendurl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceCategories`
-  const newData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceProvider/byCategoryId/${categoryId}`)
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/serviceProvider/byCategoryId/${categoryId}`
+  const newData = await axios.get(url)
+  console.log("The url is\n",url);
   console.log(newData.data)
   setData(newData.data.serviceProviders)
 }

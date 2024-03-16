@@ -10,7 +10,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { paymentInformation } from "@/lib/features/signup/signupSlice";
-import Select from '../../components/Select'
+import Select from '../../../components/Select'
 const exampleOption = [
   {
     label : <img

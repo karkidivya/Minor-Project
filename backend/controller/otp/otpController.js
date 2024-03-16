@@ -24,7 +24,7 @@ const otpController = {
     sendOTP: async (req, res) => {
         client.verify.v2
         .services(verifySid)
-        .verifications.create({ to: "+9779863867235", channel: "sms" })
+        .verifications.create({ to: "+9779828896039", channel: "sms" })
         .then((verification) => {
             console.log(verification)
             if(verification.status == 'pending')
@@ -47,7 +47,7 @@ const otpController = {
 
         client.verify.v2
         .services(verifySid)
-        .verificationChecks.create({to: "+9779863867235", code: otp})
+        .verificationChecks.create({to: "+9779828896039", code: otp})
         .then((verification_check) => {
             console.log(verification_check)
             if(verification_check.status == 'approved')

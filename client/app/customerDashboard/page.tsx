@@ -7,6 +7,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import esewaCall from '../checkout/esewa';
 import { useRouter } from 'next/navigation';
 import { ContactPageSharp } from '@mui/icons-material';
+import { useAppSelector } from '@/lib/hooks';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'SN', width: 80, headerAlign: 'center' },
@@ -103,13 +104,13 @@ const handleReviewChange = (e: React.ChangeEvent<HTMLInputElement>, params: Grid
 
 export default function CustomerDashboard() {
   const [rows, setRows] = useState([]);
-
+  const {id} = useAppSelector((state) => state.user.userDetail)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/userDashboard/getUserDetails`, { customerId: 1 });
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/userDashboard/getUserDetails`, { customerId: id });
         console.log(response,"userdetails")
-        setRows(response.data.data.map((item, index) => ({ ...item, id: index + 1 })));
+        setRows(response.data.data.map((item: any, index: number) => ({ ...item, id: index + 1 })));
       } catch (error) {
         console.error('Error fetching data:', error);
       }

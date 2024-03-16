@@ -3,26 +3,30 @@ import { Box, Card, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import OrderItem from './OrderItem'
 import axios from "axios";
+import { useAppSelector } from "@/lib/hooks";
 
-
-const databaseSavedId = 1
-const getData = async (accessToken: string, setData: (x: any) => any) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/booking/getBookingByServiceProviderId/${databaseSavedId}`
+const getData = async (url: string, accessToken: string, setData: (x: any) => any) => {
     console.log(url)
-    const res = await axios.get(url, {
-            headers: {
-                Bearer: accessToken
-            }
-        })
-    
-    setData(res?.data?.data)    
+    try{
+        const res = await axios.get(url, {
+                headers: {
+                    Bearer: accessToken
+                }
+            })
+        
+        setData(res?.data?.data)    
+
+    }catch(e){
+        console.log(e)
+    }
 }
 
 export default function Orders() {
     const [bookings, setbookings] = useState<any[]>([])
-
+    const { serviceProviderId } = useAppSelector((state) => state.user.userDetail)
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/booking/getBookingByServiceProviderId/${serviceProviderId}`
     useEffect(() => {
-        getData('', setbookings)
+        getData(url, '', setbookings)
     }, [])
 
     return (

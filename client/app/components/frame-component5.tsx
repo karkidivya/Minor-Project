@@ -1,21 +1,11 @@
 'use client'
 import type { NextPage } from "next";
-import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./frame-component5.module.css";
-import { Button } from "@mui/material";
-import { RoundaboutLeftRounded } from "@mui/icons-material";
 
 const FrameComponent5: NextPage = () => {
   const router = useRouter();
 
-  const onMainBGImageClick = useCallback(() => {
-    router.push("/");
-  }, [router]);
-
-  const handleClick = () =>{
-    router.push('/sign-up')
-  }
   return (
     <section className={styles.container}>
       <header className={styles.navbarInner}>
@@ -24,7 +14,7 @@ const FrameComponent5: NextPage = () => {
           loading="eager"
           alt=""
           src="/ellipse-1@2x.png"
-          onClick={onMainBGImageClick}
+          onClick={()=> router.push('/')}
         />
         <div className={styles.text}>
           <div className={styles.home} onClick={() => router.push('/home')}>
