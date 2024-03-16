@@ -18,27 +18,41 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const FullNameFrame: NextPage = () => {
-  const [ signupCredential, setSignupCredential ] = useState({fullName: "", emailAddress: "", password: ""})
-  const [ showPassword, setShowPassword ] =  useState(false)
-  const router = useRouter()
-  const dispatch: AppDispatch = useAppDispatch()
+  const [signupCredential, setSignupCredential] = useState({
+    fullName: "",
+    emailAddress: "",
+    password: "",
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const dispatch: AppDispatch = useAppDispatch();
 
-  const handleChange = (e: React.ChangeEvent<any>) =>{
-    const name = e.target.name
-    const value = e.target.value
-  
-    setSignupCredential((prev) =>{
-      return { ...prev, [name]: value}
-    })
+  const handleChange = (e: React.ChangeEvent<any>) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
-  }
+    setSignupCredential((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
 
-  const handleSubmit = async() =>{
-    dispatch(personalInformation(signupCredential))
-    router.push('serviceProviderRegister/1')
+  const handleSubmit = async () => {
+    if (!signupCredential.fullName || !signupCredential.emailAddress || !signupCredential.password) {
+      // Check if any field is empty
+      alert("Please fill in all fields before proceeding.");
+      return; // Prevent submission if any field is empty
+    }
     
-    // handle submit
-  }
+    if (signupCredential.password.length < 8) {
+      // Check if password is at least 8 characters long
+      alert("Password must be at least eight characters long.");
+      return; // Prevent submission if password is too short
+    }
+
+    dispatch(personalInformation(signupCredential));
+    router.push('serviceProviderRegister/1');
+  };
+
   return (
     <form className={styles.fullNameFrame}>
       <h1 className={styles.kaamsewa}>KaamSewa</h1>
@@ -48,8 +62,8 @@ const FullNameFrame: NextPage = () => {
         className={styles.emailAddressFrame}
         placeholder="Full Name"
         variant="outlined"
-        name = "fullName"
-        value = {signupCredential.fullName}
+        name="fullName"
+        value={signupCredential.fullName}
         onChange={handleChange}
       />
       <div className={styles.emailAddress}>Email Address</div>
@@ -57,18 +71,18 @@ const FullNameFrame: NextPage = () => {
         className={styles.emailAddressFrame1}
         placeholder="Email Address"
         variant="outlined"
-        name = "emailAddress"
+        name="emailAddress"
         value={signupCredential.emailAddress}
-        onChange = {handleChange}
+        onChange={handleChange}
       />
       <div className={styles.password}>Password</div>
-      <FormControl fullWidth sx={{ m: 1}} variant="outlined">
+      <FormControl fullWidth sx={{ m: 1 }} variant="outlined">
         <OutlinedInput
           id="outlined-adornment-password"
-          name = "password"
+          name="password"
           type={showPassword ? 'text' : 'password'}
-          value = {signupCredential.password}
-          onChange = {handleChange}
+          value={signupCredential.password}
+          onChange={handleChange}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -88,7 +102,7 @@ const FullNameFrame: NextPage = () => {
         className={styles.nextButton}
         disableElevation={true}
         variant="contained"
-        onClick = {handleSubmit}
+        onClick={handleSubmit}
         sx={{
           textTransform: "none",
           color: "#fff",
@@ -102,21 +116,6 @@ const FullNameFrame: NextPage = () => {
       >
         Next
       </Button>
-      <div className={styles.signUpLink}>
-        <div className={styles.signupWith}>{`Sign Up with `}</div>
-        <img
-          className={styles.devicongoogle}
-          loading="eager"
-          alt=""
-          src="/devicongoogle.svg"
-        />
-        <img
-          className={styles.signUpLinkChild}
-          loading="eager"
-          alt=""
-          src="/group-6.svg"
-        />
-      </div>
     </form>
   );
 };

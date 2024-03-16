@@ -13,31 +13,39 @@ import { MuiTelInput } from "mui-tel-input";
 import GeoLocation from '../../../geolocation'
 import { coordinate, address, phoneNumber as f_phoneNumber } from "@/lib/features/signup/signupSlice";
 
-const FrameComponent: NextPage = () => {
-  const [ phoneNumber, setPhoneNumber ] = useState("")
-  const router = useRouter()
-  const {location} = useAppSelector((state) => state.signup)
-  const dispatch: AppDispatch= useAppDispatch();
 
-  const handleSubmit = () =>{
-    
-    dispatch(f_phoneNumber(phoneNumber))
-    router.push('/signup/serviceProviderRegister/3')
-  }
-  
+const FrameComponent: NextPage = () => {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const router = useRouter();
+  const { location } = useAppSelector((state) => state.signup);
+  const dispatch: AppDispatch = useAppDispatch();
+
+  const handleSubmit = () => {
+    if (!phoneNumber || phoneNumber.length !== 16 || !location.address) {
+      // Check if phone number is empty or not 10 characters long
+      alert("Please enter a 10-digit phone number and fill in all fields before proceeding.");
+      return;
+    }
+
+    dispatch(f_phoneNumber(phoneNumber));
+    router.push('/signup/serviceProviderRegister/3');
+  };
+
   return (
     <div className={styles.kaamsewaParent}>
       <h1 className={styles.kaamsewa}>KaamSewa</h1>
       <h3 className={styles.profileInfo}>Location and Phone Number</h3>
 
       <div className={styles.profilePicture}>Phone Number</div>
-      <MuiTelInput defaultCountry="NP" 
-                    value = {phoneNumber}
-                    onChange = {(newPhone) => setPhoneNumber(newPhone)} 
-                    style={{alignSelf: 'flex-start', width: '100%'}}/>
-                    
+      <MuiTelInput
+        defaultCountry="NP"
+        value={phoneNumber}
+        onChange={(newPhone) => setPhoneNumber(newPhone)}
+        style={{ alignSelf: 'flex-start', width: '100%' }}
+      />
+
       <div className={styles.location}>Location</div>
-      <GeoLocation address={address} coordinate = {coordinate} location={location}/>
+      <GeoLocation address={address} coordinate={coordinate} location={location} />
 
       <Button
         className={styles.frameInner}
@@ -53,7 +61,7 @@ const FrameComponent: NextPage = () => {
           width: 126,
           height: 30,
         }}
-        onClick = {handleSubmit}
+        onClick={handleSubmit}
       >
         Continue
       </Button>
