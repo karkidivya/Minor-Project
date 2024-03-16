@@ -42,9 +42,7 @@ export default function OrderItem({booking}: {booking: any}) {
 
 
   return (
-    // <Button variant = "div">
-      
-    // </Button>
+
     <Card sx={{ maxWidth: 400, p: 0, minWidth: 300 }} onClick = {handleExpandClick}>
       <Box m = {2} display={'flex'}>
 
@@ -71,12 +69,20 @@ export default function OrderItem({booking}: {booking: any}) {
                 <Typography fontWeight={600}>Registered At: </Typography>
                 <Typography>{booking.createdAt}</Typography>
                 <Box display = 'flex' justifyContent={"flex-end"} gap={3} sx = {{py: 2}}>
-                  <Button variant = "outlined" onClick = {handleInProgress}>
-                    On It
-                  </Button>
-                  <Button variant = "contained" onClick = {handleCompleted}>
-                    Completed
-                  </Button>
+                  {
+                    booking.bookingStatus == 'pending'
+                    &&
+                    <Button variant = "outlined" onClick = {handleInProgress}>
+                      On It
+                    </Button>
+                  }
+                  {
+                    booking.bookingStatus == 'in-progress'
+                    &&
+                    <Button variant = "contained" onClick = {handleCompleted}>
+                      Completed
+                    </Button>
+                  }
 
                 </Box>
               </Stack>

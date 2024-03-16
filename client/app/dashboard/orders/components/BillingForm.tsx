@@ -26,6 +26,7 @@ export default function BillingForm({bookingId}: {bookingId: string}) {
     })
   }
   const handleSubmit = () =>{
+    console.log(billingInfo)
     axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/paymentRoute/addPayment`, billingInfo)
     .then((res) => {
       console.log(res.status)

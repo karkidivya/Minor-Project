@@ -56,7 +56,7 @@ const otpController = {
                 throw Error("Wrong Otp")
         }).catch((err) => {
             console.log('From Otp controller',err )
-            res.status(500).json({reason: error})
+            res.status(500).json({reason: err})
         })
 
     }
