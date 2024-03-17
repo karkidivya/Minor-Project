@@ -21,7 +21,7 @@ const FrameComponent: NextPage = () => {
   const dispatch: AppDispatch = useAppDispatch();
 
   const handleSubmit = () => {
-    if (!phoneNumber || phoneNumber.length !== 16 || !location.address) {
+    if (!phoneNumber || phoneNumber.length !== 15 || !location.address) {
       // Check if phone number is empty or not 10 characters long
       alert("Please enter a 10-digit phone number and fill in all fields before proceeding.");
       return;

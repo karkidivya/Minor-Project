@@ -5,6 +5,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import "./globals.css";
 import {  ScriptProps } from "next/script";
 import StoreProvider from "./StoreProvider";
+// import { PersistGate } from 'redux-persist/integration/react';
+// import { persistor } from "../lib/store"; 
 import { SocketProvider } from "./context/SocketContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs'
@@ -53,9 +55,13 @@ export default function Layout({children}: ScriptProps) {
                 <CssBaseline />
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                  
-                  <StoreProvider> <SocketProvider>
+                  <StoreProvider>
+                  {/* <PersistGate loading={null} persistor={persistor}> */}
+                     <SocketProvider>
                     {children}
-                    </SocketProvider> </StoreProvider>
+                    </SocketProvider> 
+                    {/* </PersistGate> */}
+                    </StoreProvider>
                  
                 </LocalizationProvider>
               </JoyCssVarsProvider>

@@ -9,6 +9,7 @@ import { useSocket } from '../context/SocketContext';
 
 const IndexPage = () => {
     const socket = useSocket();
+    console.log(socket)
     // const [socket, setSocket] = useState(null);
     // useEffect(() => {
     //     setSocket(io("http://localhost:5000", { transports:['websocket']}));

@@ -6,12 +6,12 @@ import styles from "./frame-component5.module.css";
 const FrameComponent5: NextPage = () => {
   const router = useRouter();
 
-  const onMainBGImageClick = useCallback(() => {
-    router.push("/home");
-  }, [router]);
+  // const onMainBGImageClick = useCallback(() => {
+  //   router.push("/home");
+  // }, [router]);
 
   const handleClick = () =>{
-    router.push('/sign-up')
+    router.push('/signup')
   }
   return (
     <section className={styles.container}>
@@ -21,7 +21,7 @@ const FrameComponent5: NextPage = () => {
           loading="eager"
           alt=""
           src="/ellipse-1@2x.png"
-          onClick={()=> router.push('/')}
+          onClick={()=> router.push('/home')}
         />
         <div className={styles.text}>
           <div className={styles.home} onClick={() => router.push('/home')}>
