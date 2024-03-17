@@ -1,12 +1,15 @@
-import {combineReducers } from '@reduxjs/toolkit';
 import signupReducer from './features/signup/signupSlice';
 import bookingReducer from './features/booking/bookingSlice';
 import userReducer from './features/user/userSlice'
+import { combineReducers } from '@reduxjs/toolkit';
+
 
 const rootReducer = combineReducers({
-    signup: signupReducer,
+    user: userReducer,
     booking: bookingReducer,
-    user: userReducer
+    signup: signupReducer
 });
 
-export default rootReducer;
+
+// const rootPersistReducer = persistReducer(persistConfig, rootReducer)
+export default rootReducer

@@ -13,7 +13,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useAppDispatch } from "@/lib/hooks";
-import { setAuthorization, setUserDetail } from "@/lib/features/user/userSlice";
+import { setAuthorization, setRole, setUserDetail } from "@/lib/features/user/userSlice";
 
 const initialCredential = {name: "", password: ""}
 const userLogin: NextPage = () => {
@@ -43,6 +43,7 @@ const userLogin: NextPage = () => {
       console.log(res.data,"chsbdhcja")
       if(res.status= 201){
         dispatch(setAuthorization(true))
+        dispatch(setRole("user"))
         dispatch(setUserDetail({...res.data.payload, id: res.data.payload.userId}))
         
         router.push('/home');

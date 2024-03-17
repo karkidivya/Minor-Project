@@ -103,9 +103,16 @@ const handleReviewChange = (e: React.ChangeEvent<HTMLInputElement>, params: Grid
 };
 
 export default function CustomerDashboard() {
+  const router = useRouter()
   const [rows, setRows] = useState([]);
   const {id} = useAppSelector((state) => state.user.userDetail)
+  const {isAuthorized} = useAppSelector((state) => state.user)
   useEffect(() => {
+    if(!isAuthorized){
+      router.push('/')
+    }
+
+
     const fetchData = async () => {
       try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/userDashboard/getUserDetails`, { customerId: id });
@@ -118,7 +125,6 @@ export default function CustomerDashboard() {
 
     fetchData();
   }, []);
-  const router = useRouter()
 
   return (
     <div style={{ height: '100vh', width: '100%' }}>
