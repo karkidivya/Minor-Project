@@ -5,13 +5,13 @@
 const createNoopStorage = () => {
     return {
         getItem(_key: any){
-            return ;
+            return "" as any;
         },
         setItem(_key: any, value: any){
-            return ;
+            return "" as any;
         },
         removeItem(_key: any){
-            return;
+            return "" as any;
         }
     }
 }

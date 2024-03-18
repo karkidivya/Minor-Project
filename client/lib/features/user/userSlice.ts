@@ -6,7 +6,7 @@ const userSlice = createSlice({
     initialState: {
         isAuthorized: false,
         accessToken: "",
-        userDetail: {},
+        userDetail: {} as any,
         role: "",
     },
     

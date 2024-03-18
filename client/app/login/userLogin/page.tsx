@@ -39,7 +39,6 @@ const userLogin: NextPage = () => {
     try{
       console.log(credential)
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/userLogin`, {name: credential.name, password: credential.password})
-      console.log(res.data,"chsbdhcja")
       if(res.status= 201){
         dispatch(setAuthorization(true))
         dispatch(setRole("user"))
@@ -48,7 +47,7 @@ const userLogin: NextPage = () => {
         router.push('/home');
       }
     }catch(e){
-      toast.error(e, {hideProgressBar: true})
+      toast.error(String(e), {hideProgressBar: true})
     }
   }
 

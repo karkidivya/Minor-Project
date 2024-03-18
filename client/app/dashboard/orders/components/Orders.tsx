@@ -22,11 +22,11 @@ const getData = async (url: string, accessToken: string, setData: (x: any) => an
 }
 
 export default function Orders() {
-    const [bookings, setbookings] = useState<any[]>([])
+    const [bookings, setBookings] = useState<any[]>([])
     const { serviceProviderId } = useAppSelector((state) => state.user.userDetail)
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/booking/getBookingByServiceProviderId/${serviceProviderId}`
     useEffect(() => {
-        getData(url, '', setbookings)
+        getData(url, '', setBookings)
     }, [])
 
     return (
@@ -42,7 +42,7 @@ export default function Orders() {
                 <Box sx = {{mt: 3}}>
                         {
                         bookings.length > 0 ? 
-                        bookings.map((item: any, idx: number) => <OrderItem key = {idx} booking={item} />
+                        bookings.map((item: any, idx: number) => <OrderItem key = {idx} booking={item} setBookings = {setBookings}/>
                         ):
                         <Typography textAlign={'center'}>No Booking Yet</Typography>
                         }

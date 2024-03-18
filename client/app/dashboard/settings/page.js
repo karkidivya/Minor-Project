@@ -6,11 +6,6 @@ import { SettingsPassword } from '../components/settings/settings-password';
 
 const Page = () => (
   <>
-    <Head>
-      <title>
-        Settings | Material Kit
-      </title>
-    </Head>
     <Box
       component="main"
       sx={{

@@ -111,12 +111,14 @@ const bookingController = {
           // Update the booking status in the database
           const query = 'UPDATE Booking SET bookingStatus = ? WHERE bookingId = ?';
           const result = await queryAsync(query, [bookingStatus, bookingId]);
-      
           // Check if the update was successful
           if (result.affectedRows === 1) {
-            res.status(200).json({ success: true, message: 'Booking status updated successfully' });
+            const bookingQuery = `SELECT * FROM Booking`
+            const booking = await queryAsync(bookingQuery)
+
+            res.status(200).json({ success: true, data: booking, message: 'Booking status updated successfully' });
           } else {
-            res.status(404).json({ success: false, error: 'Booking not found or unable to update status' });
+            res.status(500).json({ success: false, error: 'Booking not found or unable to update status' });
           }
         } catch (error) {
           console.error('Error updating booking status:', error);

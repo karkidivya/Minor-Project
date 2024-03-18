@@ -2,12 +2,10 @@
 import { useEffect } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
-import PropTypes from 'prop-types';
 import { Box, Divider, Drawer, useMediaQuery } from '@mui/material';
 import { ChartBar as ChartBarIcon } from '../icons/chart-bar';
 import { Cog as CogIcon } from '../icons/cog';
 import { User as UserIcon } from '../icons/user';
-import { Users as UsersIcon } from '../icons/users';
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike'
 import { Logo } from './logo';
 import { NavItem } from './nav-item';
@@ -142,7 +140,4 @@ export const DashboardSidebar = (props) => {
   );
 };
 
-DashboardSidebar.propTypes = {
-  onClose: PropTypes.func,
-  open: PropTypes.bool
-};
+
