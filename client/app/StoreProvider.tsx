@@ -3,7 +3,7 @@ import {useRef} from 'react'
 import {Provider} from 'react-redux'
 import { makeStore, AppStore } from '../lib/store'
 import { setAccessToken, setAuthorization, setRole, setUserDetail } from '@/lib/features/user/userSlice'
-
+import localStorage from '@/lib/customStorage'
 
 
 export default function StoreProvider({children,}:{children: React.ReactNode}){

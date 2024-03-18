@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-
+import localStorage from "@/lib/customStorage"
 const userSlice = createSlice({
 
     name: "booking",
