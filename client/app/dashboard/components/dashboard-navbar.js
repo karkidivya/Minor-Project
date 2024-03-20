@@ -1,8 +1,8 @@
 'use client'
 import { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import { AppBar, Avatar, Badge, Box, IconButton, Toolbar, Tooltip } from '@mui/material';
+import {styled} from '@mui/material/styles';
+import { AppBar, Badge, Box, IconButton, Toolbar, Tooltip } from '@mui/material';
+import Avatar from '@mui/material/Avatar'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Bell as BellIcon } from '../icons/bell';
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
@@ -71,35 +71,46 @@ export const DashboardNavbar = (props) => {
               <BellIcon fontSize="small" />
             </Badge>
           </IconButton>
-          <Avatar
+          {/* {userDetail.profilePicture ?
+            <Avatar
+            key = {12321}
             onClick={() => setOpenAccountPopover(true)}
             ref={settingsRef}
+            alt = {"User's Profile picture"}
             sx={{
               cursor: 'pointer',
               height: 40,
               width: 40,
               ml: 1
             }}
-            src={userDetail?.profilePicture}
-            >
-            <UserCircleIcon fontSize="small" />
-          </Avatar>
+            src = {userDetail?.profilePicture }
+            />: 
+            <Avatar
+            key = {1232132}
+            onClick={() => setOpenAccountPopover(true)}
+            ref={settingsRef}
+            alt = {"User's Profile picture"}
+            sx={{
+              cursor: 'pointer',
+              height: 40,
+              width: 40,
+              ml: 1
+            }}
+            src = {'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fuser_149071&psig=AOvVaw3o1kMUvUdp2CoRGS_q-vHv&ust=1711041538653000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKjo8sqsg4UDFQAAAAAdAAAAABAE'}
+            />  */}
+          {/* } */}
         </Toolbar>
+        <AccountPopover
+          anchorEl={settingsRef.current}
+          open={openAccountPopover}
+          onClose={() => setOpenAccountPopover(false)}
+        />
+        <Notification
+          anchorEl = {notificationRef.current}
+          open = {openNotification}
+          onClose = {() =>  setOpenNotification(false)}
+        />
       </DashboardNavbarRoot>
-      <AccountPopover
-        anchorEl={settingsRef.current}
-        open={openAccountPopover}
-        onClose={() => setOpenAccountPopover(false)}
-      />
-      <Notification
-        anchorEl = {notificationRef.current}
-        open = {openNotification}
-        onClose = {() =>  setOpenNotification(false)}
-      />
     </>
   );
-};
-
-DashboardNavbar.propTypes = {
-  onSidebarOpen: PropTypes.func
 };

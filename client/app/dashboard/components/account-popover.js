@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Box, MenuItem, MenuList, Popover, Typography } from '@mui/material';
 import { useAppDispatch } from '@/lib/hooks';
 import { setAuthorization } from '@/lib/features/user/userSlice';
@@ -62,8 +61,3 @@ export const AccountPopover = (props) => {
   );
 };
 
-AccountPopover.propTypes = {
-  anchorEl: PropTypes.any,
-  onClose: PropTypes.func,
-  open: PropTypes.bool.isRequired
-};

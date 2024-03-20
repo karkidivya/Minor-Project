@@ -13,7 +13,8 @@ const userSlice = createSlice({
     reducers: {
         setAuthorization: (state, action: PayloadAction<boolean>) =>{
             state.isAuthorized = action.payload
-            localStorage?.setItem("isAuthorized", String(action.payload))
+            console.log("set authorized set", state.isAuthorized)
+            localStorage?.setItem("isAuthorized", action.payload ? 1 : 0)
         },
         setAccessToken: (state, action: PayloadAction<string>) => {
             state.accessToken = action.payload

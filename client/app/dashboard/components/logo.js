@@ -11,11 +11,3 @@ export const Logo = styled((props) => {
     <Image src = "/ellipse-1@2x.png" width = {80} height = {80}/>
   );
 })``;
-
-Logo.defaultProps = {
-  variant: 'primary'
-};
-
-Logo.propTypes = {
-  variant: PropTypes.oneOf(['light', 'primary'])
-};

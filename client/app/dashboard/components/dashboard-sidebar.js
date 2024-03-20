@@ -9,6 +9,9 @@ import { User as UserIcon } from '../icons/user';
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike'
 import { Logo } from './logo';
 import { NavItem } from './nav-item';
+import {
+  THEME_ID as MATERIAL_THEME_ID,
+} from '@mui/material/styles';
 
 const items = [
   {
@@ -36,7 +39,7 @@ const items = [
 export const DashboardSidebar = (props) => {
   const { open, onClose } = props;
   const router = useRouter();
-  const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
+  const lgUp = useMediaQuery((theme) => theme[MATERIAL_THEME_ID].breakpoints.up('lg'), {
     defaultMatches: true,
     noSsr: false
   });

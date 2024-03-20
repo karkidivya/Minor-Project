@@ -10,7 +10,8 @@ export default function StoreProvider({children,}:{children: React.ReactNode}){
     const storeRef = useRef<AppStore>()
     if(!storeRef.current){
         storeRef.current = makeStore()
-        storeRef.current.dispatch(setAuthorization(Boolean(localStorage?.getItem("isAuthorized") || false)))
+        console.log(localStorage?.getItem("isAuthorized") || false)
+        storeRef.current.dispatch(setAuthorization(localStorage?.getItem("isAuthorized") || false))
         storeRef.current.dispatch(setAccessToken(localStorage?.getItem('accessToken') || ""))
         storeRef.current.dispatch(setRole(localStorage?.getItem("role") || ""))
         storeRef.current.dispatch(setUserDetail(JSON.parse(localStorage?.getItem("userDetail") || "{}")))

@@ -13,7 +13,7 @@ import {
   THEME_ID as MATERIAL_THEME_ID,
 } from '@mui/material/styles';
 import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
-
+import {theme} from './theme/index'
 export default function Layout({children}: ScriptProps) {
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -24,7 +24,7 @@ export default function Layout({children}: ScriptProps) {
   }, []);
 
 
-  const materialTheme = materialExtendTheme();
+  const materialTheme = materialExtendTheme(theme);
 
   return (
     <html>
@@ -57,7 +57,6 @@ export default function Layout({children}: ScriptProps) {
                 </LocalizationProvider>
               </JoyCssVarsProvider>
             </MaterialCssVarsProvider>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         </Fragment>
         
       </body>

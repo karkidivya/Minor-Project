@@ -5,11 +5,7 @@ import { AccountProfileDetails } from '../components/account/account-profile-det
 
 const Page = () => (
   <>
-    <Head>
-      <title>
-        Account | Material Kit
-      </title>
-    </Head>
+
     <Box
       component="main"
       sx={{
