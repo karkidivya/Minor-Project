@@ -1,7 +1,7 @@
 'use client'
 import type { NextPage } from "next";
 import { useMemo, useState, type CSSProperties } from "react";
-import styles from "./frame-component.module.css";
+import styles from "./styles.module.css";
 
 export type FrameComponentType = {
   /** Style props */

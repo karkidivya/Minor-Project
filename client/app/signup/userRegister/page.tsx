@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const initialCredential = {name: "",phoneNo:"", password: ""}
-const userLogin: NextPage = () => {
+const UserLogin: NextPage = () => {
 
   const router = useRouter();
 
@@ -50,7 +50,7 @@ const userLogin: NextPage = () => {
         throw(Error("There seems to be some error. The user cannot be registered"))
       }
     }catch(e){
-      toast.error(e, {hideProgressBar: true})
+      toast.error(String(e), {hideProgressBar: true})
       // router.push('/')
     }
   }
@@ -132,7 +132,7 @@ const userLogin: NextPage = () => {
   );
 };
 
-export default userLogin;
+export default UserLogin;
 
 
 /**

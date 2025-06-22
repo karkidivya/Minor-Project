@@ -1,12 +1,14 @@
 'use client'
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
-import styles from "./plumber.module.css";
 import {useRouter} from 'next/navigation'
 import { useAppDispatch } from "@/lib/hooks";
 import { setCategory } from '@/lib/features/booking/bookingSlice'
 
-export type PlumberType = {
+import styles from "./styles.module.css";
+
+export type ServiceCategoryItemCardType = {
+
   image?: string;
   categoryName?: string;
   categoryId: number | string 
@@ -14,7 +16,7 @@ export type PlumberType = {
   propHeight?: CSSProperties["height"];
 };
 
-const Plumber: NextPage<PlumberType> = ({
+const ServiceCategoryItemCard: NextPage<ServiceCategoryItemCardType> = ({
   image,
   categoryName,
   categoryId,
@@ -46,6 +48,6 @@ const Plumber: NextPage<PlumberType> = ({
   );
 };
 
-export default Plumber;
+export default ServiceCategoryItemCard;
 
 

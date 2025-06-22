@@ -15,7 +15,7 @@ import { useAppDispatch } from "@/lib/hooks";
 import { setAuthorization, setRole, setUserDetail } from "@/lib/features/user/userSlice";
 
 const initialCredential = {name: "", password: ""}
-const userLogin: NextPage = () => {
+const UserLogin: NextPage = () => {
 
   const router = useRouter();
   const dispatch = useAppDispatch()
@@ -118,7 +118,7 @@ const userLogin: NextPage = () => {
   );
 };
 
-export default userLogin;
+export default UserLogin;
 
 /**
   {
