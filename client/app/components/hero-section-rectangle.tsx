@@ -6,7 +6,7 @@ import styles from "./frame-component5.module.css";
 import { Button } from "@mui/material";
 import { RoundaboutLeftRounded } from "@mui/icons-material";
 
-const FrameComponent5: NextPage = () => {
+const NavBar: NextPage = () => {
   const router = useRouter();
 
   const onMainBGImageClick = useCallback(() => {
@@ -57,4 +57,4 @@ const FrameComponent5: NextPage = () => {
   );
 };
 
-export default FrameComponent5;
+export default NavBar; 

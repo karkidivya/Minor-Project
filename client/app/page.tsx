@@ -1,15 +1,16 @@
 import type { NextPage } from "next";
-import HeroSectionRectangle from "./components/hero-section-rectangle";
+import NavBar from "./components/hero-section-rectangle";
 import HeroSection from "./components/hero-section";
 import HowItWorks from "./components/how-it-works";
-import FrameComponent from "./components/frame-component";
+import FrameComponent from "./components/Contact";
 import Footer from "./components/footer";
 import styles from "./styles.module.css";
+import GetStarted from "./components/GetStarted";
 
 const LandingPage: NextPage = () => {
   return (
     <div className={styles.landingPage}>
-      <HeroSectionRectangle />
+      <NavBar />
       <section className={styles.clouds}>
         <HeroSection />
         <HowItWorks />
@@ -80,6 +81,7 @@ const LandingPage: NextPage = () => {
           </div>
         </div>
       </section>
+      <GetStarted />
       <div className={styles.viewAllProductsButton}>
         <h1 className={styles.contactUs}>
           <span>Contact</span>
